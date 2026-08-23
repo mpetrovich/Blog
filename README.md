@@ -13,7 +13,8 @@ Blog/
   posts/
     published/     # live markdown + images (tracked)
     draft/         # local drafts only (gitignored)
-  site/            # Eleventy app, Render Blueprint, build output
+  site/            # Eleventy app + build output (dist/)
+  render.yaml      # Render Blueprint (mirrors site/render.yaml)
 ```
 
 ## Local development
@@ -41,18 +42,13 @@ Output is `site/dist/` (gitignored).
 
 ## Deploy (Render)
 
-Infra lives in [`site/render.yaml`](site/render.yaml): static site and Medium → new-path **301** routes.
+[`render.yaml`](render.yaml) (kept in sync with [`site/render.yaml`](site/render.yaml)) defines the static site and Medium → new-path **301** routes.
 
-A root [`scripts/build.sh`](scripts/build.sh) shim keeps the existing Render service settings working (`buildCommand: bash scripts/build.sh`, publish `./_site`) by building `site/` and copying `site/dist` → `_site`.
+- **Build:** `bash site/scripts/build.sh`
+- **Publish:** `./site/dist`
+- **Filters:** rebuilds on `site/**` and `posts/published/**`
 
-### One-time setup after this layout
-
-1. In the [Render Dashboard](https://dashboard.render.com), open the Blueprint for this repo.
-2. Optionally set **Blueprint Path** to `site/render.yaml` (Render defaults to repo-root `render.yaml`). After that sync, build/publish paths come from the Blueprint and the root shim is unused.
-3. Confirm the unused **`WRITING_GITHUB_TOKEN`** env var is gone (cleared during cutover).
-4. Deploy. A push to `main` that touches `site/**` or `posts/published/**` rebuilds the site (once Blueprint Path / build filters are applied).
-
-Do not edit redirects in the Render UI — keep [`site/render.yaml`](site/render.yaml) as the source of truth.
+Do not edit redirects in the Render UI — keep the Blueprint YAML as the source of truth.
 
 ### Cutover: Medium → petro.blog
 

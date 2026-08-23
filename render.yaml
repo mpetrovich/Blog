@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: blog
+    runtime: static
+    buildCommand: bash site/scripts/build.sh
+    staticPublishPath: ./site/dist
+    buildFilter:
+      paths:
+        - site/**
+        - posts/published/**
+    routes:
+      - type: redirect
+        source: /adventures-in-product-the-first-90-days-7e94eff6a296
+        destination: /posts/adventures-in-product-the-first-90-days/
+      - type: redirect
+        source: /book-summary-build-what-matters-c60e17b31a73
+        destination: /posts/book-summary-build-what-matters/
+      - type: redirect
+        source: /effective-delegation-b11288dfcf4a
+        destination: /posts/effective-delegation/
+      - type: redirect
+        source: /from-engineering-to-product-manager-hello-product-9a44820875f
+        destination: /posts/from-engineering-to-product-the-adventure-begins/
+      - type: redirect
+        source: /how-to-be-successful-6523f6caf11f
+        destination: /posts/how-to-be-successful/
+      - type: redirect
+        source: /decision-making-d29702c58d3d
+        destination: /posts/how-to-make-decisions-that-don-t-suck/
+      - type: redirect
+        source: /lead-time-is-the-kpi-for-process-e86a9ed045b0
+        destination: /posts/lead-time-is-the-kpi-for-process/
+      - type: redirect
+        source: /my-personal-readme-13287f18223d
+        destination: /posts/manager-readme/
+      - type: redirect
+        source: /speed-drives-quality-5ccdafa0f385
+        destination: /posts/speed-drives-quality/
+      - type: redirect
+        source: /the-1-rule-when-talking-to-customers-328b907accfd
+        destination: /posts/the-1-rule-when-talking-to-customers/
+      - type: redirect
+        source: /the-2-questions-that-lead-to-better-decisions-every-time-a4d2d0de4f82
+        destination: /posts/the-2-questions-that-lead-to-better-decisions-every-time/
+      - type: redirect
+        source: /the-highest-leverage-work-happens-early-c31ccdbc35b7
+        destination: /posts/the-highest-leverage-work-happens-early/
+      - type: redirect
+        source: /the-3-domino-rule-85888e009e5a
+        destination: /posts/the-three-dominoes/
+      - type: redirect
+        source: /to-the-brink-of-burnout-and-back-again-2b2d0224bf3c
+        destination: /posts/to-the-brink-of-burnout-and-back-again/
+      - type: redirect
+        source: /you-need-to-calm-down-71a177c99c9f
+        destination: /posts/you-need-to-calm-down/
