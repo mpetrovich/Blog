@@ -25,25 +25,15 @@
 		/>
 		<link rel="stylesheet" href="/css/style.css?v={{ cssHash }}" />
 	</head>
-	<body class="design-compare">
-		<a class="skip-link" href="#main-light">Skip to content</a>
-		<div class="design-compare-pane theme-light">
+	<body class="design-compare" data-theme-persist="false">
+		<a class="skip-link" href="#main">Skip to content</a>
+		<div class="design-compare-pane">
 			<header class="site-header">
 				<nav class="breadcrumbs" aria-label="Breadcrumb">
 					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
 				</nav>
 			</header>
-			<main id="main-light" class="site-main">
-				{{ content | safe }}
-			</main>
-		</div>
-		<div class="design-compare-pane theme-dark" aria-hidden="true">
-			<header class="site-header">
-				<nav class="breadcrumbs">
-					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
-				</nav>
-			</header>
-			<main class="site-main">
+			<main id="main" class="site-main">
 				{{ content | safe }}
 			</main>
 		</div>
