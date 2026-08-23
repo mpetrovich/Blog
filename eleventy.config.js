@@ -27,7 +27,8 @@ function resolvePostsDir() {
 	return path.join(__dirname, "../Writing/posts");
 }
 
-/** Rewrite post-relative image paths to site-absolute /posts/images/... (HtmlBasePlugin adds pathPrefix). */
+/** Rewrite post-relative image paths to site-absolute /posts/images/... */
+
 function rewriteImagePaths(markdown) {
 	return markdown.replace(/\]\(images\//g, "](/posts/images/");
 }
@@ -95,7 +96,6 @@ export default function (eleventyConfig) {
 }
 
 export const config = {
-	pathPrefix: "/Blog/",
 	dir: {
 		input: "src",
 		includes: "_includes",

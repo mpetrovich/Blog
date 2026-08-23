@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Public site for Michael Petrovich — Eleventy on GitHub Pages",
+  "description": "Public site for Michael Petrovich — Eleventy on Render",
   "scripts": {
     "build": "eleventy",
     "start": "eleventy --serve"
