@@ -2,3 +2,4 @@ posts/draft/
 _site/
 .DS_Store
 .superpowers/
+.env

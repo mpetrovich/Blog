@@ -24,6 +24,7 @@ Work in the **Blog** repo root. Do not touch a separate Writing repo.
 - [ ] 6. Push Blog
 ```
 
+After push, optionally run `/notify-subscribers` so the Buttondown list gets a “new post” email.
 ## Workflow
 
 ### 1. Resolve draft(s)
@@ -123,6 +124,8 @@ git push
 If no upstream: `git push -u origin HEAD`. Never force-push.
 
 Render rebuilds from the Blog push (no separate deploy hook or Writing workflow).
+
+After a successful push, optionally remind the user they can run `/notify-subscribers` for that slug.
 
 ## Done
 
