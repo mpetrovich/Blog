@@ -133,7 +133,7 @@ async function sendEmail({ subject, body }) {
 async function main() {
 	if (!apiKey) {
 		console.error(
-			"BUTTONDOWN_API_KEY is not set. Add it to .env (see .env.example) or export it. See docs/buttondown-setup.md",
+			"BUTTONDOWN_API_KEY is not set. Add it to .env (see .env.example) or export it.",
 		);
 		process.exit(1);
 	}

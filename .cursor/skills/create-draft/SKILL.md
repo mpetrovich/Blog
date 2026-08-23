@@ -42,7 +42,7 @@ topics: []
 Required fields always present: `title`, `subtitle`, `slug`, `medium_id`, `draft: true`, `topics: []`.
 
 - `subtitle` and `medium_id` stay empty placeholders until the user fills them.
-- Leave `topics: []` on drafts. On publish, pick 1–3 topics from the vocabulary in [`docs/topic-taxonomy.md`](../../../docs/topic-taxonomy.md).
+- Leave `topics: []` on drafts. On publish, pick 1–3 topics already used on published posts (see `/topics/` on the site).
 - Body after the closing `---` is empty (one trailing newline is fine).
 - Never use published-post frontmatter (`date`, `syndicated_url`) for drafts.
 

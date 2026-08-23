@@ -81,7 +81,7 @@ For each moved post, rewrite YAML to the **published** shape. Keep the body unch
 | `subtitle` | Keep (empty string OK) |
 | `date` | `YYYY-MM-DD` unquoted. Use today unless the user gave a date. |
 | `syndicated_url` | If `medium_id` was non-empty: `https://medium.com/@michael-petrovich/<slug>-<medium_id>`. Otherwise omit. |
-| `topics` | Keep existing topics if already set; otherwise pick 1–3 from [`docs/topic-taxonomy.md`](../../../docs/topic-taxonomy.md). Default `[]` only if none fit yet. |
+| `topics` | Keep existing topics if already set; otherwise pick 1–3 from topics already used on published posts (see `/topics/` on the site). Default `[]` only if none fit yet. |
 
 **Target order:**
 

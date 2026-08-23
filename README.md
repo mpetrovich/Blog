@@ -43,7 +43,7 @@ Output is `site/dist/` (gitignored).
 
 Readers can subscribe on the site; you notify them after publishing with `/notify-subscribers`.
 
-1. Complete [docs/buttondown-setup.md](docs/buttondown-setup.md) (username, double opt-in, optional sending domain, API key).
+1. Create a Buttondown newsletter, enable double opt-in, and optionally add a custom sending domain.
 2. Set `buttondownUsername` in [`site/src/_data/site.js`](site/src/_data/site.js) (or `BUTTONDOWN_USERNAME` at build time).
 3. Put `BUTTONDOWN_API_KEY` in the repo-root [`.env`](.env) (see [`.env.example`](.env.example)).
 

@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 Send a short “new post” email to the Buttondown list for one published post. **Does not** publish or push; run after `/publish-draft` when the post is live (or about to be).
 
-Work in the **Blog** repo root. Setup: [`docs/buttondown-setup.md`](../../../docs/buttondown-setup.md).
+Work in the **Blog** repo root. Setup notes: repo README “Email subscribe (Buttondown)” and [`.env.example`](../../../.env.example).
 
 ## Checklist
 
@@ -28,7 +28,7 @@ Work in the **Blog** repo root. Setup: [`docs/buttondown-setup.md`](../../../doc
 
 - `BUTTONDOWN_API_KEY` must be set — prefer repo-root `.env` (gitignored; see `.env.example`). Never commit it.
 - Target post must exist at `posts/published/<slug>.md`.
-- If the key is missing, stop and point to `docs/buttondown-setup.md`.
+- If the key is missing, stop and point to the README “Email subscribe” section / `.env.example`.
 
 ### 2. Resolve slug
 
