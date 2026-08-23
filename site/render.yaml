@@ -2,11 +2,12 @@ services:
   - type: web
     name: blog
     runtime: static
-    buildCommand: bash scripts/build.sh
-    staticPublishPath: ./_site
-    envVars:
-      - key: WRITING_GITHUB_TOKEN
-        sync: false
+    buildCommand: bash site/scripts/build.sh
+    staticPublishPath: ./site/dist
+    buildFilter:
+      paths:
+        - site/**
+        - posts/published/**
     routes:
       - type: redirect
         source: /adventures-in-product-the-first-90-days-7e94eff6a296

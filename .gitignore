@@ -1,6 +1,3 @@
-_site/
-node_modules/
-Writing/
-src/_posts/
+posts/draft/
 .DS_Store
 .superpowers/

@@ -4,72 +4,60 @@ Public site for [Michael Petrovich](https://github.com/mpetrovich), built with [
 
 Canonical URL: https://petro.blog
 
-Posts live in the separate [Writing](https://github.com/mpetrovich/Writing) repo. This repo owns templates, CSS, redirects, and deploy config only. The Blog repo can be private; the published site stays public.
+This repo holds both published writing and the site. Posts live under `posts/`; the Eleventy app lives under `site/`.
+
+## Layout
+
+```text
+Blog/
+  posts/
+    published/     # live markdown + images (tracked)
+    draft/         # local drafts only (gitignored)
+  site/            # Eleventy app, Render Blueprint, build output
+```
 
 ## Local development
 
-Clone **Blog** and **Writing** as siblings:
-
-```text
-Code/
-  Blog/
-  Writing/
-```
-
 ```bash
-cd Blog
+cd site
 npm install
 npm start
 ```
 
-Eleventy reads posts from `../Writing/posts` by default. Override with `POSTS_DIR` if needed.
+Eleventy reads posts from `../posts/published` by default. Override with `POSTS_DIR` if needed:
 
 ```bash
-POSTS_DIR=/path/to/Writing/posts npm start
+POSTS_DIR=/path/to/posts npm start
 ```
 
 Build once:
 
 ```bash
+cd site
 npm run build
 ```
 
-Output is `_site/` (gitignored).
+Output is `site/dist/` (gitignored).
 
 ## Deploy (Render)
 
-Infra lives in [`render.yaml`](render.yaml): static site, build that clones Writing, and Medium → new-path **301** routes.
+Infra lives in [`site/render.yaml`](site/render.yaml): static site and Medium → new-path **301** routes.
 
-### One-time setup
+### One-time setup after this layout
 
-1. In the [Render Dashboard](https://dashboard.render.com), create a Blueprint from this repo (or connect the repo and apply `render.yaml`).
-2. When prompted, set **`WRITING_GITHUB_TOKEN`**: a GitHub PAT (or fine-scoped token) with **read** access to `mpetrovich/Writing`.
-3. After the first successful deploy, copy the service **Deploy Hook** URL from Settings.
-4. In the **Writing** repo → Settings → Secrets and variables → Actions, add secret **`RENDER_DEPLOY_HOOK_URL`** with that URL.
+1. In the [Render Dashboard](https://dashboard.render.com), open the Blueprint for this repo.
+2. Set **Blueprint Path** to `site/render.yaml` (Render defaults to repo-root `render.yaml`).
+3. Remove the unused **`WRITING_GITHUB_TOKEN`** env var from the service if it is still present.
+4. Deploy. A push to `main` that touches `site/**` or `posts/published/**` rebuilds the site.
 
-### How publishes work
-
-| Change | What happens |
-|--------|----------------|
-| Push to `main` on **Blog** | Render rebuilds automatically |
-| Push to `main` on **Writing** (`posts/**`) | Writing Action curls the deploy hook → Render rebuilds (clones latest Writing) |
-
-Do not edit redirects in the Render UI — keep [`render.yaml`](render.yaml) as the source of truth. Mapping notes: [`docs/redirects-medium.md`](docs/redirects-medium.md).
+Do not edit redirects in the Render UI — keep [`site/render.yaml`](site/render.yaml) as the source of truth.
 
 ### Cutover: Medium → petro.blog
 
 Do **not** point DNS until redirects work on the Render `*.onrender.com` URL.
 
-1. Confirm preview: home, one post, `/feed.xml`, and a sample redirect, e.g.  
-   `curl -sI https://YOUR-SERVICE.onrender.com/speed-drives-quality-5ccdafa0f385`  
-   Expect `301` and `Location` ending in `/posts/speed-drives-quality/`.
+1. Confirm preview: home, one post, `/feed.xml`, and a sample redirect.
 2. In Medium, remove the custom domain `petro.blog`.
 3. In Render, add custom domain `petro.blog` (and `www` if you use it); set DNS as Render shows.
-4. Spot-check:  
-   `curl -sI https://petro.blog/speed-drives-quality-5ccdafa0f385`  
-   → `301` + `Location: https://petro.blog/posts/speed-drives-quality/`
+4. Spot-check an old Medium path returns `301` to `/posts/<slug>/`.
 5. Optional: on `medium.com/@…` posts, link to the new URLs / set Medium canonicals (those hosts cannot 301).
-
-## Medium redirects
-
-Applied as Render `routes` in `render.yaml` (HTTP 301). Human-readable table: [docs/redirects-medium.md](docs/redirects-medium.md).

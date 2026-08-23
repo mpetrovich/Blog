@@ -20,11 +20,7 @@ function resolvePostsDir() {
 	if (process.env.POSTS_DIR) {
 		return path.resolve(process.env.POSTS_DIR);
 	}
-	const ciPath = path.join(__dirname, "Writing/posts");
-	if (fs.existsSync(ciPath)) {
-		return ciPath;
-	}
-	return path.join(__dirname, "../Writing/posts");
+	return path.join(__dirname, "../posts/published");
 }
 
 /** Rewrite post-relative image paths to site-absolute /posts/images/... */
@@ -37,7 +33,7 @@ export default function (eleventyConfig) {
 	const postsDir = resolvePostsDir();
 	if (!fs.existsSync(postsDir)) {
 		throw new Error(
-			`Posts directory not found: ${postsDir}. Set POSTS_DIR or clone Writing as a sibling of Blog.`,
+			`Posts directory not found: ${postsDir}. Set POSTS_DIR or add markdown under posts/published/.`,
 		);
 	}
 
@@ -100,7 +96,7 @@ export const config = {
 		input: "src",
 		includes: "_includes",
 		data: "_data",
-		output: "_site",
+		output: "dist",
 	},
 	markdownTemplateEngine: false,
 	htmlTemplateEngine: "njk",
