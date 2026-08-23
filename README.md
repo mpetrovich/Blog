@@ -13,8 +13,7 @@ Blog/
   posts/
     published/     # live markdown + images (tracked)
     draft/         # local drafts only (gitignored)
-  site/            # Eleventy app + build output (dist/)
-  render.yaml      # Render Blueprint (mirrors site/render.yaml)
+  site/            # Eleventy app, Render Blueprint, build output (dist/)
 ```
 
 ## Local development
@@ -42,13 +41,13 @@ Output is `site/dist/` (gitignored).
 
 ## Deploy (Render)
 
-[`render.yaml`](render.yaml) (kept in sync with [`site/render.yaml`](site/render.yaml)) defines the static site and Medium → new-path **301** routes.
+Infra lives in [`site/render.yaml`](site/render.yaml). The Render Blueprint Path is set to that file.
 
 - **Build:** `bash site/scripts/build.sh`
 - **Publish:** `./site/dist`
 - **Filters:** rebuilds on `site/**` and `posts/published/**`
 
-Do not edit redirects in the Render UI — keep the Blueprint YAML as the source of truth.
+Do not edit redirects in the Render UI — keep [`site/render.yaml`](site/render.yaml) as the source of truth.
 
 ### Cutover: Medium → petro.blog
 
