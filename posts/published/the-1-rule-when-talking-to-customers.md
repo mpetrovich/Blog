@@ -3,7 +3,7 @@ title: 'The #1 Rule When Talking To Customers'
 subtitle: Your customers will mislead and lie to you unless you follow this cardinal rule.
 date: 2021-04-26
 syndicated_url: https://medium.com/@michael-petrovich/the-1-rule-when-talking-to-customers-328b907accfd
-tags: []
+tags: [customers, product]
 image_caption: Dr. Kapoor talking with a patient on New Amsterdam
 ---
 

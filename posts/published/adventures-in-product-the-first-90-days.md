@@ -3,7 +3,7 @@ title: 'Adventures in Product: The First 90 Days'
 subtitle: The importance of systems for learning how to learn.
 date: 2021-05-19
 syndicated_url: https://medium.com/@michael-petrovich/adventures-in-product-the-first-90-days-7e94eff6a296
-tags: []
+tags: [career, product]
 ---
 
 _This is part of a_ [_series_](https://petro.blog/from-engineering-to-product-manager-hello-product-9a44820875f) _following my journey into product management._

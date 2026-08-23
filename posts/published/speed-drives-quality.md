@@ -3,7 +3,7 @@ title: Speed drives quality
 subtitle: The faster you deliver, the faster you’ll achieve high quality.
 date: 2026-03-18
 syndicated_url: https://medium.com/@michael-petrovich/speed-drives-quality-5ccdafa0f385
-tags: []
+tags: [process]
 ---
 
 ### **The faster you deliver, the faster you’ll achieve high quality.**

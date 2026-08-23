@@ -3,7 +3,7 @@ title: How to be successful
 subtitle: The individuals that deliver outsized impact to the people, processes, and products around them all share a few key traits.
 date: 2026-03-11
 syndicated_url: https://medium.com/@michael-petrovich/how-to-be-successful-6523f6caf11f
-tags: []
+tags: [leadership]
 ---
 
 I’ve interviewed and worked with hundreds of software engineers, product managers, and designers. Those that delivered outsized impact to the people, processes, and products around them all shared a few common traits that can probably be generalized to life as well:

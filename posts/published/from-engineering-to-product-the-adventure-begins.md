@@ -3,7 +3,7 @@ title: 'From Engineering To Product: The Adventure Begins'
 subtitle: About two months ago, I became a product manager for the first time after over a decade in engineering.
 date: 2021-05-10
 syndicated_url: https://medium.com/@michael-petrovich/from-engineering-to-product-manager-hello-product-9a44820875f
-tags: []
+tags: [career, product]
 ---
 
 About two months ago, I became a product manager for the first time. Before, I had been in engineering for over a decade as a software engineer and engineering manager. The transition from engineering to product isn’t that common, and I didn’t find many others who talked about their experiences with similar career changes. I want to change that and share my story.

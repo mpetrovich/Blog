@@ -9,6 +9,13 @@ layout: layouts/base.njk
 		{% endif %}
 		<p class="post-meta">
 			<time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+			{%- if tags and tags.length %}
+				<span class="post-tags" aria-label="Tags">
+					{%- for tag in tags %}
+						{%- if not loop.first %} · {% endif %}<a href="/tags/{{ tag }}/">{{ tag }}</a>
+					{%- endfor %}
+				</span>
+			{%- endif %}
 		</p>
 	</header>
 	<div class="post-body">

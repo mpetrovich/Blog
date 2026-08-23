@@ -42,6 +42,7 @@ tags: []
 Required fields always present: `title`, `subtitle`, `slug`, `medium_id`, `draft: true`, `tags: []`.
 
 - `subtitle` and `medium_id` stay empty placeholders until the user fills them.
+- Leave `tags: []` on drafts. On publish, pick 1–3 tags from the vocabulary in [`docs/tag-taxonomy.md`](../../../docs/tag-taxonomy.md).
 - Body after the closing `---` is empty (one trailing newline is fine).
 - Never use published-post frontmatter (`date`, `syndicated_url`) for drafts.
 

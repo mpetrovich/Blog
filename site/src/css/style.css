@@ -493,6 +493,38 @@ a:focus-visible {
 	letter-spacing: 0.02em;
 }
 
+.post-tags {
+	display: inline;
+}
+
+.post-tags::before {
+	content: " · ";
+}
+
+.post-tags a {
+	color: var(--ink-muted);
+	text-decoration: none;
+}
+
+.post-tags a:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+
+.tag-archive-header {
+	margin-bottom: var(--space);
+}
+
+.tag-archive-header h1 {
+	margin: 0;
+	font-family: var(--font-meta);
+	font-size: var(--step-1);
+	font-weight: 400;
+	letter-spacing: 0.02em;
+	color: var(--ink-muted);
+}
+
 .post-body > *:first-child {
 	margin-top: 0;
 }

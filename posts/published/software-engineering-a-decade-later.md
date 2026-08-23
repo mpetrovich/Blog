@@ -2,7 +2,7 @@
 title: 'Software engineering: a decade later'
 subtitle: AI can write the code. It can’t feel when the interface is wrong.
 date: 2026-08-22
-tags: []
+tags: [engineering, ai, career]
 ---
 
 I’m one month into my transition from engineering management and product to hands-on software engineering after nearly a decade away from it. The biggest change is the role of AI in software development. Here’s what I’ve noticed so far.

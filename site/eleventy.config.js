@@ -70,6 +70,24 @@ export default function (eleventyConfig) {
 			.sort((a, b) => b.date - a.date),
 	);
 
+	eleventyConfig.addCollection("tagPages", (collectionApi) => {
+		const byTag = new Map();
+		for (const item of collectionApi
+			.getAll()
+			.filter((entry) => entry.data.writingPost)) {
+			for (const tag of item.data.tags ?? []) {
+				if (!byTag.has(tag)) byTag.set(tag, []);
+				byTag.get(tag).push(item);
+			}
+		}
+		for (const posts of byTag.values()) {
+			posts.sort((a, b) => b.date - a.date);
+		}
+		return [...byTag.entries()]
+			.sort(([a], [b]) => a.localeCompare(b))
+			.map(([tag, posts]) => ({ tag, posts }));
+	});
+
 	eleventyConfig.addFilter("readableDate", (dateObj) => {
 		if (!(dateObj instanceof Date) || Number.isNaN(dateObj.getTime())) {
 			return "";
