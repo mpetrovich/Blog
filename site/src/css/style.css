@@ -885,7 +885,7 @@ a:focus-visible {
 .status-page-note {
 	color: var(--ink-muted);
 	font-size: var(--step--1);
-	font-family: var(--font-meta);
+	font-family: var(--font-body);
 }
 
 /* Design lab: single-column specimen page */
