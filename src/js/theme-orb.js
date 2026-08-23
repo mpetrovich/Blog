@@ -163,10 +163,13 @@ function drawSphere(ctx, size, phase, turn, ink) {
 	const data = img.data;
 	const r = size / 2;
 	const L = lightForPhase(phase, turn);
-	const sunAmt = smoothstep(0.45, 0.95, phase);
-	// Only flatten toward a full disc when nearly face-on sun — keep terminator while tilting
-	const tiltDeg = mix(orbParams.moonRotationDeg, orbParams.sunRotationDeg, phase);
-	const faceOn = sunAmt * (1 - Math.min(1, Math.abs(tiltDeg) / 180));
+	// Wash shade → white near the crescent end; highlight rotates with L the whole time
+	const toSun = smoothstep(0, 0.4, phase);
+	// Unlit side: plum body (same hue/sat as the lit orb), not the white highlight tip
+	const plum = hslToRgb(ink.h, ink.s, Math.min(48, orbParams.lightness * 0.48));
+	const shadowR = Math.round(mix(0, plum.r, phase));
+	const shadowG = Math.round(mix(0, plum.g, phase));
+	const shadowB = Math.round(mix(0, plum.b, phase));
 
 	for (let py = 0; py < size; py++) {
 		for (let px = 0; px < size; px++) {
@@ -179,33 +182,18 @@ function drawSphere(ctx, size, phase, turn, ink) {
 			const lit = nx * L.x + ny * L.y + nz * L.z;
 			const i = (py * size + px) * 4;
 
-			const crescentLit = lit <= 0 ? 0 : Math.min(1, lit * 10);
-			const litAmt = mix(crescentLit, 1, faceOn);
+			// Geometric terminator only (crescent grows/shrinks by rotation, not fade)
+			const litAmt = lit <= 0 ? 0 : Math.min(1, lit * 10);
 
-			if (litAmt <= 0.001) {
-				data[i] = 0;
-				data[i + 1] = 0;
-				data[i + 2] = 0;
-				data[i + 3] = 255;
-				continue;
-			}
-
-			let cr;
-			let cg;
-			let cb;
-			if (sunAmt <= 0) {
-				cr = cg = cb = 255;
-			} else {
-				const sun = sunShade(nx, ny, nz, L, ink);
-				cr = Math.round(mix(255, sun.r, sunAmt));
-				cg = Math.round(mix(255, sun.g, sunAmt));
-				cb = Math.round(mix(255, sun.b, sunAmt));
-			}
-
+			const sun = sunShade(nx, ny, nz, L, ink);
+			const cr = Math.round(mix(255, sun.r, toSun));
+			const cg = Math.round(mix(255, sun.g, toSun));
+			const cb = Math.round(mix(255, sun.b, toSun));
 			const limb = 0.88 + 0.12 * nz;
-			data[i] = Math.round(cr * limb * litAmt);
-			data[i + 1] = Math.round(cg * limb * litAmt);
-			data[i + 2] = Math.round(cb * limb * litAmt);
+
+			data[i] = Math.round(cr * limb * litAmt + shadowR * (1 - litAmt));
+			data[i + 1] = Math.round(cg * limb * litAmt + shadowG * (1 - litAmt));
+			data[i + 2] = Math.round(cb * limb * litAmt + shadowB * (1 - litAmt));
 			data[i + 3] = 255;
 		}
 	}
