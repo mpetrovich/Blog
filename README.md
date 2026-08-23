@@ -43,12 +43,14 @@ Output is `site/dist/` (gitignored).
 
 Infra lives in [`site/render.yaml`](site/render.yaml): static site and Medium → new-path **301** routes.
 
+A root [`scripts/build.sh`](scripts/build.sh) shim keeps the existing Render service settings working (`buildCommand: bash scripts/build.sh`, publish `./_site`) by building `site/` and copying `site/dist` → `_site`.
+
 ### One-time setup after this layout
 
 1. In the [Render Dashboard](https://dashboard.render.com), open the Blueprint for this repo.
-2. Set **Blueprint Path** to `site/render.yaml` (Render defaults to repo-root `render.yaml`).
-3. Remove the unused **`WRITING_GITHUB_TOKEN`** env var from the service if it is still present.
-4. Deploy. A push to `main` that touches `site/**` or `posts/published/**` rebuilds the site.
+2. Optionally set **Blueprint Path** to `site/render.yaml` (Render defaults to repo-root `render.yaml`). After that sync, build/publish paths come from the Blueprint and the root shim is unused.
+3. Confirm the unused **`WRITING_GITHUB_TOKEN`** env var is gone (cleared during cutover).
+4. Deploy. A push to `main` that touches `site/**` or `posts/published/**` rebuilds the site (once Blueprint Path / build filters are applied).
 
 Do not edit redirects in the Render UI — keep [`site/render.yaml`](site/render.yaml) as the source of truth.
 
