@@ -14,6 +14,9 @@
 			name="description"
 			content="{{ description or subtitle or site.description }}"
 		/>
+		{%- if noindex %}
+		<meta name="robots" content="noindex, nofollow" />
+		{%- endif %}
 		<link
 			rel="alternate"
 			type="application/rss+xml"
