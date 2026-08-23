@@ -1,10 +1,20 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const cssPath = path.join(__dirname, "src/css/style.css");
+
+function cssHash() {
+	return crypto
+		.createHash("sha256")
+		.update(fs.readFileSync(cssPath))
+		.digest("hex")
+		.slice(0, 8);
+}
 
 function resolvePostsDir() {
 	if (process.env.POSTS_DIR) {
@@ -39,6 +49,8 @@ export default function (eleventyConfig) {
 	});
 
 	eleventyConfig.addWatchTarget(postsDir);
+	eleventyConfig.addWatchTarget(cssPath);
+	eleventyConfig.addGlobalData("cssHash", cssHash);
 
 	for (const file of fs.readdirSync(postsDir)) {
 		if (!file.endsWith(".md")) continue;
