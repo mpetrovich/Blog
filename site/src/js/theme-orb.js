@@ -140,22 +140,22 @@ function sunShade(nx, ny, nz, L, ink) {
 
 	const lambert = Math.max(0, nx * L.x + ny * L.y + nz * L.z);
 
-	// Highlight tracks the light — rotates with the sphere around the axis
+	// Soft fill tracks the light — muted so the disk reads as sun, not gloss
 	const hx = L.x;
 	const hy = L.y;
 	const hz = L.z + 1; // Blinn halfway to camera (0,0,1)
 	const hm = Math.hypot(hx, hy, hz) || 1;
 	const ndoth = Math.max(0, (nx * hx + ny * hy + nz * hz) / hm);
-	// Soft, wide highlight (low power = more spread; contrast sharpens slightly)
-	const highlight = ndoth ** (2.2 + 2.8 * c);
+	// Wide, weak highlight (high power = tight; we keep it soft and low)
+	const highlight = ndoth ** (1.6 + 1.4 * c);
 	const shade = 1 - 0.28 * c + 0.28 * c * lambert;
-	const lift = highlight * (0.45 + 0.4 * c);
+	const lift = highlight * (0.12 + 0.1 * c);
 
 	const baseL = lightness * shade;
-	const litL = Math.min(100, baseL + lift * (14 + 16 * c));
+	const litL = Math.min(100, baseL + lift * (5 + 6 * c));
 	const shadeL = Math.max(0, baseL - 6 * c);
 
-	return hslToRgb(ink.h, ink.s, mix(shadeL, litL, Math.min(1, lift * 0.85 + lambert * 0.25 * c)));
+	return hslToRgb(ink.h, ink.s, mix(shadeL, litL, Math.min(1, lift * 0.35 + lambert * 0.4 * c)));
 }
 
 function drawSphere(ctx, size, phase, turn, ink) {
