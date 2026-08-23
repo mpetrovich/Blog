@@ -1,14 +1,28 @@
 import { mountThemeOrb } from "./theme-orb.js";
 
+const THEME_KEY = "blog-theme";
+
 const buttons = [...document.querySelectorAll("[data-theme-toggle]")];
 if (buttons.length) {
 	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 	const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 	let busy = false;
 
+	function storedTheme() {
+		try {
+			const t = sessionStorage.getItem(THEME_KEY);
+			if (t === "light" || t === "dark") return t;
+		} catch {
+			/* private mode / blocked */
+		}
+		return null;
+	}
+
 	function effectiveTheme() {
 		const forced = document.documentElement.getAttribute("data-theme");
 		if (forced === "light" || forced === "dark") return forced;
+		const stored = storedTheme();
+		if (stored) return stored;
 		return darkQuery.matches ? "dark" : "light";
 	}
 
@@ -23,20 +37,32 @@ if (buttons.length) {
 		return button.closest(".theme-dark") ? "dark" : "light";
 	}
 
+	function switchLabel(theme) {
+		return theme === "light" ? "Switch to dark mode" : "Switch to light mode";
+	}
+
+	function syncLabel(button, theme) {
+		const label = switchLabel(theme);
+		button.setAttribute("aria-label", label);
+		button.title = label;
+	}
+
 	function syncChrome(theme) {
 		for (const button of buttons) {
 			if (button.classList.contains("theme-toggle--pane")) continue;
 			button.dataset.mode = theme;
-			button.setAttribute(
-				"aria-label",
-				theme === "light" ? "Switch to dark mode" : "Switch to light mode",
-			);
+			syncLabel(button, theme);
 			button._orb?.setPhase(theme === "light" ? 1 : 0);
 		}
 	}
 
 	function applyTheme(theme) {
 		document.documentElement.setAttribute("data-theme", theme);
+		try {
+			sessionStorage.setItem(THEME_KEY, theme);
+		} catch {
+			/* private mode / blocked */
+		}
 		syncChrome(theme);
 	}
 
@@ -47,6 +73,7 @@ if (buttons.length) {
 		const isPane = button.classList.contains("theme-toggle--pane");
 		const initial = isPane ? paneTheme(button) : effectiveTheme();
 		button.dataset.mode = initial;
+		syncLabel(button, initial);
 		button._orb = mountThemeOrb(canvas, {
 			phase: initial === "light" ? 1 : 0,
 		});
@@ -60,6 +87,7 @@ if (buttons.length) {
 			if (reduceMotion.matches) {
 				if (isPane) {
 					button.dataset.mode = next;
+					syncLabel(button, next);
 					button._orb.setPhase(next === "light" ? 1 : 0);
 				} else {
 					applyTheme(next);
@@ -71,15 +99,19 @@ if (buttons.length) {
 			await button._orb.setPhase(next === "light" ? 1 : 0, { animate: true });
 			if (isPane) {
 				button.dataset.mode = next;
+				syncLabel(button, next);
 			} else {
-				document.documentElement.setAttribute("data-theme", next);
-				syncChrome(next);
+				applyTheme(next);
 			}
 			busy = false;
 		});
 	}
 
 	if (!buttons.every((b) => b.classList.contains("theme-toggle--pane"))) {
-		syncChrome(effectiveTheme());
+		const theme = effectiveTheme();
+		if (document.documentElement.getAttribute("data-theme") !== theme) {
+			document.documentElement.setAttribute("data-theme", theme);
+		}
+		syncChrome(theme);
 	}
 }

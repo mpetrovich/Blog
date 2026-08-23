@@ -144,8 +144,8 @@ body {
 .site-header {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
+	justify-content: flex-start;
+	gap: 0;
 	padding-block: var(--space-lg) var(--space-lg);
 }
 
@@ -176,6 +176,11 @@ body {
 	color: inherit;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
+}
+
+.site-header .theme-toggle {
+	/* Hang left of the title without shifting breadcrumbs */
+	margin-left: -2rem;
 }
 
 .theme-toggle:focus-visible {
