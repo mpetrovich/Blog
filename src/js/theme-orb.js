@@ -6,7 +6,7 @@ const CRESCENT_SIGN = -1;
 export const ORB_DEFAULTS = {
 	axisDeg: -150,
 	sunRotationDeg: 30,
-	moonRotationDeg: 150,
+	moonRotationDeg: 130,
 	lightness: 80,
 	contrast: 100,
 };

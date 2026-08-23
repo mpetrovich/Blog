@@ -144,8 +144,8 @@ body {
 .site-header {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
-	gap: 0;
+	justify-content: space-between;
+	gap: 1rem;
 	padding-block: var(--space-lg) var(--space-lg);
 }
 
@@ -178,11 +178,6 @@ body {
 	-webkit-tap-highlight-color: transparent;
 }
 
-.site-header .theme-toggle {
-	/* Hang left of the title without shifting breadcrumbs */
-	margin-left: -2rem;
-}
-
 .theme-toggle:focus-visible {
 	outline: 2px solid var(--focus);
 	outline-offset: 3px;
@@ -212,7 +207,9 @@ body {
 	gap: var(--space-lg);
 	margin: 0 0 var(--space-lg);
 	padding: var(--space-lg) 0;
-	border-bottom: 1px solid var(--rule);
+	/* Match both panes: XL orb + vertical padding */
+	min-height: calc(7rem + 2 * var(--space-lg));
+	box-sizing: content-box;
 }
 
 .design-orb-controls {
@@ -221,27 +218,52 @@ body {
 	border-bottom: 1px solid var(--rule);
 	font-family: var(--font-meta);
 	font-size: var(--step--1);
+	/* Collapsed toggle row — same on both panes */
+	min-height: 1.3em;
 }
 
-.theme-dark .design-orb-controls {
-	display: none;
-}
-
-.design-orb-controls__heading {
+.design-orb-controls__bar {
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
 	gap: 1rem;
-	margin: 0 0 0.75rem;
 }
 
-.design-orb-controls__title {
+.design-orb-controls__toggle {
+	display: block;
 	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
 	font-family: var(--font-meta);
 	font-size: var(--step--1);
 	font-weight: 500;
 	letter-spacing: 0.02em;
 	color: var(--ink-muted);
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+	text-decoration-color: color-mix(in srgb, var(--ink-muted) 45%, transparent);
+}
+
+.design-orb-controls__toggle:hover {
+	color: var(--ink);
+	text-decoration-color: var(--ink);
+}
+
+.design-orb-controls__toggle:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+.design-orb-controls__panel {
+	margin-top: 0.85rem;
+}
+
+.design-orb-controls__panel[hidden] {
+	display: none;
 }
 
 .design-orb-controls__reset {
@@ -253,15 +275,16 @@ body {
 	font-size: var(--step--1);
 	font-weight: 500;
 	letter-spacing: 0.02em;
-	color: var(--ink);
+	color: var(--ink-muted);
 	cursor: pointer;
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.18em;
-	text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+	text-decoration-color: color-mix(in srgb, var(--ink-muted) 45%, transparent);
 }
 
 .design-orb-controls__reset:hover {
+	color: var(--ink);
 	text-decoration-color: var(--ink);
 }
 

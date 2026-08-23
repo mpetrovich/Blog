@@ -46,6 +46,12 @@
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
 		<header class="site-header">
+			<nav class="breadcrumbs" aria-label="Breadcrumb">
+				<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
+				{%- if writingPost -%}
+					<span class="path-gap" aria-hidden="true"></span><a href="/posts/">posts</a><span class="crumb-slash" aria-hidden="true">/</span>
+				{%- endif %}
+			</nav>
 			<button
 				type="button"
 				class="theme-toggle"
@@ -55,12 +61,6 @@
 			>
 				<canvas class="theme-toggle__canvas" width="36" height="36" aria-hidden="true"></canvas>
 			</button>
-			<nav class="breadcrumbs" aria-label="Breadcrumb">
-				<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
-				{%- if writingPost -%}
-					<span class="path-gap" aria-hidden="true"></span><a href="/posts/">posts</a><span class="crumb-slash" aria-hidden="true">/</span>
-				{%- endif %}
-			</nav>
 		</header>
 		<main id="main" class="site-main">
 			{{ content | safe }}
