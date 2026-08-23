@@ -63,12 +63,13 @@ export default function (eleventyConfig) {
 		if (!(dateObj instanceof Date) || Number.isNaN(dateObj.getTime())) {
 			return "";
 		}
-		return new Intl.DateTimeFormat("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
+		const month = new Intl.DateTimeFormat("en-US", {
+			month: "short",
 			timeZone: "UTC",
 		}).format(dateObj);
+		const day = String(dateObj.getUTCDate()).padStart(2, "0");
+		const year = dateObj.getUTCFullYear();
+		return `${month} ${day}, ${year}`;
 	});
 
 	eleventyConfig.addFilter("isoDate", (dateObj) => {

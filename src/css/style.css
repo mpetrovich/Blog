@@ -3,17 +3,18 @@
 :root {
 	color-scheme: light dark;
 
-	--font-heading: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
-		Georgia, serif;
-	--font-body: "Source Serif 4", "Source Serif Pro", "Libre Baskerville",
-		"Iowan Old Style", Georgia, serif;
-	--font-meta: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	/* D: all serif + mono labels (typography study) */
+	--font-heading: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+	--font-body: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+	--font-meta: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
-	--ink: #1a1a1a;
-	--ink-muted: #5c5c5c;
-	--paper: #fafafa;
-	--rule: #d6d6d6;
-	--focus: #1a1a1a;
+	/* Warm paper + subtle plum ink */
+	--ink: #3d2430;
+	--ink-heading: #4a2838;
+	--ink-muted: #6a5e64;
+	--paper: #faf6f3;
+	--rule: #e0d8d4;
+	--focus: #4a2838;
 
 	--step--1: 0.875rem;
 	--step-0: 1.0625rem;
@@ -27,13 +28,44 @@
 	--space-lg: 2.5rem;
 }
 
+/* Forced themes (type compare panes); also keep OS preference on :root */
+.theme-light {
+	color-scheme: light;
+	--ink: #3d2430;
+	--ink-heading: #4a2838;
+	--ink-muted: #6a5e64;
+	--paper: #faf6f3;
+	--rule: #e0d8d4;
+	--focus: #4a2838;
+}
+
+.theme-dark {
+	color-scheme: dark;
+	/* Moonlight: cool monochrome silver on night paper */
+	--ink: #e4e2e6;
+	--ink-heading: #d8d4db;
+	--ink-muted: #9b98a0;
+	--paper: #0f1014;
+	--rule: #2a2b30;
+	--focus: #d8d4db;
+	/* Light type on dark reads optically heavier; subpixel AA makes it worse. */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 @media (prefers-color-scheme: dark) {
 	:root {
-		--ink: #ededed;
-		--ink-muted: #a3a3a3;
-		--paper: #121212;
-		--rule: #2e2e2e;
-		--focus: #ededed;
+		--ink: #e4e2e6;
+		--ink-heading: #d8d4db;
+		--ink-muted: #9b98a0;
+		--paper: #0f1014;
+		--rule: #2a2b30;
+		--focus: #d8d4db;
+	}
+
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 }
 
@@ -76,51 +108,48 @@ body {
 }
 
 .site-header,
-.site-main,
-.site-footer {
+.site-main {
 	width: min(100% - 2 * var(--space), var(--measure));
 	margin-inline: auto;
 }
 
 .site-header {
-	padding-block: var(--space-lg) var(--space);
-	border-bottom: 1px solid var(--rule);
+	padding-block: var(--space-lg) var(--space-lg);
 }
 
-.site-title {
-	margin: 0;
-	font-family: var(--font-heading);
-	font-size: var(--step-1);
-	font-weight: 600;
-	letter-spacing: -0.01em;
-	line-height: 1.2;
+.breadcrumbs {
+	display: flex;
+	align-items: baseline;
+	gap: 0;
+	font-family: var(--font-meta);
+	font-size: var(--step--1);
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	line-height: 1.3;
 }
 
-.site-title a {
+.breadcrumbs a {
 	color: inherit;
 	text-decoration: none;
 }
 
-.site-title a:hover {
+.breadcrumbs a:hover {
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.18em;
 }
 
+.path-gap {
+	display: inline-block;
+	width: 0.2ch;
+}
+
+.crumb-slash {
+	color: inherit;
+}
+
 .site-main {
-	padding-block: var(--space-lg);
-}
-
-.site-footer {
-	padding-block: var(--space) var(--space-lg);
-	border-top: 1px solid var(--rule);
-	font-family: var(--font-meta);
-	font-size: var(--step--1);
-	color: var(--ink-muted);
-}
-
-.site-footer p {
-	margin: 0;
+	padding-block: 0 var(--space-lg);
 }
 
 /* Links */
@@ -145,9 +174,22 @@ a:focus-visible {
 /* Intro + list */
 
 .intro p {
-	margin: 0 0 var(--space-lg);
+	margin: 0;
 	font-size: var(--step-1);
 	line-height: 1.55;
+}
+
+.intro strong {
+	color: var(--ink-heading);
+}
+
+.intro p.intro-links {
+	margin: 0.65em 0 calc(var(--space-lg) + var(--space));
+	font-family: var(--font-meta);
+	font-size: var(--step--1);
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	line-height: 1.3;
 }
 
 .post-list ul {
@@ -158,24 +200,28 @@ a:focus-visible {
 
 .post-list li {
 	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
+	flex-wrap: nowrap;
+	align-items: flex-start;
 	justify-content: space-between;
-	gap: 0.35rem 1.25rem;
+	gap: 1rem;
 	padding-block: 0.85rem;
+}
+
+.post-list li + li {
 	border-top: 1px solid var(--rule);
 }
 
-.post-list li:last-child {
-	border-bottom: 1px solid var(--rule);
+.post-list-main {
+	flex: 1 1 auto;
+	min-width: 0;
 }
 
 .post-list a {
-	flex: 1 1 14rem;
 	font-family: var(--font-heading);
 	font-size: var(--step-1);
 	font-weight: 600;
 	line-height: 1.3;
+	color: var(--ink-heading);
 	text-decoration: none;
 }
 
@@ -185,29 +231,38 @@ a:focus-visible {
 	text-underline-offset: 0.18em;
 }
 
+.post-list-subtitle {
+	margin: 0.3rem 0 0;
+	font-size: var(--step--1);
+	line-height: 1.45;
+	color: var(--ink-muted);
+}
+
 .post-list time {
 	flex: 0 0 auto;
+	white-space: nowrap;
 	font-family: var(--font-meta);
 	font-size: var(--step--1);
 	color: var(--ink-muted);
 	letter-spacing: 0.02em;
+	line-height: 1.3;
+	padding-top: 0.15em;
 }
 
 /* Post */
 
 .post-header {
-	margin-bottom: var(--space);
-	padding-bottom: var(--space);
-	border-bottom: 1px solid var(--rule);
+	margin-bottom: var(--space-lg);
 }
 
 .post-header h1 {
 	margin: 0 0 0.4rem;
 	font-family: var(--font-heading);
 	font-size: var(--step-3);
-	font-weight: 650;
+	font-weight: 600;
 	line-height: 1.2;
 	letter-spacing: -0.02em;
+	color: var(--ink-heading);
 }
 
 .post-subtitle {
@@ -233,11 +288,12 @@ a:focus-visible {
 .post-body h3,
 .post-body h4 {
 	font-family: var(--font-heading);
-	font-weight: 650;
+	font-weight: 600;
 	line-height: 1.25;
 	letter-spacing: -0.015em;
 	margin-top: 1.75em;
 	margin-bottom: 0.6em;
+	color: var(--ink-heading);
 }
 
 .post-body h2 {
@@ -283,10 +339,44 @@ a:focus-visible {
 	font-size: 0.9em;
 }
 
-.post-nav {
-	margin-top: var(--space-lg);
+.home-footer {
+	margin: var(--space-lg) 0 0;
 	padding-top: var(--space);
-	border-top: 1px solid var(--rule);
 	font-family: var(--font-meta);
 	font-size: var(--step--1);
+}
+
+/* Specimen page: separate homepage block from post block */
+.type-compare-pane .home-footer {
+	margin-bottom: var(--space-lg);
+	padding-bottom: var(--space-lg);
+	border-bottom: 1px solid var(--rule);
+}
+
+/* Type compare: light | dark half-pages */
+
+body.type-compare {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: start;
+	min-height: 100vh;
+	background: transparent;
+	color: inherit;
+}
+
+.type-compare-pane {
+	min-width: 0;
+	min-height: 100vh;
+	color: var(--ink);
+	background: var(--paper);
+}
+
+.type-compare-pane.theme-dark {
+	border-left: 1px solid var(--rule);
+}
+
+.type-compare-pane .site-header,
+.type-compare-pane .site-main {
+	width: min(100% - 2 * var(--space), var(--measure));
+	margin-inline: auto;
 }

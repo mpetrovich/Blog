@@ -17,12 +17,6 @@
 		{%- if noindex %}
 		<meta name="robots" content="noindex, nofollow" />
 		{%- endif %}
-		<link
-			rel="alternate"
-			type="application/rss+xml"
-			title="{{ site.title }}"
-			href="/feed.xml"
-		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -30,21 +24,28 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="/css/style.css" />
-		{#- Analytics: replace with vendor snippet when ready. -#}
-		{% if analytics %}{{ analytics | safe }}{% endif %}
 	</head>
-	<body>
-		<a class="skip-link" href="#main">Skip to content</a>
-		<header class="site-header">
-			<nav class="breadcrumbs" aria-label="Breadcrumb">
-				<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
-				{%- if writingPost -%}
-					<span class="path-gap" aria-hidden="true"></span><a href="/posts/">posts</a><span class="crumb-slash" aria-hidden="true">/</span>
-				{%- endif %}
-			</nav>
-		</header>
-		<main id="main" class="site-main">
-			{{ content | safe }}
-		</main>
+	<body class="type-compare">
+		<a class="skip-link" href="#main-light">Skip to content</a>
+		<div class="type-compare-pane theme-light">
+			<header class="site-header">
+				<nav class="breadcrumbs" aria-label="Breadcrumb">
+					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
+				</nav>
+			</header>
+			<main id="main-light" class="site-main">
+				{{ content | safe }}
+			</main>
+		</div>
+		<div class="type-compare-pane theme-dark" aria-hidden="true">
+			<header class="site-header">
+				<nav class="breadcrumbs">
+					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
+				</nav>
+			</header>
+			<main class="site-main">
+				{{ content | safe }}
+			</main>
+		</div>
 	</body>
 </html>

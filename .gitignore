@@ -2,3 +2,4 @@ _site/
 node_modules/
 src/_posts/
 .DS_Store
+.superpowers/

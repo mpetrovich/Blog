@@ -1,6 +1,6 @@
 export default {
     title: 'Petro.blog',
-    description: 'Writing at the intersection of product, engineering, and data.',
+    description: 'Michael Petrovich. Working and writing at the intersection of engineering, product, and data.',
     url: 'https://mpetrovich.github.io/Blog',
     author: 'Michael Petrovich',
     linkedin: 'https://www.linkedin.com/in/mpetrovich/',
