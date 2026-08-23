@@ -3,7 +3,7 @@ title: You need to calm down
 subtitle: AI isn’t changing the fundamentals of building software. It’s changing the speed. Don’t confuse the two.
 date: 2026-05-13
 syndicated_url: https://medium.com/@michael-petrovich/you-need-to-calm-down-71a177c99c9f
-tags: [ai, engineering, process]
+topics: [ai, engineering, process]
 ---
 
 ![](images/you-need-to-calm-down/01.jpeg)

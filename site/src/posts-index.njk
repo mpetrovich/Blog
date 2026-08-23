@@ -1,16 +1,25 @@
 ---
+layout: layouts/base.njk
 permalink: /posts/
+title: Posts
+postsIndex: true
 eleventyExcludeFromCollections: true
 ---
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="refresh" content="0;url={{ "/" | url }}" />
-		<link rel="canonical" href="{{ "/" | url }}" />
-		<title>Redirecting…</title>
-	</head>
-	<body>
-		<p><a href="{{ "/" | url }}">All posts</a></p>
-	</body>
-</html>
+
+<section class="posts-landing">
+	<section class="post-list" aria-label="Posts">
+		<ul>
+			{%- for post in collections.posts %}
+				<li>
+					<div class="post-list-main">
+						<a href="{{ post.url }}">{{ post.data.title }}</a>
+						{%- if post.data.subtitle %}
+							<p class="post-list-subtitle">{{ post.data.subtitle }}</p>
+						{%- endif %}
+					</div>
+					<time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+				</li>
+			{%- endfor %}
+		</ul>
+	</section>
+</section>

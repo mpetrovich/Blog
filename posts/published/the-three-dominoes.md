@@ -3,7 +3,7 @@ title: The Three Dominoes
 subtitle: Three simple rules that have an outsized impact on how successfully a team operates
 date: 2021-05-14
 syndicated_url: https://medium.com/@michael-petrovich/the-3-domino-rule-85888e009e5a
-tags: [process, leadership]
+topics: [process, leadership]
 ---
 
 **Every team is a system** containing inputs, outputs, processes, constraints, and incentives. Like any system, everything is connected, and often in subtle ways. Change one behavior over here, and a seemingly unrelated behavior over there changes, too. Second, third, and Nth-order effects abound.

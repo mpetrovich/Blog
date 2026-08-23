@@ -2,7 +2,7 @@
 title: My README
 subtitle: A personal README on my background, beliefs, how I work, my strengths and weaknesses, and how to give me feedback.
 date: 2026-06-16
-tags: [career]
+topics: [career]
 ---
 
 A practice that's emerged with managers is to publish a document explaining what's important to them and what it's like to work with them, inspired by the README files that accompany software. I'm joining North as an engineer, not a manager, but the idea is just as useful between teammates. Here's what you'll learn about me: my background, my beliefs, how I work, my strengths and weaknesses, and how to give me feedback.

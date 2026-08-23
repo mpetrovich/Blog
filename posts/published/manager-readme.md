@@ -3,7 +3,7 @@ title: Manager README
 subtitle: What are my beliefs? Strengths? Weaknesses? How do I work?
 date: 2021-04-23
 syndicated_url: https://medium.com/@michael-petrovich/my-personal-readme-13287f18223d
-tags: [career, leadership]
+topics: [career, leadership]
 ---
 
 A practice that’s emerged with people managers is to publish a document that explains what’s important to them and what it’s like to work with them. This helps prospective and current employees understand what to expect from their manager. It’s called a [manager README](https://managerreadme.com/), inspired from instructional README documents that often accompany software.

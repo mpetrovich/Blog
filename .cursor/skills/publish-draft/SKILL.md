@@ -80,7 +80,7 @@ For each moved post, rewrite YAML to the **published** shape. Keep the body unch
 | `subtitle` | Keep (empty string OK) |
 | `date` | `YYYY-MM-DD` unquoted. Use today unless the user gave a date. |
 | `syndicated_url` | If `medium_id` was non-empty: `https://medium.com/@michael-petrovich/<slug>-<medium_id>`. Otherwise omit. |
-| `tags` | Keep existing tags if already set; otherwise pick 1–3 from [`docs/tag-taxonomy.md`](../../../docs/tag-taxonomy.md). Default `[]` only if none fit yet. |
+| `topics` | Keep existing topics if already set; otherwise pick 1–3 from [`docs/topic-taxonomy.md`](../../../docs/topic-taxonomy.md). Default `[]` only if none fit yet. |
 
 **Target order:**
 
@@ -90,7 +90,7 @@ title: <Title>
 subtitle: <Subtitle>
 date: YYYY-MM-DD
 syndicated_url: https://medium.com/@michael-petrovich/<slug>-<medium_id>
-tags: []
+topics: []
 ---
 ```
 
@@ -140,5 +140,5 @@ User: `/publish-draft hiring-for-diversity`
 1. Resolve `posts/draft/hiring-for-diversity.md`
 2. Confirm path, title, date, syndicated_url; wait for OK
 3. `mv` to `posts/published/hiring-for-diversity.md`
-4. Frontmatter becomes `title` / `subtitle` / `date: 2026-08-23` / `syndicated_url: https://medium.com/@michael-petrovich/hiring-for-diversity-a641003d6ab9` / `tags: []` (using that draft's `medium_id`)
+4. Frontmatter becomes `title` / `subtitle` / `date: 2026-08-23` / `syndicated_url: https://medium.com/@michael-petrovich/hiring-for-diversity-a641003d6ab9` / `topics: []` (using that draft's `medium_id`)
 5. Commit `publish: Hiring for Diversity`, push Blog

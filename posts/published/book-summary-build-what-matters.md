@@ -3,7 +3,7 @@ title: 'Book Summary: Build What Matters'
 subtitle: Deliver more customer value by orienting a product vision and strategy around customer outcomes.
 date: 2021-04-01
 syndicated_url: https://medium.com/@michael-petrovich/book-summary-build-what-matters-c60e17b31a73
-tags: [books, product]
+topics: [books, product]
 ---
 
 _I’ve started a practice of reading one book every week. To help me actually remember what I read, I’m following the_ [_Feynman technique_](https://fs.blog/2021/02/feynman-learning-technique/) _by writing a synthesis of what I’ve learned from each book._

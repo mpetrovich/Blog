@@ -3,7 +3,7 @@ title: How to make decisions that don’t suck
 subtitle: Despite its ubiquity, decision-making is a skill. Like many skills, it can benefit from the same principles behind deliberate practice.
 date: 2023-01-11
 syndicated_url: https://medium.com/@michael-petrovich/decision-making-d29702c58d3d
-tags: [decision-making]
+topics: [decision-making]
 image_caption: The Titanic and its passengers were victims of poor decision-making (i Strings Magazine)
 ---
 

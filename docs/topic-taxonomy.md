@@ -1,18 +1,18 @@
-# Tag taxonomy
+# Topic taxonomy
 
-Controlled vocabulary for `tags` in post frontmatter. Site exposure: quiet links in post meta and `/tags/<tag>/` archive pages. Labels render as the literal tag string.
+Controlled vocabulary for `topics` in post frontmatter. Site exposure: quiet links in post meta and `/topics/<topic>/` archive pages. Labels render as the literal topic string.
 
 ## Rules
 
-1. Only tags from the vocabulary below (no ad-hoc strings).
-2. **1–3 tags** per post (prefer 2).
+1. Only topics from the vocabulary below (no ad-hoc strings).
+2. **1–3 topics** per post (prefer 2).
 3. Prefer the *subject* of the post over the author’s role at the time.
 4. Add a new vocabulary entry only when ≥2 posts would use it, or one post clearly needs a durable label.
 
 ## Vocabulary
 
-| Tag | Use when the post is mainly about… | Avoid when… |
-|-----|--------------------------------------|-------------|
+| Topic | Use when the post is mainly about… | Avoid when… |
+|-------|--------------------------------------|-------------|
 | `career` | Role changes, trajectory, “what it’s like to work with me” | Pure craft advice with no personal/role frame |
 | `product` | Product management, strategy, customer outcomes, PM craft | Engineering-only or people-leadership-only |
 | `engineering` | Software craft, IC practice, technical systems | Process/leadership without engineering substance |
@@ -28,8 +28,8 @@ Intentionally omitted: `learning`, `readme`, `management` (use `leadership`), `q
 
 ## Assignments
 
-| Post | Tags |
-|------|------|
+| Post | Topics |
+|------|--------|
 | [Adventures in Product: The First 90 Days](../posts/published/adventures-in-product-the-first-90-days.md) | `career`, `product` |
 | [Book Summary: Build What Matters](../posts/published/book-summary-build-what-matters.md) | `books`, `product` |
 | [Effective delegation](../posts/published/effective-delegation.md) | `leadership` |

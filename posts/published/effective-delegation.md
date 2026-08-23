@@ -3,7 +3,7 @@ title: Effective delegation
 subtitle: Effective delegation is hard, but this framework can help.
 date: 2026-03-25
 syndicated_url: https://medium.com/@michael-petrovich/effective-delegation-b11288dfcf4a
-tags: [leadership]
+topics: [leadership]
 ---
 
 ### What is delegation?

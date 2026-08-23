@@ -51,8 +51,10 @@
 		<header class="site-header">
 			<nav class="breadcrumbs" aria-label="Breadcrumb">
 				<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
-				{%- if writingPost -%}
+				{%- if writingPost or postsIndex -%}
 					<span class="path-gap" aria-hidden="true"></span><a href="/posts/">posts</a><span class="crumb-slash" aria-hidden="true">/</span>
+				{%- elif topicArchive -%}
+					<span class="path-gap" aria-hidden="true"></span><a href="/topics/">topics</a><span class="crumb-slash" aria-hidden="true">/</span>
 				{%- endif %}
 			</nav>
 			<button

@@ -75,22 +75,22 @@ export default function (eleventyConfig) {
 			.sort((a, b) => b.date - a.date),
 	);
 
-	eleventyConfig.addCollection("tagPages", (collectionApi) => {
-		const byTag = new Map();
+	eleventyConfig.addCollection("topicPages", (collectionApi) => {
+		const byTopic = new Map();
 		for (const item of collectionApi
 			.getAll()
 			.filter((entry) => entry.data.writingPost)) {
-			for (const tag of item.data.tags ?? []) {
-				if (!byTag.has(tag)) byTag.set(tag, []);
-				byTag.get(tag).push(item);
+			for (const topic of item.data.topics ?? []) {
+				if (!byTopic.has(topic)) byTopic.set(topic, []);
+				byTopic.get(topic).push(item);
 			}
 		}
-		for (const posts of byTag.values()) {
+		for (const posts of byTopic.values()) {
 			posts.sort((a, b) => b.date - a.date);
 		}
-		return [...byTag.entries()]
+		return [...byTopic.entries()]
 			.sort(([a], [b]) => a.localeCompare(b))
-			.map(([tag, posts]) => ({ tag, posts }));
+			.map(([topic, posts]) => ({ topic, posts }));
 	});
 
 	eleventyConfig.addFilter("readableDate", (dateObj) => {

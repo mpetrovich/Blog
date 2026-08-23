@@ -3,7 +3,7 @@ title: The 2 questions that lead to better decisions, every time
 subtitle: 1. What problem are you trying to solve? 2. How do you know that?
 date: 2021-03-04
 syndicated_url: https://medium.com/@michael-petrovich/the-2-questions-that-lead-to-better-decisions-every-time-a4d2d0de4f82
-tags: [decision-making]
+topics: [decision-making]
 ---
 
 There are countless decision-making frameworks out there and an equally paralyzing amount of advice on how to make good decisions. It can be overwhelming. A lot of the advice boils down to the 2 simple questions below.

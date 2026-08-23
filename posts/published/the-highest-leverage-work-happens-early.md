@@ -3,7 +3,7 @@ title: The highest leverage work happens early
 subtitle: Most people spend too much time implementing solutions and not enough time defining problems and designing solutions.
 date: 2026-05-07
 syndicated_url: https://medium.com/@michael-petrovich/the-highest-leverage-work-happens-early-c31ccdbc35b7
-tags: [decision-making, process]
+topics: [decision-making, process]
 ---
 
 Most people spend too much time implementing solutions and not enough time defining problems and designing solutions.
