@@ -6,7 +6,8 @@
   "description": "Public site for Michael Petrovich — Eleventy on Render",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve"
+    "start": "eleventy --serve",
+    "favicon": "node scripts/generate-favicon.mjs"
   },
   "engines": {
     "node": ">=22"

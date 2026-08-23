@@ -43,6 +43,11 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ "src/css": "css" });
 	eleventyConfig.addPassthroughCopy({ "src/js": "js" });
 	eleventyConfig.addPassthroughCopy({
+		"src/favicon.png": "favicon.png",
+		"src/favicon-192.png": "favicon-192.png",
+		"src/apple-touch-icon.png": "apple-touch-icon.png",
+	});
+	eleventyConfig.addPassthroughCopy({
 		[path.join(postsDir, "images")]: "posts/images",
 	});
 
