@@ -17,9 +17,9 @@ function resolvePostsDir() {
 	return path.join(__dirname, "../Writing/posts");
 }
 
-/** Rewrite post-relative image paths so they resolve from /posts/<slug>/ to /posts/images/. */
+/** Rewrite post-relative image paths to site-absolute /posts/images/... (HtmlBasePlugin adds pathPrefix). */
 function rewriteImagePaths(markdown) {
-	return markdown.replace(/\]\(images\//g, "](../images/");
+	return markdown.replace(/\]\(images\//g, "](/posts/images/");
 }
 
 export default function (eleventyConfig) {
