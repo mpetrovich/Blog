@@ -207,7 +207,7 @@ body {
 	gap: var(--space-lg);
 	margin: 0 0 var(--space-lg);
 	padding: var(--space-lg) 0;
-	/* Match both panes: XL orb + vertical padding */
+	/* XL orb + vertical padding */
 	min-height: calc(7rem + 2 * var(--space-lg));
 	box-sizing: content-box;
 }
@@ -566,12 +566,9 @@ a:focus-visible {
 	border-bottom: 1px solid var(--rule);
 }
 
-/* Design compare: light | dark half-pages */
+/* Design lab: single-column specimen page */
 
 body.design-compare {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	align-items: start;
 	min-height: 100vh;
 	background: transparent;
 	color: inherit;
@@ -582,10 +579,9 @@ body.design-compare {
 	min-height: 100vh;
 	color: var(--ink);
 	background: var(--paper);
-}
-
-.design-compare-pane.theme-dark {
-	border-left: 1px solid var(--rule);
+	transition:
+		background-color 0.28s ease,
+		color 0.28s ease;
 }
 
 .design-compare-pane .site-header,
