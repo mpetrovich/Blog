@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>
+			{%- if title and title != site.title -%}
+				{{ title }} · {{ site.title }}
+			{%- else -%}
+				{{ site.title }}
+			{%- endif -%}
+		</title>
+		<meta
+			name="description"
+			content="{{ description or subtitle or site.description }}"
+		/>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="{{ site.title }}"
+			href="/feed.xml"
+		/>
+		<link rel="stylesheet" href="/css/style.css" />
+		{#- Analytics: replace with vendor snippet when ready. -#}
+		{% if analytics %}{{ analytics | safe }}{% endif %}
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<header class="site-header">
+			<p class="site-title">
+				<a href="/">{{ site.title }}</a>
+			</p>
+		</header>
+		<main id="main" class="site-main">
+			{{ content | safe }}
+		</main>
+		<footer class="site-footer">
+			<p>
+				<a href="/feed.xml">RSS</a>
+			</p>
+		</footer>
+	</body>
+</html>
