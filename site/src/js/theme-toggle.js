@@ -52,6 +52,8 @@ if (buttons.length) {
 			if (button.classList.contains("theme-toggle--pane")) continue;
 			button.dataset.mode = theme;
 			syncLabel(button, theme);
+			// Don't snap an orb that's mid-spin (theme applies during rotation)
+			if (button._orb?.isBusy()) continue;
 			button._orb?.setPhase(theme === "light" ? 1 : 0);
 		}
 	}
@@ -96,13 +98,18 @@ if (buttons.length) {
 			}
 
 			busy = true;
-			await button._orb.setPhase(next === "light" ? 1 : 0, { animate: true });
+			// Start the spin first so isBusy() skips snapping this orb in syncChrome
+			const spinning = button._orb.setPhase(next === "light" ? 1 : 0, {
+				animate: true,
+			});
 			if (isPane) {
 				button.dataset.mode = next;
 				syncLabel(button, next);
 			} else {
+				// Page colors transition while the orb rotates (not after)
 				applyTheme(next);
 			}
+			await spinning;
 			busy = false;
 		});
 	}
