@@ -42,9 +42,18 @@
 					<span class="path-gap" aria-hidden="true"></span><a href="/posts/">posts</a><span class="crumb-slash" aria-hidden="true">/</span>
 				{%- endif %}
 			</nav>
+			<button
+				type="button"
+				class="theme-toggle"
+				data-theme-toggle
+				aria-label="Switch to dark mode"
+			>
+				<canvas class="theme-toggle__canvas" width="36" height="36" aria-hidden="true"></canvas>
+			</button>
 		</header>
 		<main id="main" class="site-main">
 			{{ content | safe }}
 		</main>
+		<script type="module" src="/js/theme-toggle.js"></script>
 	</body>
 </html>

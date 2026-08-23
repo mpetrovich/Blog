@@ -1,9 +1,30 @@
 ---
-layout: layouts/type-compare.njk
-permalink: /type/
-title: Type
+layout: layouts/design-compare.njk
+permalink: /design/
+title: Design
 noindex: true
 ---
+
+<section class="design-orb-lab" aria-label="Theme toggle specimen">
+	<button
+		type="button"
+		class="theme-toggle theme-toggle--pane"
+		data-theme-toggle
+		aria-label="Preview theme toggle spin at header size"
+	>
+		<canvas class="theme-toggle__canvas" width="36" height="36" aria-hidden="true"></canvas>
+	</button>
+	<button
+		type="button"
+		class="theme-toggle theme-toggle--xl theme-toggle--pane"
+		data-theme-toggle
+		aria-label="Preview theme toggle spin"
+	>
+		<canvas class="theme-toggle__canvas" width="224" height="224" aria-hidden="true"></canvas>
+	</button>
+</section>
+
+<section class="design-orb-controls" data-orb-controls aria-label="Orb tuning controls"></section>
 
 <section class="intro">
 	<p>

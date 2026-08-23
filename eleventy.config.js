@@ -44,12 +44,14 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginRss);
 
 	eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+	eleventyConfig.addPassthroughCopy({ "src/js": "js" });
 	eleventyConfig.addPassthroughCopy({
 		[path.join(postsDir, "images")]: "posts/images",
 	});
 
 	eleventyConfig.addWatchTarget(postsDir);
 	eleventyConfig.addWatchTarget(cssPath);
+	eleventyConfig.addWatchTarget("src/js");
 	eleventyConfig.addGlobalData("cssHash", cssHash);
 
 	for (const file of fs.readdirSync(postsDir)) {

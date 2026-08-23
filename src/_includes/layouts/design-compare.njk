@@ -25,9 +25,9 @@
 		/>
 		<link rel="stylesheet" href="/css/style.css?v={{ cssHash }}" />
 	</head>
-	<body class="type-compare">
+	<body class="design-compare">
 		<a class="skip-link" href="#main-light">Skip to content</a>
-		<div class="type-compare-pane theme-light">
+		<div class="design-compare-pane theme-light">
 			<header class="site-header">
 				<nav class="breadcrumbs" aria-label="Breadcrumb">
 					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
@@ -37,7 +37,7 @@
 				{{ content | safe }}
 			</main>
 		</div>
-		<div class="type-compare-pane theme-dark" aria-hidden="true">
+		<div class="design-compare-pane theme-dark" aria-hidden="true">
 			<header class="site-header">
 				<nav class="breadcrumbs">
 					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
@@ -47,5 +47,7 @@
 				{{ content | safe }}
 			</main>
 		</div>
+		<script type="module" src="/js/theme-toggle.js"></script>
+		<script type="module" src="/js/design-orb-controls.js"></script>
 	</body>
 </html>
