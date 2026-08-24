@@ -4,7 +4,9 @@
 	action="https://buttondown.com/api/emails/embed-subscribe/{{ site.buttondownUsername }}"
 	method="post"
 >
+	{%- if not hideSubscribePrompt %}
 	<p class="subscribe-prompt" id="subscribe-prompt">New posts by email</p>
+	{%- endif %}
 	<div class="subscribe-row">
 		<input
 			id="subscribe-email"
@@ -13,12 +15,16 @@
 			name="email"
 			placeholder="you@example.com"
 			autocomplete="email"
+			{%- if hideSubscribePrompt %}
+			aria-label="Email address"
+			{%- else %}
 			aria-labelledby="subscribe-prompt"
+			{%- endif %}
 			required
 		/>
 		<button class="subscribe-button" type="submit">Subscribe</button>
 	</div>
 	<input type="hidden" name="embed" value="1" />
-	<input type="hidden" name="next" value="{{ site.url }}/unconfirmed/" />
+	<input type="hidden" name="next" value="{{ site.url }}/subscribe/unconfirmed/" />
 </form>
 {%- endif %}

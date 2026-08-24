@@ -1,19 +1,23 @@
 ---
-layout: layouts/base.njk
 permalink: /unconfirmed/
-title: Confirm your email
-description: Check your inbox and click the confirmation link to finish subscribing.
-noindex: true
+layout: false
 eleventyExcludeFromCollections: true
 ---
-
-<section class="status-page" aria-labelledby="unconfirmed-heading">
-	<h1 id="unconfirmed-heading">Check your email</h1>
-	<p>
-		We sent a confirmation link to finish your subscription. Click it so
-		you’ll get an email when a new post is published.
-	</p>
-	<p class="status-page-note">
-		Don’t see it? Check your spam or try subscribing again.
-	</p>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="refresh" content="0;url=/subscribe/unconfirmed/" />
+		<link rel="canonical" href="{{ site.url }}/subscribe/unconfirmed/" />
+		<title>Redirecting…</title>
+		<script>
+			location.replace("/subscribe/unconfirmed/");
+		</script>
+	</head>
+	<body>
+		<p>
+			This page has moved to
+			<a href="/subscribe/unconfirmed/">/subscribe/unconfirmed/</a>.
+		</p>
+	</body>
+</html>

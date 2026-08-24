@@ -792,6 +792,12 @@ a:focus-visible {
 	min-width: 0;
 }
 
+.site-main .subscribe-form {
+	flex: none;
+	width: 100%;
+	max-width: 22rem;
+}
+
 .subscribe-prompt {
 	margin: 0;
 	font-family: var(--font-body);
@@ -833,14 +839,28 @@ a:focus-visible {
 	color: var(--footer-fg);
 }
 
+.site-main .subscribe-input {
+	border-color: var(--rule);
+	background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+	color: var(--ink);
+}
+
 .subscribe-input::placeholder {
 	color: var(--footer-muted);
 	opacity: 1;
 }
 
+.site-main .subscribe-input::placeholder {
+	color: var(--ink-muted);
+}
+
 .subscribe-input:focus {
 	outline: 2px solid var(--footer-fg);
 	outline-offset: 2px;
+}
+
+.site-main .subscribe-input:focus {
+	outline-color: var(--focus);
 }
 
 .subscribe-button {
@@ -854,6 +874,12 @@ a:focus-visible {
 	cursor: pointer;
 }
 
+.site-main .subscribe-button {
+	border-color: var(--ink-heading);
+	background: var(--ink-heading);
+	color: var(--paper);
+}
+
 .subscribe-button:hover {
 	opacity: 0.9;
 }
@@ -861,6 +887,10 @@ a:focus-visible {
 .subscribe-button:focus {
 	outline: 2px solid #fff;
 	outline-offset: 2px;
+}
+
+.site-main .subscribe-button:focus {
+	outline-color: var(--focus);
 }
 
 .status-page {
