@@ -1,0 +1,6 @@
+site/dist/
+site/node_modules/
+site/package-lock.json
+posts/
+.env
+.env.*

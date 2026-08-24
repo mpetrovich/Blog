@@ -1,0 +1,13 @@
+---
+description: Match project Prettier/EditorConfig (global Cursor Prettier defaults) so AI writes and format-on-save agree
+alwaysApply: true
+---
+
+# Formatting
+
+Follow `.prettierrc.json` and `.editorconfig` when writing or editing code.
+
+- **Indent:** 4 spaces (not tabs) for `.js`, `.mjs`, `.css`, and most source files
+- **JS:** single quotes, no semicolons, trailing commas, `printWidth` 120
+- **JSON / Markdown / YAML:** 2-space indent
+- **Do not** reformat `.njk` templates with Prettier/HTML formatters — Nunjucks tags get mangled. Match surrounding indent and attribute style by hand.
