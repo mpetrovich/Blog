@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>
-			{%- if title and title != site.title -%}
-				{{ title }} · {{ site.title }}
-			{%- else -%}
-				{{ site.title }}
-			{%- endif -%}
-		</title>
-		<meta
-			name="description"
-			content="{{ description or subtitle or site.description }}"
-		/>
-		{%- if noindex %}
-		<meta name="robots" content="noindex, nofollow" />
-		{%- endif %}
-		<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-		<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-		<link rel="icon" href="/favicon-512.png" type="image/png" sizes="512x512" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="/css/style.css?v={{ cssHash }}" />
-	</head>
-	<body class="design-compare" data-theme-persist="false">
-		<a class="skip-link" href="#main">Skip to content</a>
-		<div class="design-compare-pane">
-			<header class="site-header">
-				<nav class="breadcrumbs" aria-label="Breadcrumb">
-					<a href="/">{{ site.title }}</a><span class="crumb-slash" aria-hidden="true">/</span>
-				</nav>
-			</header>
-			<main id="main" class="site-main">
-				{{ content | safe }}
-			</main>
-			{% include "site-footer.njk" %}
-		</div>
-		<script type="module" src="/js/theme-toggle.js"></script>
-		<script type="module" src="/js/design-orb-controls.js"></script>
-	</body>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <title>
+            {%- if title and title != site.title -%}
+                {{ title }} · {{ site.title }}
+            {%- else -%}
+                {{ site.title }}
+            {%- endif -%}
+        </title>
+        <meta name='description' content='{{ description or subtitle or site.description }}' />
+        {%- if noindex %}
+            <meta name='robots' content='noindex, nofollow' />
+        {%- endif %}
+        <link rel='icon' href='/favicon.png' type='image/png' sizes='32x32' />
+        <link rel='icon' href='/favicon-192.png' type='image/png' sizes='192x192' />
+        <link rel='icon' href='/favicon-512.png' type='image/png' sizes='512x512' />
+        <link rel='apple-touch-icon' href='/apple-touch-icon.png' sizes='180x180' />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+        <link
+            href='https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap'
+            rel='stylesheet'
+        />
+        <link rel='stylesheet' href='/css/style.css?v={{ cssHash }}' />
+    </head>
+    <body class='design-compare' data-theme-persist='false'>
+        <a class='skip-link' href='#main'>Skip to content</a>
+        <div class='design-compare-pane'>
+            <header class='site-header'>
+                <nav class='breadcrumbs' aria-label='Breadcrumb'>
+                    <a href='/'>{{ site.title }}</a>
+                    <span class='crumb-slash' aria-hidden='true'>/</span>
+                </nav>
+            </header>
+            <main id='main' class='site-main'>{{ content | safe }}</main>
+            {% include "site-footer.njk" %}
+        </div>
+        <script type='module' src='/js/theme-toggle.js'></script>
+        <script type='module' src='/js/design-orb-controls.js'></script>
+    </body>
 </html>

@@ -6,31 +6,39 @@ topicArchive: true
 eleventyExcludeFromCollections: true
 ---
 
-<section class="topics-landing">
-	<p class="topics-jumplist" aria-label="Topics">
-		# {% for topicPage in collections.topicPages %}{%- if not loop.first %}, {% endif %}<a href="#{{ topicPage.topic }}">{{ topicPage.topic }}</a>{%- endfor %}
-	</p>
+<section class='topics-landing'>
+    <p class='topics-jumplist' aria-label='Topics'>
+        #
+        {% for topicPage in collections.topicPages %}
+            {%- if not loop.first %},{% endif %}
+            <a href='#{{ topicPage.topic }}'>
+                {{ topicPage.topic }}
+            </a>
+        {%- endfor %}
+    </p>
 
-	{%- for topicPage in collections.topicPages %}
-		<section class="topic-group" id="{{ topicPage.topic }}" aria-labelledby="topic-heading-{{ topicPage.topic }}">
-			<h2 class="topic-group-heading" id="topic-heading-{{ topicPage.topic }}">
-				<a href="/topics/{{ topicPage.topic }}/"># {{ topicPage.topic }}</a>
-			</h2>
-			<section class="post-list" aria-label="Posts in topic {{ topicPage.topic }}">
-				<ul>
-					{%- for post in topicPage.posts %}
-						<li>
-							<div class="post-list-main">
-								<a href="{{ post.url }}">{{ post.data.title }}</a>
-								{%- if post.data.subtitle %}
-									<p class="post-list-subtitle">{{ post.data.subtitle }}</p>
-								{%- endif %}
-							</div>
-							<time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
-						</li>
-					{%- endfor %}
-				</ul>
-			</section>
-		</section>
-	{%- endfor %}
+    {%- for topicPage in collections.topicPages %}
+        <section id='{{ topicPage.topic }}' class='topic-group' aria-labelledby='topic-heading-{{ topicPage.topic }}'>
+            <h2 id='topic-heading-{{ topicPage.topic }}' class='topic-group-heading'>
+                <a href='/topics/{{ topicPage.topic }}/'># {{ topicPage.topic }}</a>
+            </h2>
+            <section class='post-list' aria-label='Posts in topic {{ topicPage.topic }}'>
+                <ul>
+                    {%- for post in topicPage.posts %}
+                        <li>
+                            <div class='post-list-main'>
+                                <a href='{{ post.url }}'>{{ post.data.title }}</a>
+                                {%- if post.data.subtitle %}
+                                    <p class='post-list-subtitle'>
+                                        {{ post.data.subtitle }}
+                                    </p>
+                                {%- endif %}
+                            </div>
+                            <time datetime='{{ post.date | isoDate }}'>{{ post.date | readableDate }}</time>
+                        </li>
+                    {%- endfor %}
+                </ul>
+            </section>
+        </section>
+    {%- endfor %}
 </section>

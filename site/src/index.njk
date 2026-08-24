@@ -3,44 +3,53 @@ layout: layouts/base.njk
 permalink: /
 ---
 
-<section class="intro">
-	<p>
-		<strong>Michael Petrovich</strong>. Working and writing at the intersection of engineering, product, and data.
-	</p>
-	<p class="intro-links">
-		<a href="{{ site.linkedin }}">LinkedIn</a>
-		·
-		<a href="{{ site.github }}">GitHub</a>
-	</p>
+<section class='intro'>
+    <p>
+        <strong>Michael Petrovich</strong>
+        . Working and writing at the intersection of engineering, product, and data.
+    </p>
+    <p class='intro-links'><a href='{{ site.linkedin }}'>LinkedIn</a> · <a href='{{ site.github }}'>GitHub</a></p>
 </section>
 
-<section class="home-topics" aria-labelledby="home-topics-heading">
-	<header class="home-section-header">
-		<h2 id="home-topics-heading"><a href="/topics/">Topics</a></h2>
-	</header>
-	<p class="topics-jumplist">
-		# {% for topicPage in collections.topicPages %}{%- if not loop.first %}, {% endif %}<a href="/topics/{{ topicPage.topic }}/">{{ topicPage.topic }}</a>{%- endfor %}
-	</p>
+<section class='home-topics' aria-labelledby='home-topics-heading'>
+    <header class='home-section-header'>
+        <h2 id='home-topics-heading'>
+            <a href='/topics/'>Topics</a>
+        </h2>
+    </header>
+    <p class='topics-jumplist'>
+        #
+        {% for topicPage in collections.topicPages %}
+            {%- if not loop.first %},{% endif %}
+            <a href='/topics/{{ topicPage.topic }}/'>
+                {{ topicPage.topic }}
+            </a>
+        {%- endfor %}
+    </p>
 </section>
 
-<section class="home-posts" aria-labelledby="home-posts-heading">
-	<header class="home-section-header home-section-header--split">
-		<h2 id="home-posts-heading"><a href="/posts/">Posts</a></h2>
-		<a class="home-section-rss" href="/feed.xml">RSS</a>
-	</header>
-	<section class="post-list" aria-label="Posts">
-		<ul>
-			{%- for post in collections.posts %}
-				<li>
-					<div class="post-list-main">
-						<a href="{{ post.url }}">{{ post.data.title }}</a>
-						{%- if post.data.subtitle %}
-							<p class="post-list-subtitle">{{ post.data.subtitle }}</p>
-						{%- endif %}
-					</div>
-					<time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
-				</li>
-			{%- endfor %}
-		</ul>
-	</section>
+<section class='home-posts' aria-labelledby='home-posts-heading'>
+    <header class='home-section-header home-section-header--split'>
+        <h2 id='home-posts-heading'>
+            <a href='/posts/'>Posts</a>
+        </h2>
+        <a class='home-section-rss' href='/feed.xml'>RSS</a>
+    </header>
+    <section class='post-list' aria-label='Posts'>
+        <ul>
+            {%- for post in collections.posts %}
+                <li>
+                    <div class='post-list-main'>
+                        <a href='{{ post.url }}'>{{ post.data.title }}</a>
+                        {%- if post.data.subtitle %}
+                            <p class='post-list-subtitle'>
+                                {{ post.data.subtitle }}
+                            </p>
+                        {%- endif %}
+                    </div>
+                    <time datetime='{{ post.date | isoDate }}'>{{ post.date | readableDate }}</time>
+                </li>
+            {%- endfor %}
+        </ul>
+    </section>
 </section>

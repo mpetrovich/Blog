@@ -1,20 +1,28 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="post">
-	<header class="post-header">
-		<h1>{{ title }}</h1>
-		{% if subtitle %}
-			<p class="post-subtitle">{{ subtitle }}</p>
-		{% endif %}
-		<p class="post-meta">
-			<time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
-			{%- if topics and topics.length %}
-				<span class="post-topics" aria-label="Topics"># {% for topic in topics %}{%- if not loop.first %}, {% endif %}<a href="/topics/{{ topic }}/">{{ topic }}</a>{%- endfor %}</span>
-			{%- endif %}
-		</p>
-	</header>
-	<div class="post-body">
-		{{ content | safe }}
-	</div>
+<article class='post'>
+    <header class='post-header'>
+        <h1>{{ title }}</h1>
+        {% if subtitle %}
+            <p class='post-subtitle'>
+                {{ subtitle }}
+            </p>
+        {% endif %}
+        <p class='post-meta'>
+            <time datetime='{{ page.date | isoDate }}'>{{ page.date | readableDate }}</time>
+            {%- if topics and topics.length %}
+                <span class='post-topics' aria-label='Topics'>
+                    #
+                    {% for topic in topics %}
+                        {%- if not loop.first %},{% endif %}
+                        <a href='/topics/{{ topic }}/'>
+                            {{ topic }}
+                        </a>
+                    {%- endfor %}
+                </span>
+            {%- endif %}
+        </p>
+    </header>
+    <div class='post-body'>{{ content | safe }}</div>
 </article>

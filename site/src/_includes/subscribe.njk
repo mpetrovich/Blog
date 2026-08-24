@@ -1,30 +1,30 @@
 {%- if site.buttondownUsername %}
-<form
-	class="subscribe-form"
-	action="https://buttondown.com/api/emails/embed-subscribe/{{ site.buttondownUsername }}"
-	method="post"
->
-	{%- if not hideSubscribePrompt %}
-	<p class="subscribe-prompt" id="subscribe-prompt">Get new posts in your inbox</p>
-	{%- endif %}
-	<div class="subscribe-row">
-		<input
-			id="subscribe-email"
-			class="subscribe-input"
-			type="email"
-			name="email"
-			placeholder="you@example.com"
-			autocomplete="email"
-			{%- if hideSubscribePrompt %}
-			aria-label="Email address"
-			{%- else %}
-			aria-labelledby="subscribe-prompt"
-			{%- endif %}
-			required
-		/>
-		<button class="subscribe-button" type="submit">Subscribe</button>
-	</div>
-	<input type="hidden" name="embed" value="1" />
-	<input type="hidden" name="next" value="{{ site.url }}/subscribe/unconfirmed/" />
-</form>
+    <form
+        class='subscribe-form'
+        action='https://buttondown.com/api/emails/embed-subscribe/{{ site.buttondownUsername }}'
+        method='post'
+    >
+        {%- if not hideSubscribePrompt %}
+            <p id='subscribe-prompt' class='subscribe-prompt'>Get new posts in your inbox</p>
+        {%- endif %}
+        <div class='subscribe-row'>
+            <input
+                id='subscribe-email'
+                class='subscribe-input'
+                type='email'
+                name='email'
+                placeholder='you@example.com'
+                autocomplete='email'
+                {%- if hideSubscribePrompt %}
+                    aria-label="Email address"
+                {% else %}
+                    aria-labelledby="subscribe-prompt"
+                {%- endif %}
+                required
+            />
+            <button class='subscribe-button' type='submit'>Subscribe</button>
+        </div>
+        <input type='hidden' name='embed' value='1' />
+        <input type='hidden' name='next' value='{{ site.url }}/subscribe/unconfirmed/' />
+    </form>
 {%- endif %}
