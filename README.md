@@ -41,13 +41,12 @@ Output is `site/dist/` (gitignored).
 
 ## Email subscribe (Buttondown)
 
-Readers can subscribe on the site; you notify them after publishing with `/notify-subscribers`.
+Readers can subscribe at `/subscribe/`; you notify them after publishing with `/notify-subscribers`.
 
 1. Create a Buttondown newsletter, enable double opt-in, and optionally add a custom sending domain.
 2. Set `buttondownUsername` in [`site/src/_data/site.js`](site/src/_data/site.js) (or `BUTTONDOWN_USERNAME` at build time).
 3. Put `BUTTONDOWN_API_KEY` in the repo-root [`.env`](.env) (see [`.env.example`](.env.example)).
 4. In Buttondown, set the post-confirmation redirect to `https://petro.blog/subscribe/confirmed/` (API field `subscription_confirmation_redirect_url`, or the matching setting under Subscribing).
-5. The subscribe form lives at `/subscribe/`. Render 301s `/confirmed/` and `/unconfirmed/` to the nested paths.
 
 ## Deploy (Render)
 

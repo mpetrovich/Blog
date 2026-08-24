@@ -10,18 +10,6 @@ services:
         - posts/published/**
     routes:
       - type: redirect
-        source: /confirmed
-        destination: /subscribe/confirmed/
-      - type: redirect
-        source: /confirmed/
-        destination: /subscribe/confirmed/
-      - type: redirect
-        source: /unconfirmed
-        destination: /subscribe/unconfirmed/
-      - type: redirect
-        source: /unconfirmed/
-        destination: /subscribe/unconfirmed/
-      - type: redirect
         source: /adventures-in-product-the-first-90-days-7e94eff6a296
         destination: /posts/adventures-in-product-the-first-90-days/
       - type: redirect
