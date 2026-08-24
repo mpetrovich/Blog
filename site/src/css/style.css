@@ -785,7 +785,7 @@ a:focus-visible {
     align-items: center;
     gap: 0.65rem 0.75rem;
     width: 100%;
-    max-width: 22rem;
+    max-width: 24rem;
     min-width: 0;
 }
 
