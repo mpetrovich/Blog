@@ -1,5 +1,6 @@
 posts/draft/
 _site/
+node_modules/
 .DS_Store
 .superpowers/
 .env

@@ -7,7 +7,7 @@ alwaysApply: true
 
 Follow `.prettierrc.json` and `.editorconfig` when writing or editing code.
 
-- **Indent:** 4 spaces (not tabs) for `.js`, `.mjs`, `.css`, and most source files
+- **Indent:** 4 spaces (not tabs) for `.js`, `.mjs`, `.css`, `.njk`, and most source files
 - **JS:** single quotes, no semicolons, trailing commas, `printWidth` 120
 - **JSON / Markdown / YAML:** 2-space indent
-- **Do not** reformat `.njk` templates with Prettier/HTML formatters — Nunjucks tags get mangled. Match surrounding indent and attribute style by hand.
+- **Nunjucks (`.njk`):** format with Prettier via `prettier-plugin-nunjucks` (parser `nunjucks`). Do not treat `.njk` as plain HTML for formatting.

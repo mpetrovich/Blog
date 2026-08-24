@@ -1,0 +1,15 @@
+{
+  "name": "blog-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root tooling for Petro.blog (Prettier, etc.)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpetrovich/Blog.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "prettier-plugin-nunjucks": "^0.2.0"
+  }
+}
