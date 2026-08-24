@@ -774,10 +774,6 @@ a:focus-visible {
 }
 
 .site-footer-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.5rem;
     width: min(100% - 2 * var(--space), var(--measure));
     margin-inline: auto;
     padding-block: var(--space-lg);
@@ -788,26 +784,9 @@ a:focus-visible {
     flex-wrap: wrap;
     align-items: center;
     gap: 0.65rem 0.75rem;
-    flex: 1 1 16rem;
-    min-width: 0;
-}
-
-.site-footer .subscribe-form {
-    flex-wrap: nowrap;
-}
-
-.site-main .subscribe-form {
-    flex: none;
     width: 100%;
     max-width: 22rem;
-}
-
-.subscribe-prompt {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    color: var(--footer-muted);
-    white-space: nowrap;
+    min-width: 0;
 }
 
 .subscribe-row {
@@ -817,11 +796,6 @@ a:focus-visible {
     flex: 1 1 9rem;
     min-width: 0;
     height: 2.5rem;
-}
-
-.site-footer .subscribe-row {
-    flex: 1 1 0;
-    min-width: 0;
 }
 
 .subscribe-input,
@@ -906,13 +880,18 @@ a:focus-visible {
     margin: 0;
 }
 
-.status-page h1 {
+.status-page h1,
+.status-page h2 {
     margin: 0 0 0.5em;
     font-family: var(--font-heading);
     font-size: var(--step-2);
     font-weight: 600;
     line-height: 1.25;
     color: var(--ink-heading);
+}
+
+.site-footer .status-page h2 {
+    color: var(--footer-fg);
 }
 
 .status-page p {
