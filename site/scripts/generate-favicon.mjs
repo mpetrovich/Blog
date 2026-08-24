@@ -209,4 +209,5 @@ const PAPER = { r: 0xfa, g: 0xf6, b: 0xf3 };
 
 writePng("favicon.png", 32);
 writePng("favicon-192.png", 192);
+writePng("favicon-512.png", 512);
 writePng("apple-touch-icon.png", 180, { background: PAPER });
