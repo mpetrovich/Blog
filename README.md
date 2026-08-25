@@ -57,13 +57,3 @@ Infra lives in [`site/render.yaml`](site/render.yaml). The Render Blueprint Path
 - **Filters:** rebuilds on `site/**` and `posts/published/**`
 
 Do not edit redirects in the Render UI — keep [`site/render.yaml`](site/render.yaml) as the source of truth.
-
-### Cutover: Medium → petro.blog
-
-Do **not** point DNS until redirects work on the Render `*.onrender.com` URL.
-
-1. Confirm preview: home, one post, `/feed.xml`, and a sample redirect.
-2. In Medium, remove the custom domain `petro.blog`.
-3. In Render, add custom domain `petro.blog` (and `www` if you use it); set DNS as Render shows.
-4. Spot-check an old Medium path returns `301` to `/posts/<slug>/`.
-5. Optional: on `medium.com/@…` posts, link to the new URLs / set Medium canonicals (those hosts cannot 301).
