@@ -34,6 +34,8 @@
     --footer-field-border: color-mix(in srgb, #faf6f3 28%, #3d2430);
     --footer-button-bg: #faf6f3;
     --footer-button-fg: #3d2430;
+
+    --link-fg: var(--ink-muted);
 }
 
 /* Forced themes (type compare panes); also keep OS preference on :root */
@@ -373,9 +375,11 @@ body {
 }
 
 .breadcrumbs a:hover {
+    color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 .path-gap {
@@ -394,13 +398,17 @@ body {
 /* Links */
 
 a {
-    color: var(--ink);
+    color: var(--link-fg);
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
-    text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+    text-decoration-color: var(--link-fg);
+    transition:
+        color 0.28s ease,
+        text-decoration-color 0.28s ease;
 }
 
 a:hover {
+    color: var(--ink);
     text-decoration-color: var(--ink);
 }
 
@@ -433,11 +441,12 @@ a:focus-visible {
 }
 
 .intro a {
-    color: var(--footer-fg);
+    color: color-mix(in srgb, var(--footer-fg) 40%, transparent);
     text-decoration-color: color-mix(in srgb, var(--footer-fg) 40%, transparent);
 }
 
 .intro a:hover {
+    color: var(--footer-fg);
     text-decoration-color: var(--footer-fg);
 }
 
@@ -457,6 +466,11 @@ a:focus-visible {
 
 .intro p.intro-links a {
     color: inherit;
+}
+
+.intro p.intro-links a:hover {
+    color: var(--footer-fg);
+    text-decoration-color: var(--footer-fg);
 }
 
 .post-list ul {
@@ -491,9 +505,11 @@ a:focus-visible {
 }
 
 .post-list a:hover {
+    color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 .post-list-subtitle {
@@ -572,9 +588,11 @@ a:focus-visible {
 }
 
 .post-topics a:hover {
+    color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 @media (min-width: 40rem) {
@@ -625,9 +643,11 @@ a:focus-visible {
 }
 
 .home-section-header h2 a:hover {
+    color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 .home-section-rss {
@@ -645,6 +665,7 @@ a:focus-visible {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 .topics-jumplist {
@@ -662,9 +683,11 @@ a:focus-visible {
 }
 
 .topics-jumplist a:hover {
+    color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 .topic-group + .topic-group {
@@ -686,9 +709,11 @@ a:focus-visible {
 }
 
 .topic-group-heading a:hover {
+    color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
+    text-decoration-color: var(--ink);
 }
 
 .topic-group .post-list li:first-child,
