@@ -1,5 +1,5 @@
 ---
-title: 'Book Summary: Build What Matters'
+title: 'Book summary: build what matters'
 subtitle: Deliver more customer value by orienting a product vision and strategy around customer outcomes.
 date: 2021-04-01
 syndicated_url: https://medium.com/@michael-petrovich/book-summary-build-what-matters-c60e17b31a73

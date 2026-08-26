@@ -1,5 +1,5 @@
 ---
-title: 'From Engineering To Product: The Adventure Begins'
+title: 'From engineering to product: the adventure begins'
 subtitle: About two months ago, I became a product manager for the first time after over a decade in engineering.
 date: 2021-05-10
 syndicated_url: https://medium.com/@michael-petrovich/from-engineering-to-product-manager-hello-product-9a44820875f

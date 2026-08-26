@@ -1,5 +1,5 @@
 ---
-title: To The Brink Of Burnout And Back Again
+title: To the brink of burnout and back again
 subtitle: I didn’t realize it until it was nearly too late.
 date: 2021-09-22
 syndicated_url: https://medium.com/@michael-petrovich/to-the-brink-of-burnout-and-back-again-2b2d0224bf3c

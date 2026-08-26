@@ -1,5 +1,5 @@
 ---
-title: The Three Dominoes
+title: The three dominoes
 subtitle: Three simple rules that have an outsized impact on how successfully a team operates
 date: 2021-05-14
 syndicated_url: https://medium.com/@michael-petrovich/the-3-domino-rule-85888e009e5a

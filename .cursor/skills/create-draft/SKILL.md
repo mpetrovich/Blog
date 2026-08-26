@@ -15,7 +15,7 @@ Work in the **Blog** repo root.
 ## Workflow
 
 1. **Resolve title and slug**
-   - If the user gave a title/topic, use it for `title` and derive `slug` as kebab-case (lowercase, hyphens, no punctuation).
+   - If the user gave a title/topic, use it for `title` in **sentence case** (capitalize the first word and proper nouns/acronyms only; lowercase the rest, including the first word after a colon) and derive `slug` as kebab-case (lowercase, hyphens, no punctuation).
    - If they gave an explicit slug, prefer that over a derived one.
    - If neither was given, ask once for a title before creating the file.
 2. **Choose path:** `posts/draft/<slug>.md`
@@ -29,7 +29,7 @@ Drafts under `posts/draft/` are gitignored and local-only.
 
 ```markdown
 ---
-title: <Title>
+title: <Sentence-case title>
 subtitle: 
 slug: <slug>
 medium_id: 
