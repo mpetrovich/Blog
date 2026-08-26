@@ -19,11 +19,9 @@ permalink: /
     </header>
     <p class='topics-jumplist'>
         #
-        {% for topicPage in collections.topicPages %}
-            {%- if not loop.first %},{% endif %}
-            <a href='/topics/{{ topicPage.topic }}/'>
-                {{ topicPage.topic }}
-            </a>
+        {% for topicPage in collections.topicPages -%}
+            {%- if not loop.first %},{% endif -%}
+            <a href='/topics/{{ topicPage.topic }}/'>{{ topicPage.topic }}</a>
         {%- endfor %}
     </p>
 </section>
