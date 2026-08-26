@@ -2,6 +2,7 @@
 title: 'Software engineering: a decade later'
 subtitle: AI can write the code, but it can’t feel when the interface is wrong.
 date: 2026-08-22
+syndicated_url: https://medium.com/@michael-petrovich/software-engineering-a-decade-later-949bb7c47b1b
 topics: [engineering, ai, career]
 ---
 

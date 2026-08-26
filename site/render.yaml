@@ -34,6 +34,9 @@ services:
         source: /my-personal-readme-13287f18223d
         destination: /posts/manager-readme/
       - type: redirect
+        source: /software-engineering-a-decade-later-949bb7c47b1b
+        destination: /posts/software-engineering-a-decade-later/
+      - type: redirect
         source: /speed-drives-quality-5ccdafa0f385
         destination: /posts/speed-drives-quality/
       - type: redirect
