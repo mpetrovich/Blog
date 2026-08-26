@@ -780,6 +780,40 @@ a:focus-visible {
     margin-block: 1.25em;
 }
 
+.post-body table {
+    width: 100%;
+    margin-block: 1.25em;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+    line-height: 1.45;
+}
+
+.post-body th,
+.post-body td {
+    padding: 0.65em 0.75em 0.65em 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+}
+
+.post-body thead th {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--ink-heading);
+}
+
+.post-body tbody th {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--ink-heading);
+    white-space: nowrap;
+}
+
+.post-body tbody tr:last-child th,
+.post-body tbody tr:last-child td {
+    border-bottom: 0;
+}
+
 .post-body hr {
     border: 0;
     border-top: 1px solid var(--rule);

@@ -14,7 +14,54 @@ Simply put, it’s the act of transferring full or partial ownership of a task t
 
 There are many ways to define delegation styles, but I’ve found the levels below to be the most practical.
 
-![Delegation styles table](images/effective-delegation/01.png)
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Style</th>
+            <th scope="col">Delegator</th>
+            <th scope="col">Delegated</th>
+            <th scope="col">Autonomy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">No delegation</th>
+            <td>Does everything themselves</td>
+            <td>Does nothing</td>
+            <td>n/a</td>
+        </tr>
+        <tr>
+            <th scope="row">Tell and verify</th>
+            <td>Defines the implementation plan and reviews the final implementation</td>
+            <td>Implements the defined plan and shares the implementation</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <th scope="row">Tell</th>
+            <td>Defines the implementation plan but does not review the final implementation</td>
+            <td>Implements the defined plan</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Sell and verify</th>
+            <td>Defines the outcome and reviews the implementation plan</td>
+            <td>Defines, shares, and implements the plan</td>
+            <td>Med</td>
+        </tr>
+        <tr>
+            <th scope="row">Sell</th>
+            <td>Defines the outcome and reviews the results</td>
+            <td>Defines and implements the plan and shares the results</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Full delegation</th>
+            <td>Defines the outcome without reviewing the results</td>
+            <td>Defines and implements the plan</td>
+            <td>High</td>
+        </tr>
+    </tbody>
+</table>
 
 ### Common delegation problems
 
