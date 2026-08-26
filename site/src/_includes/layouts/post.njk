@@ -15,7 +15,7 @@ layout: layouts/base.njk
                 <span class='post-topics' aria-label='Topics'>
                     #
                     {% for topic in topics -%}
-                        {%- if not loop.first %},{% endif -%}
+                        {%- if not loop.first %}, {% endif -%}
                         <a href='/topics/{{ topic }}/'>{{ topic }}</a>
                     {%- endfor %}
                 </span>

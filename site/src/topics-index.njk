@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: true
     <p class='topics-jumplist' aria-label='Topics'>
         #
         {% for topicPage in collections.topicPages -%}
-            {%- if not loop.first %},{% endif -%}
+            {%- if not loop.first %}, {% endif -%}
             <a href='#{{ topicPage.topic }}'>{{ topicPage.topic }}</a>
         {%- endfor %}
     </p>

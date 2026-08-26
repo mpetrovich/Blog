@@ -20,7 +20,7 @@ permalink: /
     <p class='topics-jumplist'>
         #
         {% for topicPage in collections.topicPages -%}
-            {%- if not loop.first %},{% endif -%}
+            {%- if not loop.first %}, {% endif -%}
             <a href='/topics/{{ topicPage.topic }}/'>{{ topicPage.topic }}</a>
         {%- endfor %}
     </p>
