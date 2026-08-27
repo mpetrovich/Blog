@@ -1,15 +1,20 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import crypto from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { HtmlBasePlugin } from '@11ty/eleventy'
 import pluginRss from '@11ty/eleventy-plugin-rss'
+import CleanCSS from 'clean-css'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const cssPath = path.join(__dirname, 'src/css/style.css')
 
-function cssHash() {
-    return crypto.createHash('sha256').update(fs.readFileSync(cssPath)).digest('hex').slice(0, 8)
+function cssInline() {
+    const raw = fs.readFileSync(cssPath, 'utf8')
+    const { styles, errors } = new CleanCSS({ level: 1 }).minify(raw)
+    if (errors?.length) {
+        throw new Error(`CSS minify failed: ${errors.join('; ')}`)
+    }
+    return styles
 }
 
 function resolvePostsDir() {
@@ -34,7 +39,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addPlugin(HtmlBasePlugin)
     eleventyConfig.addPlugin(pluginRss)
 
-    eleventyConfig.addPassthroughCopy({ 'src/css': 'css' })
+    eleventyConfig.addPassthroughCopy({ 'src/fonts': 'fonts' })
     eleventyConfig.addPassthroughCopy({ 'src/js': 'js' })
     eleventyConfig.addPassthroughCopy({
         'src/favicon.png': 'favicon.png',
@@ -49,7 +54,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addWatchTarget(postsDir)
     eleventyConfig.addWatchTarget(cssPath)
     eleventyConfig.addWatchTarget('src/js')
-    eleventyConfig.addGlobalData('cssHash', cssHash)
+    eleventyConfig.addGlobalData('cssInline', cssInline)
 
     for (const file of fs.readdirSync(postsDir)) {
         if (!file.endsWith('.md')) continue
