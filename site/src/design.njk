@@ -16,7 +16,7 @@ noindex: true
         <canvas class='theme-toggle__canvas' width='36' height='36' aria-hidden='true'></canvas>
     </button>
     <button
-        class='theme-toggle theme-toggle--xl'
+        class='theme-toggle -xl'
         type='button'
         data-theme-toggle
         aria-label='Switch to dark mode'
@@ -26,11 +26,11 @@ noindex: true
     </button>
 </section>
 
-<section class='design-orb-controls' data-orb-controls aria-label='Orb tuning controls'></section>
+<section class='design-orb-controls meta' data-orb-controls aria-label='Orb tuning controls'></section>
 
-<section class='intro'>
-    <p><strong>Specimen</strong>. Short intro copy at the homepage size.</p>
-    <p class='intro-links'><a href='{{ site.linkedin }}'>LinkedIn</a> · <a href='{{ site.github }}'>GitHub</a></p>
+<section class='intro band'>
+    <p class='lede'><strong>Specimen</strong>. Short intro copy at the homepage size.</p>
+    <p class='meta'><a href='{{ site.linkedin }}'>LinkedIn</a> · <a href='{{ site.github }}'>GitHub</a></p>
 </section>
 
 <section class='post-list' aria-label='Sample posts'>
@@ -38,35 +38,36 @@ noindex: true
         <li>
             <div class='post-list-main'>
                 <a href='/posts/'>How lead time shapes quality</a>
-                <p class='post-list-subtitle'>A subtitle in muted body size</p>
+                <p class='subtitle'>A subtitle in muted body size</p>
             </div>
-            <time datetime='2024-06-12'>Jun 12, 2024</time>
+            <time class='meta' datetime='2024-06-12'>Jun 12, 2024</time>
         </li>
         <li>
             <div class='post-list-main'>
                 <a href='/posts/'>Decisions that do not suck</a>
             </div>
-            <time datetime='2023-11-03'>Nov 03, 2023</time>
+            <time class='meta' datetime='2023-11-03'>Nov 03, 2023</time>
         </li>
         <li>
             <div class='post-list-main'>
                 <a href='/posts/'>Calm is a competitive advantage</a>
-                <p class='post-list-subtitle'>Optional second line under the title</p>
+                <p class='subtitle'>Optional second line under the title</p>
             </div>
-            <time datetime='2022-02-18'>Feb 18, 2022</time>
+            <time class='meta' datetime='2022-02-18'>Feb 18, 2022</time>
         </li>
     </ul>
 </section>
 
 <article class='post'>
     <header class='post-header'>
-        <h1>Post title at display size</h1>
-        <p class='post-subtitle'>Subtitle in muted step-1</p>
-        <p class='post-meta'>
+        <h1 class='title-display'>Post title at display size</h1>
+        <p class='lede'>Subtitle in muted step-1</p>
+        <p class='meta'>
             <time datetime='2024-06-12'>Jun 12, 2024</time>
             <span class='post-topics' aria-label='Topics'>
                 #
-                <a href='/topics/process/'>process</a>, <a href='/topics/product/'>product</a>
+                <a class='quiet-link' href='/topics/process/'>process</a>,
+                <a class='quiet-link' href='/topics/product/'>product</a>
             </span>
         </p>
     </header>

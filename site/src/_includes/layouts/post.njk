@@ -3,20 +3,20 @@ layout: layouts/base.njk
 ---
 <article class='post'>
     <header class='post-header'>
-        <h1>{{ title }}</h1>
+        <h1 class='title-display'>{{ title }}</h1>
         {% if subtitle %}
-            <p class='post-subtitle'>
+            <p class='lede'>
                 {{ subtitle }}
             </p>
         {% endif %}
-        <p class='post-meta'>
+        <p class='meta'>
             <time datetime='{{ page.date | isoDate }}'>{{ page.date | readableDate }}</time>
             {%- if topics and topics.length %}
                 <span class='post-topics' aria-label='Topics'>
                     #
                     {% for topic in topics -%}
                         {%- if not loop.first %}, {% endif -%}
-                        <a href='/topics/{{ topic }}/'>{{ topic }}</a>
+                        <a class='quiet-link' href='/topics/{{ topic }}/'>{{ topic }}</a>
                     {%- endfor %}
                 </span>
             {%- endif %}

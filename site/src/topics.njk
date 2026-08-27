@@ -12,21 +12,21 @@ eleventyComputed:
 
 <section class='topic-archive'>
     <header class='topic-archive-header'>
-        <h1># {{ topicPage.topic }}</h1>
+        <h1 class='title-label'># {{ topicPage.topic }}</h1>
     </header>
-    <section class='post-list' aria-label='Posts in topic {{ topicPage.topic }}'>
+    <section class='post-list -ruled' aria-label='Posts in topic {{ topicPage.topic }}'>
         <ul>
             {%- for post in topicPage.posts %}
                 <li>
                     <div class='post-list-main'>
                         <a href='{{ post.url }}'>{{ post.data.title }}</a>
                         {%- if post.data.subtitle %}
-                            <p class='post-list-subtitle'>
+                            <p class='subtitle'>
                                 {{ post.data.subtitle }}
                             </p>
                         {%- endif %}
                     </div>
-                    <time datetime='{{ post.date | isoDate }}'>{{ post.date | readableDate }}</time>
+                    <time class='meta' datetime='{{ post.date | isoDate }}'>{{ post.date | readableDate }}</time>
                 </li>
             {%- endfor %}
         </ul>
