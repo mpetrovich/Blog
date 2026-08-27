@@ -1,3 +1,7 @@
 dist/
 node_modules/
+.font-venv/
+src/fonts/*.woff2
+src/fonts/subset-glyphs.txt
+src/fonts/subset-unicode-range.txt
 .DS_Store

@@ -7,9 +7,16 @@ import CleanCSS from 'clean-css'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const cssPath = path.join(__dirname, 'src/css/style.css')
+const fontUnicodeRangePath = path.join(__dirname, 'src/fonts/subset-unicode-range.txt')
 
 function cssInline() {
-    const raw = fs.readFileSync(cssPath, 'utf8')
+    let raw = fs.readFileSync(cssPath, 'utf8')
+    if (fs.existsSync(fontUnicodeRangePath)) {
+        const range = fs.readFileSync(fontUnicodeRangePath, 'utf8').trim()
+        if (range) {
+            raw = raw.replace(/unicode-range:\s*[^;]+;/g, `unicode-range: ${range};`)
+        }
+    }
     const { styles, errors } = new CleanCSS({ level: 1 }).minify(raw)
     if (errors?.length) {
         throw new Error(`CSS minify failed: ${errors.join('; ')}`)

@@ -5,9 +5,10 @@
   "type": "module",
   "description": "Public site for Michael Petrovich — Eleventy on Render",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve",
-    "favicon": "node scripts/generate-favicon.mjs"
+    "build": "eleventy && node scripts/subset-fonts.mjs && eleventy",
+    "start": "npm run build && eleventy --serve",
+    "favicon": "node scripts/generate-favicon.mjs",
+    "subset-fonts": "node scripts/subset-fonts.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -15,7 +16,10 @@
   "dependencies": {
     "@11ty/eleventy": "^3.1.6",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
-    "clean-css": "^5.3.3"
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/ibm-plex-serif": "^5.2.7",
+    "clean-css": "^5.3.3",
+    "subset-font": "^2.5.0"
   },
   "repository": {
     "type": "git",
