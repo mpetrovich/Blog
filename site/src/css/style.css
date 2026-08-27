@@ -2,13 +2,13 @@
 
 /* Self-hosted site-subset IBM Plex (OFL). WOFF2 + unicode-range generated at build
    by scripts/subset-fonts.mjs (injected when CSS is inlined).
-   font-display: optional — paint with fallback if webfont isn't ready (~100ms), helps LCP.
+   font-display: fallback — short block, then may still swap in within a few seconds.
    Mono ships only weight 500 (meta/UI); serif keeps 400/400i/600. */
 @font-face {
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 400;
-    font-display: optional;
+    font-display: fallback;
     src: url('/fonts/ibm-plex-serif-latin-400-normal.woff2') format('woff2');
     unicode-range: U+0020-007E;
 }
@@ -17,7 +17,7 @@
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 400;
-    font-display: optional;
+    font-display: fallback;
     src: url('/fonts/ibm-plex-serif-latin-400-italic.woff2') format('woff2');
     unicode-range: U+0020-007E;
 }
@@ -26,7 +26,7 @@
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 600;
-    font-display: optional;
+    font-display: fallback;
     src: url('/fonts/ibm-plex-serif-latin-600-normal.woff2') format('woff2');
     unicode-range: U+0020-007E;
 }
@@ -35,7 +35,7 @@
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 500;
-    font-display: optional;
+    font-display: fallback;
     src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
     unicode-range: U+0020-007E;
 }
