@@ -39,7 +39,11 @@
             <main id='main' class='site-main'>{{ content | safe }}</main>
             {% include "site-footer.njk" %}
         </div>
-        <script type='module' src='/js/theme-toggle.js'></script>
-        <script type='module' src='/js/design-orb-controls.js'></script>
+        <script type='module'>
+            const boot = () =>
+                Promise.all([import('/js/theme-toggle.js'), import('/js/design-orb-controls.js')])
+            if (document.readyState === 'complete') boot()
+            else window.addEventListener('load', boot)
+        </script>
     </body>
 </html>

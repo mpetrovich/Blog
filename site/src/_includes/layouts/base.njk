@@ -37,9 +37,6 @@
             crossorigin
         />
         <style>{{ cssInline | safe }}</style>
-        {% if analytics %}
-            {{ analytics | safe }}
-        {% endif %}
     </head>
     <body>
         <a class='skip-link' href='#main'>Skip to content</a>
@@ -73,6 +70,14 @@
         </header>
         <main id='main' class='site-main'>{{ content | safe }}</main>
         {% include "site-footer.njk" %}
-        <script type='module' src='/js/theme-toggle.js'></script>
+        {% if analytics %}
+            {{ analytics | safe }}
+        {% endif %}
+        {# Load after window.load so theme JS stays off the critical path (fonts/LCP). type=module is already deferred. #}
+        <script type='module'>
+            const boot = () => import('/js/theme-toggle.js')
+            if (document.readyState === 'complete') boot()
+            else window.addEventListener('load', boot)
+        </script>
     </body>
 </html>
