@@ -1,21 +1,15 @@
 /**
  * Renders the theme sun orb (phase = 1) to favicon PNG assets.
- * Shading matches site/src/js/theme-orb.js at ORB_DEFAULTS + light --ink-heading.
+ * Shading matches theme-orb.js ORB_DEFAULTS + light --ink-heading.
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import zlib from 'node:zlib'
 import { fileURLToPath } from 'node:url'
+import { ORB_DEFAULTS as ORB } from '../src/js/theme-orb.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const outDir = path.join(__dirname, '../src')
-
-const ORB = {
-    axisDeg: 35,
-    sunRotationDeg: 30,
-    lightness: 80,
-    contrast: 100,
-}
 
 /** Light-theme --ink-heading #4a2838 */
 const INK = { h: 340, s: 30 }
