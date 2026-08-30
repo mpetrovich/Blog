@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const outDir = path.join(__dirname, '../src')
 
 const ORB = {
-    axisDeg: -150,
+    axisDeg: 35,
     sunRotationDeg: 30,
     lightness: 80,
     contrast: 100,

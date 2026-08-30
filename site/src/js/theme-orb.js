@@ -4,7 +4,7 @@ const CRESCENT_SIGN = -1
 
 /** Canonical defaults (header + design reset). */
 export const ORB_DEFAULTS = {
-    axisDeg: -150,
+    axisDeg: 35,
     sunRotationDeg: 30,
     moonRotationDeg: 130,
     lightness: 80,
