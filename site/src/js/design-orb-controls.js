@@ -55,7 +55,7 @@ if (roots.length) {
             key: 'moonRotationDeg',
             label: 'Moon rotation',
             min: 0,
-            max: 180,
+            max: 360,
             step: 1,
             unit: '°',
         },
