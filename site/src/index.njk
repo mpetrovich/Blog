@@ -25,9 +25,9 @@ permalink: /
     <p class='meta topics-jumplist'>
         #
         {% for topicPage in collections.topicPages -%}
-            {%- if not loop.first %},{% endif -%}
+            {%- if not loop.first %}{{ ', ' }}{% endif -%}
             <a class='quiet-link' href='/topics/{{ topicPage.topic }}/'>
-                {{ topicPage.topic }}
+                {{- topicPage.topic -}}
             </a>
         {%- endfor %}
     </p>
