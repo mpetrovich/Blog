@@ -21,8 +21,9 @@ Work in the **Blog** repo root. Do not touch a separate Writing repo.
 - [ ] 3. Move file (+ images)
 - [ ] 4. Update frontmatter
 - [ ] 5. Generate tweet mockup
-- [ ] 6. Commit Blog
-- [ ] 7. Push Blog
+- [ ] 6. Draft LinkedIn post
+- [ ] 7. Commit Blog
+- [ ] 8. Push Blog
 ```
 
 After push, optionally run `/notify-subscribers` so the Buttondown list gets a “new post” email.
@@ -103,7 +104,7 @@ Omit the `syndicated_url` line when there is no Medium id. Never leave `draft: t
 
 ### 5. Generate tweet mockup
 
-For each published post, follow [tweet-mockup](../tweet-mockup/SKILL.md) to write `posts/published/images/<slug>/tweet.png`.
+For each published post, follow [create-tweet-mockup](../create-tweet-mockup/SKILL.md) to write `posts/published/images/<slug>/tweet.png`.
 
 ```bash
 node site/scripts/generate-tweet-mockup.mjs <slug>
@@ -113,7 +114,15 @@ node site/scripts/generate-tweet-mockup.mjs <slug>
 - If `subtitle` is empty, ask once for override text (or confirm skipping that post’s mockup) before continuing.
 - Do not embed `tweet.png` in the markdown body; it lives alongside other post images for social sharing.
 
-### 6. Commit Blog
+### 6. Draft LinkedIn post
+
+For each published post, follow [draft-linkedin-post](../draft-linkedin-post/SKILL.md).
+
+- Output copy-paste caption text in chat (not a repo file).
+- Pair with `posts/published/images/<slug>/tweet.png`.
+- Do not block publish if the user wants to tweak the caption later; one solid draft is enough.
+
+### 7. Commit Blog
 
 Stage only the new published posts (and images, including `tweet.png`). If unrelated dirty files exist, leave them unstaged; mention them after.
 
@@ -131,7 +140,7 @@ EOF
 
 Follow the repo's usual commit rules (no `--no-verify`, no amend of others' commits, no secrets).
 
-### 7. Push Blog
+### 8. Push Blog
 
 ```bash
 git push
@@ -150,6 +159,7 @@ Report:
 - Published path: `posts/published/YYYY-MM-DD-<slug>.md`
 - Permalink: `/posts/<slug>/`
 - Tweet mockup: `posts/published/images/<slug>/tweet.png`
+- LinkedIn caption (copy-paste block from step 6)
 - `date` (and `syndicated_url` if set)
 - Commit hash + subject
 - Push branch/remote
@@ -163,4 +173,5 @@ User: `/publish-draft hiring-for-diversity`
 3. `mv` to `posts/published/2026-08-23-hiring-for-diversity.md`
 4. Frontmatter becomes `title` / `subtitle` / `date: 2026-08-23` / `syndicated_url: https://medium.com/@michael-petrovich/hiring-for-diversity-a641003d6ab9` / `topics: [leadership]` (keeping the draft's topics; using that draft's `medium_id`)
 5. `node site/scripts/generate-tweet-mockup.mjs hiring-for-diversity` → `posts/published/images/hiring-for-diversity/tweet.png`
-6. Commit `publish: Hiring for Diversity`, push Blog
+6. Draft LinkedIn caption (chat) for copy-paste with the mockup image
+7. Commit `publish: Hiring for Diversity`, push Blog

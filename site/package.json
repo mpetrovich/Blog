@@ -8,7 +8,7 @@
     "build": "eleventy && node scripts/subset-fonts.mjs && eleventy",
     "start": "npm run build && eleventy --serve",
     "favicon": "node scripts/generate-favicon.mjs",
-    "tweet-mockup": "node scripts/generate-tweet-mockup.mjs",
+    "create-tweet-mockup": "node scripts/generate-tweet-mockup.mjs",
     "subset-fonts": "node scripts/subset-fonts.mjs"
   },
   "engines": {

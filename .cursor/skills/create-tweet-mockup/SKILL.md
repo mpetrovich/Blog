@@ -1,13 +1,13 @@
 ---
-name: tweet-mockup
+name: create-tweet-mockup
 description: >-
-  Generate a square Twitter/X post mockup (tweet.png) from a published post
-  subtitle. Use when the user runs /tweet-mockup, asks for a tweet screenshot
-  or social card, or as the automatic tweet step inside /publish-draft.
+  Generate a Twitter/X post mockup (tweet.png) from a published post subtitle.
+  Use when the user runs /create-tweet-mockup, asks for a tweet screenshot or
+  social card, or as the automatic tweet step inside /publish-draft.
 disable-model-invocation: true
 ---
 
-# Tweet Mockup
+# Create Tweet Mockup
 
 Render a Twitter/X-style post mockup PNG for a published Blog post. Width is fixed; height fits the content. Body text defaults to the post `subtitle`; override with `--text` when needed.
 
@@ -53,7 +53,7 @@ When run standalone (not from `/publish-draft`), do **not** commit or push unles
 
 ## Example
 
-User: `/tweet-mockup optimize-for-learning-not-shipping`
+User: `/create-tweet-mockup optimize-for-learning-not-shipping`
 
 ```bash
 node site/scripts/generate-tweet-mockup.mjs optimize-for-learning-not-shipping
