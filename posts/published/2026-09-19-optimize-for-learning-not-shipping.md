@@ -5,7 +5,7 @@ date: 2026-09-19
 topics: [product, decision-making, ai]
 ---
 
-Every business is an experiment built around a hypothesis: that enough people will pay enough to receive some benefit from something that can be delivered in some way to sustain it.
+Every business is an experiment built around a hypothesis: that enough people will pay enough for some benefit from something delivered in some way to sustain it.
 
 The variables in this hypothesis are what differentiate every business:
 
