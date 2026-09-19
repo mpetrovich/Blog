@@ -1,6 +1,6 @@
 ---
 title: Optimize for learning, not shipping
-subtitle:
+subtitle: Ask what you’re still unsure about, not what to build next.
 date: 2026-09-19
 topics: [product, decision-making, ai]
 ---
