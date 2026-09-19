@@ -5,9 +5,9 @@ date: 2026-08-29
 topics: [ai, engineering]
 ---
 
-My opinions on AI in software engineering are starting to crystallize. In particular, I now strongly believe that delegating the following things to AI leads to unsustainable systems:
+My opinions on AI in software engineering are crystallizing. In particular, I now strongly believe that delegating the following things to AI leads to unsustainable systems:
 
-**1. Root cause analysis.** Bugs are the result of when your understanding of how you *think* a system works is different from how it actually works. Debugging is how you discover which part of your understanding was wrong. Reading someone else’s root cause analysis is far worse of a teacher than lived experience.
+**1. Root cause analysis.** Bugs are the result of when your understanding of how you _think_ a system works is different from how it actually works. Debugging is how you discover which part of your understanding was wrong. Reading someone else’s root cause analysis is far worse of a teacher than lived experience.
 
 **2. Defining software interfaces and test cases.** Defining what “good” looks like requires judgement, critical thinking, and empathy for the user (of whatever you’re testing), none of which AI has. Furthermore, relying on AI to write the tests for the code that it’s also writing is like asking a student to write the questions for their own exam. How effective do you think that would be?
 
