@@ -7,7 +7,13 @@ permalink: /
     <p class='lede'>
         <strong>Michael Petrovich</strong>. Working and writing at the intersection of engineering, product, and data.
     </p>
-    <p class='meta'><a href='{{ site.linkedin }}'>LinkedIn</a> · <a href='{{ site.github }}'>GitHub</a></p>
+    <p class='meta'>
+        <a href='{{ site.linkedin }}'>LinkedIn</a>
+        ·
+        <a href='{{ site.twitter }}'>X</a>
+        ·
+        <a href='{{ site.github }}'>GitHub</a>
+    </p>
 </section>
 
 <section class='home-topics' aria-labelledby='home-topics-heading'>
@@ -19,8 +25,10 @@ permalink: /
     <p class='meta topics-jumplist'>
         #
         {% for topicPage in collections.topicPages -%}
-            {%- if not loop.first %}, {% endif -%}
-            <a class='quiet-link' href='/topics/{{ topicPage.topic }}/'>{{ topicPage.topic }}</a>
+            {%- if not loop.first %},{% endif -%}
+            <a class='quiet-link' href='/topics/{{ topicPage.topic }}/'>
+                {{ topicPage.topic }}
+            </a>
         {%- endfor %}
     </p>
 </section>

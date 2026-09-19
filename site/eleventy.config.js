@@ -61,6 +61,7 @@ export default function (eleventyConfig) {
         'src/favicon-192.png': 'favicon-192.png',
         'src/favicon-512.png': 'favicon-512.png',
         'src/apple-touch-icon.png': 'apple-touch-icon.png',
+        'src/profile.png': 'profile.png',
     })
     eleventyConfig.addPassthroughCopy({
         [path.join(postsDir, 'images')]: 'posts/images',

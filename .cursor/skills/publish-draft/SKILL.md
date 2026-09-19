@@ -20,8 +20,9 @@ Work in the **Blog** repo root. Do not touch a separate Writing repo.
 - [ ] 2. Confirm
 - [ ] 3. Move file (+ images)
 - [ ] 4. Update frontmatter
-- [ ] 5. Commit Blog
-- [ ] 6. Push Blog
+- [ ] 5. Generate tweet mockup
+- [ ] 6. Commit Blog
+- [ ] 7. Push Blog
 ```
 
 After push, optionally run `/notify-subscribers` so the Buttondown list gets a “new post” email.
@@ -100,9 +101,21 @@ topics: []
 
 Omit the `syndicated_url` line when there is no Medium id. Never leave `draft: true` on a published post.
 
-### 5. Commit Blog
+### 5. Generate tweet mockup
 
-Stage only the new published posts (and images). If unrelated dirty files exist, leave them unstaged; mention them after.
+For each published post, follow [tweet-mockup](../tweet-mockup/SKILL.md) to write `posts/published/images/<slug>/tweet.png`.
+
+```bash
+node site/scripts/generate-tweet-mockup.mjs <slug>
+```
+
+- Default body text: frontmatter `subtitle`.
+- If `subtitle` is empty, ask once for override text (or confirm skipping that post’s mockup) before continuing.
+- Do not embed `tweet.png` in the markdown body; it lives alongside other post images for social sharing.
+
+### 6. Commit Blog
+
+Stage only the new published posts (and images, including `tweet.png`). If unrelated dirty files exist, leave them unstaged; mention them after.
 
 For a single post, subject `publish: <title>`. For multiple, one commit with subject `publish: <n> posts` and a short body listing titles.
 
@@ -118,7 +131,7 @@ EOF
 
 Follow the repo's usual commit rules (no `--no-verify`, no amend of others' commits, no secrets).
 
-### 6. Push Blog
+### 7. Push Blog
 
 ```bash
 git push
@@ -136,6 +149,7 @@ Report:
 
 - Published path: `posts/published/YYYY-MM-DD-<slug>.md`
 - Permalink: `/posts/<slug>/`
+- Tweet mockup: `posts/published/images/<slug>/tweet.png`
 - `date` (and `syndicated_url` if set)
 - Commit hash + subject
 - Push branch/remote
@@ -148,4 +162,5 @@ User: `/publish-draft hiring-for-diversity`
 2. Confirm path, title, date, syndicated_url; wait for OK
 3. `mv` to `posts/published/2026-08-23-hiring-for-diversity.md`
 4. Frontmatter becomes `title` / `subtitle` / `date: 2026-08-23` / `syndicated_url: https://medium.com/@michael-petrovich/hiring-for-diversity-a641003d6ab9` / `topics: [leadership]` (keeping the draft's topics; using that draft's `medium_id`)
-5. Commit `publish: Hiring for Diversity`, push Blog
+5. `node site/scripts/generate-tweet-mockup.mjs hiring-for-diversity` → `posts/published/images/hiring-for-diversity/tweet.png`
+6. Commit `publish: Hiring for Diversity`, push Blog

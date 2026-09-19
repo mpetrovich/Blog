@@ -8,6 +8,7 @@
     "build": "eleventy && node scripts/subset-fonts.mjs && eleventy",
     "start": "npm run build && eleventy --serve",
     "favicon": "node scripts/generate-favicon.mjs",
+    "tweet-mockup": "node scripts/generate-tweet-mockup.mjs",
     "subset-fonts": "node scripts/subset-fonts.mjs"
   },
   "engines": {
@@ -25,5 +26,10 @@
     "type": "git",
     "url": "git+https://github.com/mpetrovich/Blog.git"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.33.4",
+    "sharp": "^0.35.4"
+  }
 }
