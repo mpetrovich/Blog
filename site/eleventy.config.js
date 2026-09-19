@@ -31,8 +31,16 @@ function resolvePostsDir() {
     return path.join(__dirname, '../posts/published')
 }
 
-/** Rewrite post-relative image paths to site-absolute /posts/images/... */
+/** `YYYY-MM-DD-slug.md` → slug (date stays in the filename only). */
+const DATED_POST_RE = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
 
+function slugFromFilename(file) {
+    const match = file.match(DATED_POST_RE)
+    if (match) return match[2]
+    return file.endsWith('.md') ? file.slice(0, -3) : file
+}
+
+/** Rewrite post-relative image paths to site-absolute /posts/images/... */
 function rewriteImagePaths(markdown) {
     return markdown.replace(/\]\(images\//g, '](/posts/images/')
 }
@@ -63,9 +71,14 @@ export default function (eleventyConfig) {
     eleventyConfig.addWatchTarget('src/js')
     eleventyConfig.addGlobalData('cssInline', cssInline)
 
+    const seenSlugs = new Set()
     for (const file of fs.readdirSync(postsDir)) {
         if (!file.endsWith('.md')) continue
-        const slug = file.slice(0, -3)
+        const slug = slugFromFilename(file)
+        if (seenSlugs.has(slug)) {
+            throw new Error(`Duplicate post slug "${slug}" from ${file}`)
+        }
+        seenSlugs.add(slug)
         const raw = fs.readFileSync(path.join(postsDir, file), 'utf8')
         // virtualPath is relative to dir.input (src/)
         eleventyConfig.addTemplate(`posts/${slug}.md`, rewriteImagePaths(raw), {

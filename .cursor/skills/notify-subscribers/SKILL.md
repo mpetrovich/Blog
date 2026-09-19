@@ -27,12 +27,12 @@ Work in the **Blog** repo root. Setup notes: repo README “Email subscribe (But
 ### 1. Prerequisites
 
 - `BUTTONDOWN_API_KEY` must be set — prefer repo-root `.env` (gitignored; see `.env.example`). Never commit it.
-- Target post must exist at `posts/published/<slug>.md`.
+- Target post must exist as `posts/published/YYYY-MM-DD-<slug>.md`.
 - If the key is missing, stop and point to the README “Email subscribe” section / `.env.example`.
 
 ### 2. Resolve slug
 
-- Prefer an explicit slug from the user (with or without `.md`).
+- Prefer an explicit slug from the user (with or without `.md`, with or without the `YYYY-MM-DD-` prefix).
 - If none, use the most recently modified file under `posts/published/*.md` (same as the script’s default).
 - **Stop** if the resolved file does not exist.
 
@@ -40,9 +40,9 @@ Work in the **Blog** repo root. Setup notes: repo README “Email subscribe (But
 
 Before sending, show and wait for explicit OK:
 
-- Path: `posts/published/<slug>.md`
+- Path: `posts/published/YYYY-MM-DD-<slug>.md`
 - Title (and subtitle if present)
-- Permalink: `https://petro.blog/posts/<slug>/` (or `SITE_URL` if set)
+- Permalink: `https://petro.blog/posts/<slug>/` (or `SITE_URL` if set; date is not in the URL)
 - Subject line: `New post: <title>`
 
 Ask: “Send this email to Buttondown subscribers?” **Do not send until the user confirms.**
@@ -53,10 +53,10 @@ Ask: “Send this email to Buttondown subscribers?” **Do not send until the us
 node site/scripts/notify-subscribers.mjs "<slug>"
 ```
 
-The script:
+The script accepts a bare slug or a dated filename stem. It:
 
-1. Reads frontmatter from `posts/published/<slug>.md`
-2. Builds a Markdown body (title, optional subtitle, link + CTA)
+1. Resolves `posts/published/YYYY-MM-DD-<slug>.md`
+2. Builds a Markdown body (title, optional subtitle, link + CTA) using `/posts/<slug>/`
 3. `POST`s to `https://api.buttondown.com/v1/emails` with `status: about_to_send`
 
 Email body template (for reference; the script owns the exact text):
@@ -87,7 +87,7 @@ New on petro.blog: [<title>](<url>)
 
 User: `/notify-subscribers effective-delegation`
 
-1. Resolve `posts/published/effective-delegation.md`
+1. Resolve `posts/published/2026-03-25-effective-delegation.md`
 2. Confirm title + `https://petro.blog/posts/effective-delegation/`
 3. Run `node site/scripts/notify-subscribers.mjs effective-delegation`
 4. Report success + email id

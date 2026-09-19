@@ -33,7 +33,7 @@ After push, optionally run `/notify-subscribers` so the Buttondown list gets a �
 - Prefer frontmatter `slug` when present; otherwise use the filename stem.
 - If ambiguous or missing, list `posts/draft/*.md` and ask once which to publish.
 - **Stop** if any resolved draft file does not exist.
-- **Stop** if `posts/published/<slug>.md` already exists for any target (do not overwrite).
+- **Stop** if any `posts/published/*-<slug>.md` already exists for any target (do not overwrite). Match with a date prefix: `YYYY-MM-DD-<slug>.md`.
 
 ### 2. Confirm
 
@@ -41,21 +41,24 @@ Before moving anything, show the planned publish set and wait for explicit confi
 
 For each resolved draft, report at least:
 
-- Path: `posts/draft/<slug>.md` → `posts/published/<slug>.md`
+- Path: `posts/draft/<slug>.md` → `posts/published/YYYY-MM-DD-<slug>.md`
 - Title (from frontmatter)
-- Planned `date`
+- Planned `date` (also used as the filename prefix)
 - Planned `syndicated_url` (or that it will be omitted)
+- Permalink: `/posts/<slug>/` (date is not in the URL)
 - Companion images: `posts/draft/images/<slug>/` if present, else none
 
 Ask something like: “Publish these draft(s)?” **Do not proceed to step 3 until the user confirms.** If they correct the set, re-resolve and confirm again.
 
 ### 3. Move file (+ images)
 
-`posts/draft/` is gitignored, so use filesystem moves (not `git mv`) for the draft side:
+`posts/draft/` is gitignored, so use filesystem moves (not `git mv`) for the draft side.
+
+Published posts use **date-prefixed** filenames: `YYYY-MM-DD-<slug>.md`. The date must match frontmatter `date`. Eleventy strips the prefix for permalinks (`/posts/<slug>/`).
 
 ```bash
 mkdir -p posts/published
-mv "posts/draft/<slug>.md" "posts/published/<slug>.md"
+mv "posts/draft/<slug>.md" "posts/published/YYYY-MM-DD-<slug>.md"
 ```
 
 If `posts/draft/images/<slug>/` exists:
@@ -65,7 +68,7 @@ mkdir -p posts/published/images
 mv "posts/draft/images/<slug>" "posts/published/images/<slug>"
 ```
 
-Leave body image paths as `images/...` (Eleventy rewrites them from `posts/published/`).
+Leave body image paths as `images/...` (Eleventy rewrites them from `posts/published/`). Images stay keyed by slug only (no date prefix).
 
 ### 4. Update frontmatter
 
@@ -104,7 +107,7 @@ Stage only the new published posts (and images). If unrelated dirty files exist,
 For a single post, subject `publish: <title>`. For multiple, one commit with subject `publish: <n> posts` and a short body listing titles.
 
 ```bash
-git add -- "posts/published/<slug>.md" "posts/published/images/<slug>"
+git add -- "posts/published/YYYY-MM-DD-<slug>.md" "posts/published/images/<slug>"
 git status --porcelain=v1 -b
 git commit -m "$(cat <<'EOF'
 publish: <title>
@@ -131,7 +134,8 @@ After a successful push, optionally remind the user they can run `/notify-subscr
 
 Report:
 
-- Published path: `posts/published/<slug>.md`
+- Published path: `posts/published/YYYY-MM-DD-<slug>.md`
+- Permalink: `/posts/<slug>/`
 - `date` (and `syndicated_url` if set)
 - Commit hash + subject
 - Push branch/remote
@@ -142,6 +146,6 @@ User: `/publish-draft hiring-for-diversity`
 
 1. Resolve `posts/draft/hiring-for-diversity.md`
 2. Confirm path, title, date, syndicated_url; wait for OK
-3. `mv` to `posts/published/hiring-for-diversity.md`
+3. `mv` to `posts/published/2026-08-23-hiring-for-diversity.md`
 4. Frontmatter becomes `title` / `subtitle` / `date: 2026-08-23` / `syndicated_url: https://medium.com/@michael-petrovich/hiring-for-diversity-a641003d6ab9` / `topics: [leadership]` (keeping the draft's topics; using that draft's `medium_id`)
 5. Commit `publish: Hiring for Diversity`, push Blog

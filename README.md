@@ -11,10 +11,12 @@ This repo holds both published writing and the site. Posts live under `posts/`; 
 ```text
 Blog/
   posts/
-    published/     # live markdown + images (tracked)
+    published/     # YYYY-MM-DD-<slug>.md + images/ (tracked)
     draft/         # local drafts only (gitignored)
   site/            # Eleventy app, Render Blueprint, build output (dist/)
 ```
+
+Published filenames are `YYYY-MM-DD-<slug>.md` (date from frontmatter). Permalinks stay `/posts/<slug>/` — the date prefix is for filesystem sorting only.
 
 ## Local development
 

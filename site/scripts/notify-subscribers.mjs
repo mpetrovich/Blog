@@ -62,19 +62,42 @@ function parseFrontmatter(raw) {
     return { data, body: match[2] }
 }
 
-function resolveSlug(arg) {
-    if (arg) return arg.replace(/\.md$/, '')
-    const files = readdirSync(postsDir)
+/** `YYYY-MM-DD-slug.md` → slug (date stays in the filename only). */
+const DATED_POST_RE = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
+
+function slugFromFilename(file) {
+    const match = file.match(DATED_POST_RE)
+    if (match) return match[2]
+    return file.endsWith('.md') ? file.slice(0, -3) : file
+}
+
+function listPostFiles() {
+    return readdirSync(postsDir)
         .filter((f) => f.endsWith('.md'))
         .map((f) => {
             const path = join(postsDir, f)
-            return { slug: f.replace(/\.md$/, ''), mtime: statSync(path).mtimeMs }
+            return { file: f, slug: slugFromFilename(f), mtime: statSync(path).mtimeMs }
         })
-        .sort((a, b) => b.mtime - a.mtime)
+}
+
+/** Resolve CLI arg (slug, dated stem, or .md) to { file, slug }. */
+function resolvePost(arg) {
+    const files = listPostFiles()
     if (!files.length) {
         throw new Error(`No posts in ${postsDir}`)
     }
-    return files[0].slug
+    if (!arg) {
+        return files.sort((a, b) => b.mtime - a.mtime)[0]
+    }
+    const stem = arg.replace(/\.md$/, '')
+    const byFile = files.find((p) => p.file === `${stem}.md` || p.file === arg)
+    if (byFile) return byFile
+    const bySlug = files.filter((p) => p.slug === stem)
+    if (bySlug.length === 1) return bySlug[0]
+    if (bySlug.length > 1) {
+        throw new Error(`Ambiguous slug "${stem}": ${bySlug.map((p) => p.file).join(', ')}`)
+    }
+    throw new Error(`Post not found for "${arg}" in ${postsDir}`)
 }
 
 function buildEmail({ title, subtitle, url }) {
@@ -123,15 +146,16 @@ async function main() {
         process.exit(1)
     }
 
-    const slug = resolveSlug(process.argv[2])
-    const path = join(postsDir, `${slug}.md`)
-    let raw
+    let post
     try {
-        raw = readFileSync(path, 'utf8')
-    } catch {
-        console.error(`Post not found: ${path}`)
+        post = resolvePost(process.argv[2])
+    } catch (err) {
+        console.error(err.message || err)
         process.exit(1)
     }
+    const { file, slug } = post
+    const path = join(postsDir, file)
+    const raw = readFileSync(path, 'utf8')
 
     const { data } = parseFrontmatter(raw)
     const title = data.title
