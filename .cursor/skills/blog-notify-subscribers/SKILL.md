@@ -1,14 +1,14 @@
 ---
-name: notify-subscribers
+name: blog-notify-subscribers
 description: >-
-  Use when the user runs /notify-subscribers, asks to email subscribers about a
+  Use when the user runs /blog-notify-subscribers, asks to email subscribers about a
   new post, or wants to send a templatized Buttondown “new post” notification.
 disable-model-invocation: true
 ---
 
 # Notify Subscribers
 
-Send a short “new post” email to the Buttondown list for one published post. **Does not** publish or push; run after `/publish-draft` when the post is live (or about to be).
+Send a short “new post” email to the Buttondown list for one published post. **Does not** publish or push; run after `/blog-publish-draft` when the post is live (or about to be).
 
 Work in the **Blog** repo root. Setup notes: repo README “Email subscribe (Buttondown)” and [`.env.example`](../../../.env.example).
 
@@ -79,13 +79,13 @@ New on petro.blog: [<title>](<url>)
 
 ## Notes
 
-- Separate from `/publish-draft` on purpose — publish never auto-emails.
+- Separate from `/blog-publish-draft` on purpose — publish never auto-emails.
 - Do not create drafts in the Buttondown UI as a substitute unless the API fails and the user asks to fall back manually.
 - Do not put the API key in repo files, commit messages, or chat paste unless the user already exposed it.
 
 ## Example
 
-User: `/notify-subscribers effective-delegation`
+User: `/blog-notify-subscribers effective-delegation`
 
 1. Resolve `posts/published/2026-03-25-effective-delegation.md`
 2. Confirm title + `https://petro.blog/posts/effective-delegation/`

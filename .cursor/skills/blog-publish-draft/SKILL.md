@@ -1,7 +1,7 @@
 ---
-name: publish-draft
+name: blog-publish-draft
 description: >-
-  Use when the user runs /publish-draft, asks to publish a draft, or wants to
+  Use when the user runs /blog-publish-draft, asks to publish a draft, or wants to
   move a Blog draft from posts/draft/ to posts/published/, update frontmatter,
   commit, and push so Render rebuilds.
 disable-model-invocation: true
@@ -26,7 +26,7 @@ Work in the **Blog** repo root. Do not touch a separate Writing repo.
 - [ ] 8. Push Blog
 ```
 
-After push, optionally run `/notify-subscribers` so the Buttondown list gets a “new post” email.
+After push, optionally run `/blog-notify-subscribers` so the Buttondown list gets a “new post” email.
 ## Workflow
 
 ### 1. Resolve draft(s)
@@ -104,7 +104,7 @@ Omit the `syndicated_url` line when there is no Medium id. Never leave `draft: t
 
 ### 5. Generate tweet mockup
 
-For each published post, follow [create-tweet-mockup](../create-tweet-mockup/SKILL.md) to write `posts/published/images/<slug>/tweet.png`.
+For each published post, follow [blog-create-tweet-mockup](../blog-create-tweet-mockup/SKILL.md) to write `posts/published/images/<slug>/tweet.png`.
 
 ```bash
 node site/scripts/generate-tweet-mockup.mjs <slug>
@@ -116,7 +116,7 @@ node site/scripts/generate-tweet-mockup.mjs <slug>
 
 ### 6. Draft LinkedIn post
 
-For each published post, follow [draft-linkedin-post](../draft-linkedin-post/SKILL.md).
+For each published post, follow [blog-draft-linkedin-post](../blog-draft-linkedin-post/SKILL.md).
 
 - Output copy-paste caption text in chat (not a repo file).
 - Pair with `posts/published/images/<slug>/tweet.png`.
@@ -150,7 +150,7 @@ If no upstream: `git push -u origin HEAD`. Never force-push.
 
 Render rebuilds from the Blog push (no separate deploy hook or Writing workflow).
 
-After a successful push, optionally remind the user they can run `/notify-subscribers` for that slug.
+After a successful push, optionally remind the user they can run `/blog-notify-subscribers` for that slug.
 
 ## Done
 
@@ -166,7 +166,7 @@ Report:
 
 ## Example
 
-User: `/publish-draft hiring-for-diversity`
+User: `/blog-publish-draft hiring-for-diversity`
 
 1. Resolve `posts/draft/hiring-for-diversity.md`
 2. Confirm path, title, date, syndicated_url; wait for OK

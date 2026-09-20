@@ -43,7 +43,7 @@ Output is `site/dist/` (gitignored).
 
 ## Email subscribe (Buttondown)
 
-Readers can subscribe at `/subscribe/`; you notify them after publishing with `/notify-subscribers`.
+Readers can subscribe at `/subscribe/`; you notify them after publishing with `/blog-notify-subscribers`.
 
 1. Create a Buttondown newsletter, enable double opt-in, and optionally add a custom sending domain.
 2. Set `buttondownUsername` in [`site/src/_data/site.js`](site/src/_data/site.js) (or `BUTTONDOWN_USERNAME` at build time).

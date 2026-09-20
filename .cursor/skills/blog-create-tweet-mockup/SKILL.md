@@ -1,9 +1,9 @@
 ---
-name: create-tweet-mockup
+name: blog-create-tweet-mockup
 description: >-
   Generate a Twitter/X post mockup (tweet.png) from a published post subtitle.
-  Use when the user runs /create-tweet-mockup, asks for a tweet screenshot or
-  social card, or as the automatic tweet step inside /publish-draft.
+  Use when the user runs /blog-create-tweet-mockup, asks for a tweet screenshot or
+  social card, or as the automatic tweet step inside /blog-publish-draft.
 disable-model-invocation: true
 ---
 
@@ -49,11 +49,11 @@ Requires `site/` deps (`npm install` in `site/` once). Fonts live under `site/sc
 
 Report the output path and whether text came from `subtitle` or `--text`.
 
-When run standalone (not from `/publish-draft`), do **not** commit or push unless the user asks.
+When run standalone (not from `/blog-publish-draft`), do **not** commit or push unless the user asks.
 
 ## Example
 
-User: `/create-tweet-mockup optimize-for-learning-not-shipping`
+User: `/blog-create-tweet-mockup optimize-for-learning-not-shipping`
 
 ```bash
 node site/scripts/generate-tweet-mockup.mjs optimize-for-learning-not-shipping

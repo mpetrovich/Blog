@@ -1,15 +1,15 @@
 ---
-name: draft-linkedin-post
+name: blog-draft-linkedin-post
 description: >-
   Draft a LinkedIn caption to post with the tweet mockup image for a published
-  Blog post. Use when the user runs /draft-linkedin-post, asks for LinkedIn
-  copy for a post, or as the LinkedIn step inside /publish-draft.
+  Blog post. Use when the user runs /blog-draft-linkedin-post, asks for LinkedIn
+  copy for a post, or as the LinkedIn step inside /blog-publish-draft.
 disable-model-invocation: true
 ---
 
 # Draft LinkedIn Post
 
-Write copy-paste LinkedIn caption text for a published Blog post. It accompanies `posts/published/images/<slug>/tweet.png` (from `/create-tweet-mockup`). The image already shows the subtitle; the caption must not repeat it.
+Write copy-paste LinkedIn caption text for a published Blog post. It accompanies `posts/published/images/<slug>/tweet.png` (from `/blog-create-tweet-mockup`). The image already shows the subtitle; the caption must not repeat it.
 
 Work in the **Blog** repo root.
 
@@ -30,7 +30,7 @@ Work in the **Blog** repo root.
 - **Stop** if missing.
 - Read frontmatter (`title`, `subtitle`) and enough of the body to pull one concrete idea for the hook.
 - Canonical URL: `https://petro.blog/posts/<slug>/` (from `site.url` in `site/src/_data/site.js` when overridden).
-- Companion image: `posts/published/images/<slug>/tweet.png`. If missing, note that `/create-tweet-mockup` should be run first; still draft the caption.
+- Companion image: `posts/published/images/<slug>/tweet.png`. If missing, note that `/blog-create-tweet-mockup` should be run first; still draft the caption.
 
 ### 2. Draft caption
 

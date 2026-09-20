@@ -1,7 +1,7 @@
 ---
-name: create-draft
+name: blog-create-draft
 description: >-
-  Use when the user runs /create-draft, asks to create a new draft, or wants a
+  Use when the user runs /blog-create-draft, asks to create a new draft, or wants a
   new unfinished article stub in posts/draft/ with placeholder frontmatter.
 disable-model-invocation: true
 ---
@@ -52,7 +52,7 @@ Required fields always present: `title`, `subtitle`, `slug`, `medium_id`, `draft
 
 ## Example
 
-User: `/create-draft Decision fatigue`
+User: `/blog-create-draft Decision fatigue`
 
 Creates `posts/draft/decision-fatigue.md`:
 
