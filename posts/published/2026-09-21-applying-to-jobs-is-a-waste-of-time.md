@@ -1,6 +1,6 @@
 ---
-title: Applying to jobs is a waste of time. Do this instead.
-subtitle: Stop applying. Work your network instead.
+title: Applying to jobs is a waste of time
+subtitle: Stop applying to jobs. Work your network instead.
 date: 2026-09-21
 topics: [career]
 ---
