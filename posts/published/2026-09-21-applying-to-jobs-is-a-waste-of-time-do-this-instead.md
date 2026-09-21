@@ -1,6 +1,6 @@
 ---
 title: Applying to jobs is a waste of time. Do this instead.
-subtitle: Stop playing the ATS lottery like everyone else and instead use your edge: low-volume, targeted referrals that lead to genuine conversations.
+subtitle: Stop applying. Really. Don’t even bother.
 date: 2026-09-21
 topics: [career]
 ---
