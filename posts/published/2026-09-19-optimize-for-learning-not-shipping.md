@@ -31,3 +31,5 @@ But shipping without knowing or measuring what you’re trying to learn is like 
 AI has exacerbated this problem. Shipping is easier and faster than ever versus making and evaluating bets, so guess where businesses end up spending more of their time. It’s the classic streetlight effect: doing the less impactful thing because it’s easier.
 
 The solution is to stop asking what to ship next. Instead, ask: Which of those variables still have the greatest uncertainty? What is the cheapest way to reduce that uncertainty? The answer is rarely to build more and often to run a smaller, cheaper test.
+
+For example, a common mistake is to keep adding features to a new product before testing whether anyone will actually pay for the core value proposition. That treats “something delivered” as the uncertain variable when “pay enough” usually is. Shipping more doesn’t reduce that uncertainty. But a pre-order, a waitlist with pricing, or even a handful of sales conversations often will.
