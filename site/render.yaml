@@ -10,6 +10,9 @@ services:
         - posts/published/**
     routes:
       - type: redirect
+        source: /posts/applying-to-jobs-is-a-waste-of-time
+        destination: /posts/applying-to-jobs-is-a-waste-of-time-do-this-instead/
+      - type: redirect
         source: /adventures-in-product-the-first-90-days-7e94eff6a296
         destination: /posts/adventures-in-product-the-first-90-days/
       - type: redirect
