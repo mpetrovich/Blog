@@ -30,6 +30,7 @@ Work in the **Blog** repo root.
 - **Stop** if missing.
 - Read frontmatter (`title`, `subtitle`) and enough of the body to pull one concrete idea for the hook.
 - Canonical URL: `https://petro.blog/posts/<slug>/` (from `site.url` in `site/src/_data/site.js` when overridden).
+- **Verify the URL before presenting it:** `curl -sI` (or equivalent) the canonical URL and confirm HTTP 200. If it 404s or otherwise fails, **stop** — fix the slug/filename (or wait for deploy) instead of handing over a broken link.
 - Companion image: `posts/published/images/<slug>/tweet.png`. If missing, note that `/blog-create-tweet-mockup` should be run first; still draft the caption.
 
 ### 2. Draft caption
