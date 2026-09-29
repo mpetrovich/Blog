@@ -11,7 +11,7 @@ This is true in life, and especially in software engineering. I've been doing th
 
 ## Why even estimate?
 
-So why bother estimating at all, then? I tried that for a while too. And it works. Until something else depends on you completing that thing in order to do their thing. Their thing could be anything: building other systems that rely on yours, planning marketing campaigns to promote your thing, or the most common case: deciding whether your thing is worth doing now, later, or even at all.
+So why bother estimating at all, then? I tried that for a while too. And it works. Until someone else depends on you completing that thing in order to do their thing. Their thing could be anything: building other systems that rely on yours, planning marketing campaigns to promote your thing, or the most common case: deciding whether your thing is worth doing now, later, or even at all.
 
 Three main reasons:
 
