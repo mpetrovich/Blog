@@ -31,7 +31,7 @@ Many teams use point values from the Fibonacci sequence (1, 2, 3, 5, 8, 13, etc.
 
 ## How to estimate
 
-To meet the goals of estimation, a estimatino methodology should have the following properties:
+To meet the goals of estimation, a estimation methodology should have the following properties:
 
 - **Have estimates that can be added.** Comparing the total cost of one body of work to another can only be done if the cost of individual items can be summed into a total. Otherwise, you're left comparing individual items in each set or the distribution of estimates in each, which becomes messy and hard to do well.
 - **Be directly proportional to cost.** A set of tasks that has twice the total estimated effort of another set should actually cost twice the development effort of the other.
