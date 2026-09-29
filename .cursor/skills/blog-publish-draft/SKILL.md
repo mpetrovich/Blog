@@ -31,8 +31,7 @@ After push, optionally run `/blog-notify-subscribers` so the Buttondown list get
 
 ### 1. Resolve draft(s)
 
-- From the user input and conversation context, resolve one or more targets to `posts/draft/<slug>.md`.
-- Prefer frontmatter `slug` when present; otherwise use the filename stem.
+- From the user input and conversation context, resolve one or more targets to `posts/draft/<slug>.md` (filename stem is the slug).
 - If ambiguous or missing, list `posts/draft/*.md` and ask once which to publish.
 - **Stop** if any resolved draft file does not exist.
 - **Stop** if any `posts/published/*-<slug>.md` already exists for any target (do not overwrite). Match with a date prefix: `YYYY-MM-DD-<slug>.md`.
@@ -76,7 +75,7 @@ Leave body image paths as `images/...` (Eleventy rewrites them from `posts/publi
 
 For each moved post, rewrite YAML to the **published** shape. Keep the body unchanged.
 
-**Remove:** `draft`, `slug`, `medium_id`, and any legacy `author` / `image`.
+**Remove:** `draft`, `medium_id`, and any legacy `author` / `image` / `slug`.
 
 **Set / keep:**
 
