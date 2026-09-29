@@ -57,7 +57,7 @@ The benefits of this approach become pretty clear once in use:
 
 - **Estimates no longer need to be translated for non-technical folks.** "What is an 8, again? How long will that actually take?"
 - **The estimate range scales proportionally with each step in the scale**, which is a more accurate reflection of uncertainty in the estimate. A feature estimated as "months" could take one month. Or three. Knowing which one it is isn't possible without breaking it down into weeks-long tasks, which is the whole point.
-- **Large tasks within a body of work dominate the overall estimate.** This is good, because it reflects the high level of uncertainty and complexity from it. It's a sign to reduce uncertainty and complexity by breaking down the work into smaller, simpler pieces. Dozens of cheap, well-known tasks should not drown out the effects of a single large, uncertain task.
+- **Large tasks within a body of work dominate the overall estimate.** This is good, because it reflects the high level of uncertainty and complexity from it. It's a signal to reduce uncertainty and complexity by breaking down the work into smaller, simpler pieces. Dozens of cheap, well-known tasks should not drown out the effects of a single large, uncertain task.
 - **The steps in the scale are far enough apart to avoid bikeshedding debates** that happen with other scales (even Fibonacci). It's rare for there to be disagreement about whether something should take days vs. weeks.
 
 In the end, Hofstadter's Law still wins. You'll still be wrong. But less wrong than before, because you won't be pretending your guesses are more precise than they really are.
