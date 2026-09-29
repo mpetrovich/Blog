@@ -1,6 +1,6 @@
 export default {
     title: 'Petro.blog',
-    description: 'Michael Petrovich. Working and writing at the intersection of engineering, product, and data.',
+    description: 'Crafting software products and teams for people. All thoughts and words organic.',
     url: process.env.SITE_URL || 'https://petro.blog',
     author: 'Michael Petrovich',
     linkedin: 'https://www.linkedin.com/in/mpetrovich/',
