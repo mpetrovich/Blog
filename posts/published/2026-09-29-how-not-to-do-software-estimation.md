@@ -27,14 +27,14 @@ Ok, so how should you estimate, then? There are a few popular options, each with
 
 **As an abstract complexity estimate.** Every task is assigned a number that represents its complexity relative to some agreed-upon example. For instance, a 1-point task would be the simplest change possible, like a trivial copy change on a website. A 2-point task would be a proportionally more complex change, like changing the appearance or behavior of an existing button. A 3 might be adding a contact form to the site. And so on.
 
-Many teams use point values from the Fibonacci sequence (1, 2, 3, 5, 8, 13, etc.) so that as things increase in complexity, the values increase faster than linearly (and also because nobody wants to argue whether something is an 8 or 9). But using Fibonacci is flawed, too, because in practice these estimates cannot be easily added. 8 individual 1-point text changes will never be the same amount of effort as one 8-point feature that takes two weeks to implement, but using Fibonacci treats them as equivalent when adding estimates to understand the overall workload of a team.
+Many teams use point values from the Fibonacci sequence (1, 2, 3, 5, 8, 13, etc.) so that as things increase in complexity, the values increase faster than linearly (and also because nobody wants to argue whether something is an 8 or 9). But using Fibonacci is flawed, too, because in practice these estimates cannot be easily added. 8 individual 1-point text changes will never be the same amount of effort as one 8-point feature that takes two weeks to implement, but using Fibonacci treats them as equivalent. This makes it difficult to reliably measure the overall workload of a team over time since sums cannot be compared.
 
 ## How to estimate
 
 To meet the goals of estimation, any methodology must have the following properties:
 
-- **Have estimates that can be added.** Comparing the total cost of one body of work to another can only be done if the cost of individual items can be summed into a total. Otherwise, you're left comparing individual items in each set or the distribution of estimates in each, which becomes messy and hard to do reliably.
-- **Be directly proportional to cost.** A set of tasks that has twice the total estimated effort of another set should also actually cost twice the development effort of the other.
+- **Have estimates that can be added.** Comparing the total cost of one body of work to another can only be done if the cost of individual items can be summed into a total. Otherwise, you're left comparing individual items in each set or the distribution of estimates in each, which becomes messy and hard to do well.
+- **Be directly proportional to cost.** A set of tasks that has twice the total estimated effort of another set should actually cost twice the development effort of the other.
 - **Map to time.** Since engineers are effectively paid by the hour, engineering cost is directly proportional to engineering time. A feature that takes 2 months to build costs twice as much in staff pay as one that takes the same contributors only 1 month. I'm deliberately omitting other factors like opportunity costs, technical debt, etc. to keep things simple and focused on the primary factor here: time.
 
 After many of my own experiments, this is the methodology that exhibits the properties above and seems to work well. Interestingly, it's a fusion of the two flawed approaches above:
@@ -49,15 +49,15 @@ After many of my own experiments, this is the methodology that exhibits the prop
 
 For example, a task that takes a couple hours to do would be a 1. Another that takes a day or two would be a 5. A week: 25. A few months: 100.
 
-The point is less about the specific values used and more about their differences in order of magnitude. In the example scale above, each value is 4-5x the previous, which maps relatively accurately to those same time ranges (~5 useful hours in a workday, 5 days in a work week, 4 weeks in a month).
+The point is less about the specific values used and more about their differences in order of magnitude. In the example scale above, most values are 4-5x the previous, which maps relatively accurately to those same time ranges (~5 useful hours in a workday, 5 days in a work week, 4 weeks in a month).
 
 The time labels make them easier to remember, and the values make them additive so they still make sense when summed. In contrast to the Fibonacci example, 5 individual days-long tasks do feel comparable to one weeks-long one.
 
 The benefits of this approach become pretty clear once in use:
 
 - **Estimates no longer need to be translated for non-technical folks.** "What is an 8, again? How long will that actually take?"
-- **The estimate range scales proportionally with each step in the scale**, which is a more accurate reflection of uncertainty in the estimate. A feature estimated as "months" (100) could take one month. Or three. Knowing which one it is isn't possible without breaking it down into weeks-long tasks, which is the whole point.
-- **Large tasks within a body of work dominate the overall estimate.** This is good, because it reflects the high level of uncertainty and complexity from it and is a sign to reduce uncertainty and complexity by breaking down the work into smaller, simpler pieces. Dozens of cheap, well-known tasks should not drown out the effects of a single large, uncertain task.
+- **The estimate range scales proportionally with each step in the scale**, which is a more accurate reflection of uncertainty in the estimate. A feature estimated as "months" could take one month. Or three. Knowing which one it is isn't possible without breaking it down into weeks-long tasks, which is the whole point.
+- **Large tasks within a body of work dominate the overall estimate.** This is good, because it reflects the high level of uncertainty and complexity from it. It's a sign to reduce uncertainty and complexity by breaking down the work into smaller, simpler pieces. Dozens of cheap, well-known tasks should not drown out the effects of a single large, uncertain task.
 - **The steps in the scale are far enough apart to avoid bikeshedding debates** that happen with other scales (even Fibonacci). It's rare for there to be disagreement about whether something should take days vs. weeks.
 
-In the end, Hofstadter's Law still wins. You'll still be wrong. But less wrong than before, because you won't be pretending your guesses are more precise than they are.
+In the end, Hofstadter's Law still wins. You'll still be wrong. But less wrong than before, because you won't be pretending your guesses are more precise than they really are.
