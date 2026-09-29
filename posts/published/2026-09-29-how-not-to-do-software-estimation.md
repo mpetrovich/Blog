@@ -1,5 +1,5 @@
 ---
-title: How to (not) do software estimation
+title: How (not) to do software estimation
 subtitle: Use orders of magnitude, not story points.
 date: 2026-09-29
 topics: [engineering, process, decision-making]
