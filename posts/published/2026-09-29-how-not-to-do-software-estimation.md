@@ -37,7 +37,7 @@ To meet the goals of estimation, a estimation methodology should have the follow
 - **Be directly proportional to cost.** A set of tasks that has twice the total estimated effort of another set should actually cost twice the development effort of the other.
 - **Map to time.** Since engineers are effectively paid by the hour, engineering cost is directly proportional to engineering time. A feature that takes 2 months to build costs twice as much in staff pay as one that takes the same contributors only 1 month. I'm deliberately omitting other factors like opportunity costs, technical debt, etc. to keep things simple and focused on the primary factor here: time.
 
-After many of my own experiments, I've landed on a methodology that exhibits the properties above and seems to work well. Interestingly, it's a fusion of the two flawed approaches above:
+After many of my own experiments, I've landed on a methodology that exhibits the properties above and seems to work well. Interestingly, it's a fusion of both flawed approaches:
 
 1. **Estimate how long it would take 1 person, working on nothing else, to complete it.** You're still estimating time but the (im)precision of the estimate better reflects how inaccurate it might be.
 2. **Use a scale of minutes, hours, days, weeks, months** and map them to values that reflect those differences in magnitude. Each label represents a time range, not a specific duration. For instance:
