@@ -13,7 +13,7 @@ Writing software is part of a broader system that produces value for someone. Vi
 
 To discover and encode these needs, ask:
 
-- What things does the system value more than others? These are best described as tradeoffs, e.g. correctness > speed
+- What things does the system value? These are best described as tradeoffs, e.g. correctness > speed
 - What rules can and should be used to enforce these values? How?
 - For values that cannot be enforced with rules, how should feedback be sourced and applied?
 - How should this affect how the software is actually produced? e.g. processes and tools like pairing, QA, AI
