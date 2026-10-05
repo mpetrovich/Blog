@@ -41,7 +41,11 @@
         </div>
         <script type='module'>
             const boot = () =>
-                Promise.all([import('/js/theme-toggle.js'), import('/js/design-orb-controls.js')])
+                Promise.all([
+                    import('/js/theme-toggle.js'),
+                    import('/js/design-orb-controls.js'),
+                    import('/js/prototype-shooting-stars.js'),
+                ])
             if (document.readyState === 'complete') boot()
             else window.addEventListener('load', boot)
         </script>

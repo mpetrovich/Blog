@@ -75,7 +75,11 @@
         {% endif %}
         {# Load after window.load so theme JS stays off the critical path (fonts/LCP). type=module is already deferred. #}
         <script type='module'>
-            const boot = () => import('/js/theme-toggle.js')
+            const boot = () =>
+                Promise.all([
+                    import('/js/theme-toggle.js'),
+                    import('/js/prototype-shooting-stars.js'),
+                ])
             if (document.readyState === 'complete') boot()
             else window.addEventListener('load', boot)
         </script>

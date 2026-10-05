@@ -90,7 +90,13 @@ if (buttons.length) {
         button.addEventListener('click', async () => {
             if (busy || anyOrbBusy()) return
 
-            const next = nextTheme(effectiveTheme())
+            const from = effectiveTheme()
+            const next = nextTheme(from)
+
+            // Emit first so effects (meteors) start on click, not after theme paint
+            document.documentElement.dispatchEvent(
+                new CustomEvent('blog:themechange', { detail: { theme: next, from } }),
+            )
 
             if (reduceMotion.matches) {
                 applyTheme(next)
