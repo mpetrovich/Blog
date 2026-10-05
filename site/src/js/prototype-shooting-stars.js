@@ -1,44 +1,12 @@
 /**
- * PROTOTYPE — throwaway. Three dark-mode shooting-star variants on /design/.
- * Question: which shooting-star feel fits the light→dark theme transition?
- * Switch via ?variant=A|B|C or the floating bar. Delete when a winner is picked.
+ * Shooting stars on light→dark theme toggle — thin streaks clustered around the moon.
  */
 
 import { orbParams } from './theme-orb.js'
 
-const VARIANTS = [
-    { key: 'A', name: 'Near-moon sparse' },
-    { key: 'B', name: 'Meteor shower' },
-    { key: 'C', name: 'Single meteor' },
-]
-
-/** Match the orb’s visual tilt (~axis / sun rotation); user guessed ~30°. */
+/** Match the orb’s visual tilt (~axis angle). */
 function streakAngleDeg() {
     return orbParams.axisDeg ?? 35
-}
-
-function currentVariant() {
-    const raw = new URLSearchParams(location.search).get('variant')?.toUpperCase()
-    return VARIANTS.some((v) => v.key === raw) ? raw : 'A'
-}
-
-function setVariant(key) {
-    const url = new URL(location.href)
-    url.searchParams.set('variant', key)
-    history.replaceState(null, '', url)
-    label.textContent = formatLabel(key)
-    stateEl.textContent = `variant=${key} angle=${streakAngleDeg()}° (light→dark to fire)`
-}
-
-function formatLabel(key) {
-    const v = VARIANTS.find((x) => x.key === key)
-    return v ? `${v.key} — ${v.name}` : key
-}
-
-function cycle(delta) {
-    const i = VARIANTS.findIndex((v) => v.key === currentVariant())
-    const next = VARIANTS[(i + delta + VARIANTS.length) % VARIANTS.length]
-    setVariant(next.key)
 }
 
 function ensureLayers() {
@@ -103,13 +71,18 @@ function spawnNearMoon(angleDeg, along, across) {
 }
 
 /**
- * A — 12–16 streaks in a ~50px cluster with random depth + staggered timing.
+ * 12–16 streaks in a ~50px cluster with random depth + staggered timing.
  * Behind moon: shorter + slower. In front (esp. near): longer + faster.
  */
-function playSparse(layers, angle) {
-    const { behind, front } = layers
+function play() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    clearLayers()
+    const { behind, front } = ensureLayers()
     behind.classList.add('-sparse')
     front.classList.add('-sparse')
+
+    const angle = streakAngleDeg()
     const radius = 50
     const count = 12 + Math.floor(Math.random() * 5) // 12–16
 
@@ -161,64 +134,9 @@ function playSparse(layers, angle) {
         }
         ;(behindMoon ? behind : front).append(star)
     }
-}
 
-/** B — denser short streaks cascading as the sky darkens. */
-function playShower(layers, angle) {
-    const { front } = layers
-    front.classList.add('-shower')
-    const count = 10 + Math.floor(Math.random() * 6)
-    for (let i = 0; i < count; i++) {
-        const star = document.createElement('span')
-        star.className = 'proto-stars__streak'
-        star.style.setProperty('--angle', `${angle + rand(-8, 8)}deg`)
-        star.style.setProperty('--x', `${rand(0, 85)}%`)
-        star.style.setProperty('--y', `${rand(0, 70)}%`)
-        star.style.setProperty('--len', `${rand(28, 70)}px`)
-        star.style.setProperty('--travel', `${rand(12, 28)}vw`)
-        star.style.setProperty('--dur', `${rand(0.35, 0.7)}s`)
-        star.style.setProperty('--delay', `${rand(0, 0.55)}s`)
-        star.style.setProperty('--opacity', String(rand(0.35, 0.85)))
-        front.append(star)
-    }
-}
-
-/** C — one long cinematic streak with a soft head glow. */
-function playSingle(layers, angle) {
-    const { front } = layers
-    front.classList.add('-single')
-    const star = document.createElement('span')
-    star.className = 'proto-stars__streak -hero'
-    star.style.setProperty('--angle', `${angle}deg`)
-    star.style.setProperty('--x', `${rand(5, 25)}%`)
-    star.style.setProperty('--y', `${rand(5, 28)}%`)
-    star.style.setProperty('--len', `${rand(160, 240)}px`)
-    star.style.setProperty('--travel', `${rand(55, 75)}vw`)
-    star.style.setProperty('--dur', `${rand(0.75, 0.95)}s`)
-    star.style.setProperty('--delay', '0.08s')
-    front.append(star)
-}
-
-const PLAYERS = {
-    A: playSparse,
-    B: playShower,
-    C: playSingle,
-}
-
-function play() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    clearLayers()
-    const layers = ensureLayers()
-    const key = currentVariant()
-    const angle = streakAngleDeg()
-    PLAYERS[key](layers, angle)
-    const behindN = layers.behind.childElementCount
-    const frontN = layers.front.childElementCount
-    stateEl.textContent = `variant=${key} angle=${angle}° behind=${behindN} front=${frontN} @ ${new Date().toLocaleTimeString()}`
-
-    const maxMs = key === 'C' ? 1400 : key === 'B' ? 1600 : 2000
     window.clearTimeout(play._clear)
-    play._clear = window.setTimeout(() => clearLayers(), maxMs)
+    play._clear = window.setTimeout(() => clearLayers(), 2000)
 }
 
 function injectStyles() {
@@ -266,30 +184,6 @@ function injectStyles() {
         rgba(255, 255, 255, var(--opacity, 0.55)) 100%
     );
 }
-.proto-stars.-shower .proto-stars__streak {
-    height: 1px;
-    opacity: 0;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, calc(var(--opacity, 0.6) * 0.2)) 40%,
-        rgba(255, 255, 255, var(--opacity, 0.6)) 100%
-    );
-    filter: blur(0.2px);
-}
-.proto-stars.-single .proto-stars__streak.-hero {
-    height: 1.5px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.05) 20%,
-        rgba(255, 255, 255, 0.55) 70%,
-        #fff 100%
-    );
-    box-shadow:
-        0 0 6px 1px rgba(255, 255, 255, 0.35),
-        0 0 1px 0 #fff;
-}
 @keyframes proto-star-streak {
     0% {
         opacity: 0;
@@ -306,64 +200,6 @@ function injectStyles() {
         transform: rotate(var(--angle)) translateX(var(--travel)) scaleX(1);
     }
 }
-.proto-switcher {
-    position: fixed;
-    z-index: 50;
-    left: 50%;
-    bottom: 1.25rem;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.45rem 0.7rem;
-    border-radius: 999px;
-    background: #1a1a1a;
-    color: #f2f2f2;
-    font: 500 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    user-select: none;
-}
-.proto-switcher button {
-    margin: 0;
-    padding: 0.2rem 0.45rem;
-    border: 0;
-    border-radius: 4px;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-}
-.proto-switcher button:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-.proto-switcher button:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-}
-.proto-switcher__label {
-    min-width: 11rem;
-    text-align: center;
-}
-.proto-switcher__state {
-    position: fixed;
-    z-index: 50;
-    left: 50%;
-    bottom: 3.6rem;
-    transform: translateX(-50%);
-    max-width: min(92vw, 28rem);
-    padding: 0.25rem 0.55rem;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.72);
-    color: #e8e8e8;
-    font: 500 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
-    text-align: center;
-    pointer-events: none;
-}
-.proto-switcher__replay {
-    margin-left: 0.15rem;
-    padding-inline: 0.55rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-}
 @media (prefers-reduced-motion: reduce) {
     .proto-stars__streak {
         animation: none !important;
@@ -374,66 +210,7 @@ function injectStyles() {
     document.head.append(style)
 }
 
-const switcher = document.createElement('div')
-switcher.className = 'proto-switcher'
-switcher.setAttribute('role', 'group')
-switcher.setAttribute('aria-label', 'Prototype variant switcher')
-
-const prev = document.createElement('button')
-prev.type = 'button'
-prev.setAttribute('aria-label', 'Previous variant')
-prev.textContent = '←'
-
-const label = document.createElement('span')
-label.className = 'proto-switcher__label'
-
-const next = document.createElement('button')
-next.type = 'button'
-next.setAttribute('aria-label', 'Next variant')
-next.textContent = '→'
-
-const replay = document.createElement('button')
-replay.type = 'button'
-replay.className = 'proto-switcher__replay'
-replay.textContent = 'Replay'
-replay.title = 'Fire stars without toggling theme (forces dark briefly if needed)'
-
-switcher.append(prev, label, next, replay)
-
-const stateEl = document.createElement('div')
-stateEl.className = 'proto-switcher__state'
-
 injectStyles()
-document.body.append(switcher, stateEl)
-setVariant(currentVariant())
-
-prev.addEventListener('click', () => cycle(-1))
-next.addEventListener('click', () => cycle(1))
-replay.addEventListener('click', () => {
-    // Replay against a dark backdrop so the white lines read clearly
-    const html = document.documentElement
-    const prevTheme = html.getAttribute('data-theme')
-    if (prevTheme !== 'dark') html.setAttribute('data-theme', 'dark')
-    play()
-    if (prevTheme !== 'dark') {
-        window.setTimeout(() => {
-            if (prevTheme) html.setAttribute('data-theme', prevTheme)
-            else html.removeAttribute('data-theme')
-        }, 900)
-    }
-})
-
-document.addEventListener('keydown', (e) => {
-    const t = e.target
-    if (t instanceof HTMLElement && (t.closest('input, textarea, select, [contenteditable]'))) return
-    if (e.key === 'ArrowLeft') {
-        e.preventDefault()
-        cycle(-1)
-    } else if (e.key === 'ArrowRight') {
-        e.preventDefault()
-        cycle(1)
-    }
-})
 
 document.documentElement.addEventListener('blog:themechange', (e) => {
     const { theme, from } = e.detail || {}
