@@ -2,8 +2,8 @@
 name: blog-draft-linkedin-post
 description: >-
   Draft a LinkedIn caption to post with the tweet mockup image for a published
-  Blog post. Use when the user runs /blog-draft-linkedin-post, asks for LinkedIn
-  copy for a post, or as the LinkedIn step inside /blog-publish-draft.
+  Blog post. Use when the user runs /blog-draft-linkedin-post or asks for
+  LinkedIn copy for a post. Not part of /blog-publish-draft.
 disable-model-invocation: true
 ---
 
