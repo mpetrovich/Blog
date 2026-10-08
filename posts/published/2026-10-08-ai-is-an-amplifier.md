@@ -11,4 +11,4 @@ If you have bad practices, it multiplies their effects.
 
 So before you decide whether to adopt AI for a particular use, ask: If this was done 10x more, would it leave things better or worse?
 
-If the answer is worse, then you should improve your practices before you think about automating them.
+If worse, then you should improve your practices before you think about automating them.
