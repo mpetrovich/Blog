@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 # Draft LinkedIn Post
 
-Write copy-paste LinkedIn caption text for a published Blog post. It accompanies `posts/published/images/<slug>/tweet.png` (from `/blog-create-tweet-mockup`). The image already shows the subtitle; the caption must not repeat it.
+Write copy-paste LinkedIn caption text for a published Blog post. It accompanies `posts/published/YYYY-MM-DD-<slug>/tweet.png` (from `/blog-create-tweet-mockup`). The image already shows the subtitle; the caption must not repeat it.
 
 Work in the **Blog** repo root.
 
@@ -26,12 +26,12 @@ Work in the **Blog** repo root.
 ### 1. Resolve post
 
 - Prefer an explicit slug or path from the user (with or without `.md` / `YYYY-MM-DD-` prefix).
-- Target must exist as `posts/published/YYYY-MM-DD-<slug>.md`.
+- Target must exist as `posts/published/YYYY-MM-DD-<slug>/post.md`.
 - **Stop** if missing.
 - Read frontmatter (`title`, `subtitle`) and enough of the body to pull one concrete idea for the hook.
 - Canonical URL: `https://petro.blog/posts/<slug>/` (from `site.url` in `site/src/_data/site.js` when overridden).
 - **Verify the URL before presenting it:** `curl -sI` (or equivalent) the canonical URL and confirm HTTP 200. If it 404s or otherwise fails, **stop** — fix the slug/filename (or wait for deploy) instead of handing over a broken link.
-- Companion image: `posts/published/images/<slug>/tweet.png`. If missing, note that `/blog-create-tweet-mockup` should be run first; still draft the caption.
+- Companion image: `posts/published/YYYY-MM-DD-<slug>/tweet.png`. If missing, note that `/blog-create-tweet-mockup` should be run first; still draft the caption.
 
 ### 2. Draft caption
 
@@ -54,7 +54,7 @@ Rules:
 Show:
 
 1. The caption in a single fenced block the user can copy whole.
-2. Reminder to attach `posts/published/images/<slug>/tweet.png` as the post image.
+2. Reminder to attach `posts/published/YYYY-MM-DD-<slug>/tweet.png` as the post image.
 
 Do **not** commit or push. Iterate if the user edits tone or asks for another take.
 
@@ -71,4 +71,4 @@ Better question: which part of the business hypothesis are we still unsure about
 https://petro.blog/posts/optimize-for-learning-not-shipping/
 ```
 
-Attach: `posts/published/images/optimize-for-learning-not-shipping/tweet.png`
+Attach: `posts/published/2026-09-19-optimize-for-learning-not-shipping/tweet.png`

@@ -62,40 +62,43 @@ function parseFrontmatter(raw) {
     return { data, body: match[2] }
 }
 
-/** `YYYY-MM-DD-slug.md` → slug (date stays in the filename only). */
-const DATED_POST_RE = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
+/** `YYYY-MM-DD-slug` directory name → date + slug. */
+const DATED_DIR_RE = /^(\d{4}-\d{2}-\d{2})-(.+)$/
 
-function slugFromFilename(file) {
-    const match = file.match(DATED_POST_RE)
-    if (match) return match[2]
-    return file.endsWith('.md') ? file.slice(0, -3) : file
-}
-
-function listPostFiles() {
-    return readdirSync(postsDir)
-        .filter((f) => f.endsWith('.md'))
-        .map((f) => {
-            const path = join(postsDir, f)
-            return { file: f, slug: slugFromFilename(f), mtime: statSync(path).mtimeMs }
+function listPosts() {
+    return readdirSync(postsDir, { withFileTypes: true })
+        .filter((e) => e.isDirectory())
+        .map((e) => {
+            const match = e.name.match(DATED_DIR_RE)
+            if (!match) return null
+            const postPath = join(postsDir, e.name, 'post.md')
+            if (!existsSync(postPath)) return null
+            return {
+                dirName: e.name,
+                slug: match[2],
+                postPath,
+                mtime: statSync(postPath).mtimeMs,
+            }
         })
+        .filter(Boolean)
 }
 
-/** Resolve CLI arg (slug, dated stem, or .md) to { file, slug }. */
+/** Resolve CLI arg (slug, dated dir, or post.md path) to { dirName, slug, postPath }. */
 function resolvePost(arg) {
-    const files = listPostFiles()
-    if (!files.length) {
+    const posts = listPosts()
+    if (!posts.length) {
         throw new Error(`No posts in ${postsDir}`)
     }
     if (!arg) {
-        return files.sort((a, b) => b.mtime - a.mtime)[0]
+        return posts.sort((a, b) => b.mtime - a.mtime)[0]
     }
-    const stem = arg.replace(/\.md$/, '')
-    const byFile = files.find((p) => p.file === `${stem}.md` || p.file === arg)
-    if (byFile) return byFile
-    const bySlug = files.filter((p) => p.slug === stem)
+    const stem = arg.replace(/\/?post\.md$/, '').replace(/\.md$/, '')
+    const byDir = posts.find((p) => p.dirName === stem || p.dirName === arg)
+    if (byDir) return byDir
+    const bySlug = posts.filter((p) => p.slug === stem)
     if (bySlug.length === 1) return bySlug[0]
     if (bySlug.length > 1) {
-        throw new Error(`Ambiguous slug "${stem}": ${bySlug.map((p) => p.file).join(', ')}`)
+        throw new Error(`Ambiguous slug "${stem}": ${bySlug.map((p) => p.dirName).join(', ')}`)
     }
     throw new Error(`Post not found for "${arg}" in ${postsDir}`)
 }
@@ -153,9 +156,8 @@ async function main() {
         console.error(err.message || err)
         process.exit(1)
     }
-    const { file, slug } = post
-    const path = join(postsDir, file)
-    const raw = readFileSync(path, 'utf8')
+    const { slug, postPath } = post
+    const raw = readFileSync(postPath, 'utf8')
 
     const { data } = parseFrontmatter(raw)
     const title = data.title

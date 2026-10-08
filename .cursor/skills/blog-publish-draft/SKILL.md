@@ -18,7 +18,7 @@ Work in the **Blog** repo root. Do not touch a separate Writing repo.
 ```
 - [ ] 1. Resolve draft(s)
 - [ ] 2. Confirm
-- [ ] 3. Move file (+ images)
+- [ ] 3. Move directory
 - [ ] 4. Update frontmatter
 - [ ] 5. Generate tweet mockup
 - [ ] 6. Commit Blog
@@ -30,10 +30,10 @@ After push, optionally run `/blog-notify-subscribers` so the Buttondown list get
 
 ### 1. Resolve draft(s)
 
-- From the user input and conversation context, resolve one or more targets to `posts/draft/<slug>.md` (filename stem is the slug).
-- If ambiguous or missing, list `posts/draft/*.md` and ask once which to publish.
+- From the user input and conversation context, resolve one or more targets to `posts/draft/<slug>/post.md` (directory name is the slug).
+- If ambiguous or missing, list `posts/draft/*/post.md` and ask once which to publish.
 - **Stop** if any resolved draft file does not exist.
-- **Stop** if any `posts/published/*-<slug>.md` already exists for any target (do not overwrite). Match with a date prefix: `YYYY-MM-DD-<slug>.md`.
+- **Stop** if any `posts/published/*-<slug>/` already exists for any target (do not overwrite). Match with a date prefix: `YYYY-MM-DD-<slug>`.
 
 ### 2. Confirm
 
@@ -41,34 +41,27 @@ Before moving anything, show the planned publish set and wait for explicit confi
 
 For each resolved draft, report at least:
 
-- Path: `posts/draft/<slug>.md` → `posts/published/YYYY-MM-DD-<slug>.md`
+- Path: `posts/draft/<slug>/` → `posts/published/YYYY-MM-DD-<slug>/`
 - Title (from frontmatter)
-- Planned `date` (also used as the filename prefix)
+- Planned `date` (also used as the directory name prefix)
 - Planned `syndicated_url` (or that it will be omitted)
 - Permalink: `/posts/<slug>/` (date is not in the URL)
-- Companion images: `posts/draft/images/<slug>/` if present, else none
+- Companion images: any non-`post.md` files in the draft directory (or none)
 
 Ask something like: “Publish these draft(s)?” **Do not proceed to step 3 until the user confirms.** If they correct the set, re-resolve and confirm again.
 
-### 3. Move file (+ images)
+### 3. Move directory
 
 `posts/draft/` is gitignored, so use filesystem moves (not `git mv`) for the draft side.
 
-Published posts use **date-prefixed** filenames: `YYYY-MM-DD-<slug>.md`. The date must match frontmatter `date`. Eleventy strips the prefix for permalinks (`/posts/<slug>/`).
+Published posts use **date-prefixed** directories: `YYYY-MM-DD-<slug>/` containing `post.md` and any images as siblings. The date must match frontmatter `date`. Eleventy strips the prefix for permalinks (`/posts/<slug>/`).
 
 ```bash
 mkdir -p posts/published
-mv "posts/draft/<slug>.md" "posts/published/YYYY-MM-DD-<slug>.md"
+mv "posts/draft/<slug>" "posts/published/YYYY-MM-DD-<slug>"
 ```
 
-If `posts/draft/images/<slug>/` exists:
-
-```bash
-mkdir -p posts/published/images
-mv "posts/draft/images/<slug>" "posts/published/images/<slug>"
-```
-
-Leave body image paths as `images/...` (Eleventy rewrites them from `posts/published/`). Images stay keyed by slug only (no date prefix).
+Leave body image paths as bare filenames (e.g. `](01.png)`). Eleventy rewrites them to `/posts/<slug>/...`.
 
 ### 4. Update frontmatter
 
@@ -102,7 +95,7 @@ Omit the `syndicated_url` line when there is no Medium id. Never leave `draft: t
 
 ### 5. Generate tweet mockup
 
-For each published post, follow [blog-create-tweet-mockup](../blog-create-tweet-mockup/SKILL.md) to write `posts/published/images/<slug>/tweet.png`.
+For each published post, follow [blog-create-tweet-mockup](../blog-create-tweet-mockup/SKILL.md) to write `posts/published/YYYY-MM-DD-<slug>/tweet.png`.
 
 ```bash
 node site/scripts/generate-tweet-mockup.mjs <slug>
@@ -114,12 +107,12 @@ node site/scripts/generate-tweet-mockup.mjs <slug>
 
 ### 6. Commit Blog
 
-Stage only the new published posts (and images, including `tweet.png`). If unrelated dirty files exist, leave them unstaged; mention them after.
+Stage only the new published post directories (including `tweet.png`). If unrelated dirty files exist, leave them unstaged; mention them after.
 
 For a single post, subject `publish: <title>`. For multiple, one commit with subject `publish: <n> posts` and a short body listing titles.
 
 ```bash
-git add -- "posts/published/YYYY-MM-DD-<slug>.md" "posts/published/images/<slug>"
+git add -- "posts/published/YYYY-MM-DD-<slug>"
 git status --porcelain=v1 -b
 git commit -m "$(cat <<'EOF'
 publish: <title>
@@ -146,9 +139,9 @@ After a successful push, optionally remind the user they can run `/blog-notify-s
 
 Report:
 
-- Published path: `posts/published/YYYY-MM-DD-<slug>.md`
+- Published path: `posts/published/YYYY-MM-DD-<slug>/post.md`
 - Permalink: `/posts/<slug>/`
-- Tweet mockup: `posts/published/images/<slug>/tweet.png`
+- Tweet mockup: `posts/published/YYYY-MM-DD-<slug>/tweet.png`
 - `date` (and `syndicated_url` if set)
 - Commit hash + subject
 - Push branch/remote
@@ -157,9 +150,9 @@ Report:
 
 User: `/blog-publish-draft hiring-for-diversity`
 
-1. Resolve `posts/draft/hiring-for-diversity.md`
+1. Resolve `posts/draft/hiring-for-diversity/post.md`
 2. Confirm path, title, date, syndicated_url; wait for OK
-3. `mv` to `posts/published/2026-08-23-hiring-for-diversity.md`
+3. `mv` to `posts/published/2026-08-23-hiring-for-diversity/`
 4. Frontmatter becomes `title` / `subtitle` / `date: 2026-08-23` / `syndicated_url: https://medium.com/@michael-petrovich/hiring-for-diversity-a641003d6ab9` / `topics: [leadership]` (keeping the draft's topics; using that draft's `medium_id`)
-5. `node site/scripts/generate-tweet-mockup.mjs hiring-for-diversity` → `posts/published/images/hiring-for-diversity/tweet.png`
+5. `node site/scripts/generate-tweet-mockup.mjs hiring-for-diversity` → `posts/published/2026-08-23-hiring-for-diversity/tweet.png`
 6. Commit `publish: Hiring for Diversity`, push Blog

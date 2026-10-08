@@ -18,7 +18,7 @@ One-off approaches to learn some new topic X or discipline Y certainly work, but
 
 ### My learning system
 
-![OODA loop diagram](images/adventures-in-product-the-first-90-days/02.png)
+![OODA loop diagram](02.png)
 
 Source: [Visual Paradigm](https://online.visual-paradigm.com/knowledge/decision-analysis/what-is-ooda-loop/)
 

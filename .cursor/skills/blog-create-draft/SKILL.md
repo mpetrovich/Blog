@@ -15,19 +15,19 @@ Work in the **Blog** repo root.
 ## Workflow
 
 1. **Resolve title and filename**
-   - If the user gave a title/topic, use it for `title` in **sentence case** (capitalize the first word and proper nouns/acronyms only; lowercase the rest, including the first word after a colon) and derive the filename stem as kebab-case (lowercase, hyphens, no punctuation).
+   - If the user gave a title/topic, use it for `title` in **sentence case** (capitalize the first word and proper nouns/acronyms only; lowercase the rest, including the first word after a colon) and derive the directory stem as kebab-case (lowercase, hyphens, no punctuation).
    - If they gave an explicit filename/slug, prefer that over a derived one.
    - If neither was given, ask once for a title before creating the file.
 2. **Assign topics**
    - Set `topics` to 1–3 tags from topics already used on published posts (grep `posts/published/` for `topics:` or see `/topics/` on the site).
    - Pick tags that match the draft's subject. If the user specifies topics, use those (still limited to existing published topics unless they ask to add a new one).
    - Do not leave `topics: []` on new drafts.
-3. **Choose path:** `posts/draft/<stem>.md`
+3. **Choose path:** `posts/draft/<stem>/post.md`
 4. **Refuse overwrite:** If that path already exists, stop and report it. Do not clobber.
 5. **Write the file** using the template below. Fill `title` and `topics` when known; leave other placeholders empty as shown.
 6. **Stop.** Do not add body copy, outlines, or README regeneration unless the user asks. Report the created path and chosen topics.
 
-Drafts under `posts/draft/` are gitignored and local-only. The URL slug is the filename stem (no separate frontmatter field).
+Drafts under `posts/draft/` are gitignored and local-only. The URL slug is the directory name (no separate frontmatter field). Images for a draft sit next to `post.md` in the same directory (referenced as bare filenames, e.g. `](01.png)`).
 
 ## Template
 
@@ -53,7 +53,7 @@ Required fields always present: `title`, `subtitle`, `medium_id`, `draft: true`,
 
 User: `/blog-create-draft Decision fatigue`
 
-Creates `posts/draft/decision-fatigue.md`:
+Creates `posts/draft/decision-fatigue/post.md`:
 
 ```markdown
 ---

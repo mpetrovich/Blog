@@ -6,7 +6,7 @@ syndicated_url: https://medium.com/@michael-petrovich/you-need-to-calm-down-71a1
 topics: [ai, engineering, process]
 ---
 
-![](images/you-need-to-calm-down/01.jpeg)
+![](01.jpeg)
 
 If you work in software, you’ve seen this AI craze firsthand.
 

@@ -10,6 +10,9 @@ services:
         - posts/published/**
     routes:
       - type: redirect
+        source: /posts/images/:slug/:file
+        destination: /posts/:slug/:file
+      - type: redirect
         source: /posts/how-to-not-do-software-estimation
         destination: /posts/how-not-to-do-software-estimation/
       - type: redirect

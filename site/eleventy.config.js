@@ -31,18 +31,26 @@ function resolvePostsDir() {
     return path.join(__dirname, '../posts/published')
 }
 
-/** `YYYY-MM-DD-slug.md` → slug (date stays in the filename only). */
-const DATED_POST_RE = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
+/** `YYYY-MM-DD-slug` directory name → date + slug. */
+const DATED_DIR_RE = /^(\d{4}-\d{2}-\d{2})-(.+)$/
 
-function slugFromFilename(file) {
-    const match = file.match(DATED_POST_RE)
-    if (match) return match[2]
-    return file.endsWith('.md') ? file.slice(0, -3) : file
+/** Rewrite post-relative asset paths to site-absolute /posts/<slug>/... */
+function rewriteAssetPaths(markdown, slug) {
+    return markdown.replace(/\]\((?!https?:\/\/|\/|#)([^)]+)\)/g, `](/posts/${slug}/$1)`)
 }
 
-/** Rewrite post-relative image paths to site-absolute /posts/images/... */
-function rewriteImagePaths(markdown) {
-    return markdown.replace(/\]\(images\//g, '](/posts/images/')
+function listPostDirs(postsDir) {
+    return fs
+        .readdirSync(postsDir, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => {
+            const match = entry.name.match(DATED_DIR_RE)
+            if (!match) return null
+            const postPath = path.join(postsDir, entry.name, 'post.md')
+            if (!fs.existsSync(postPath)) return null
+            return { dirName: entry.name, date: match[1], slug: match[2], postPath }
+        })
+        .filter(Boolean)
 }
 
 export default function (eleventyConfig) {
@@ -63,9 +71,6 @@ export default function (eleventyConfig) {
         'src/apple-touch-icon.png': 'apple-touch-icon.png',
         'src/profile.png': 'profile.png',
     })
-    eleventyConfig.addPassthroughCopy({
-        [path.join(postsDir, 'images')]: 'posts/images',
-    })
 
     eleventyConfig.addWatchTarget(postsDir)
     eleventyConfig.addWatchTarget(cssPath)
@@ -73,18 +78,25 @@ export default function (eleventyConfig) {
     eleventyConfig.addGlobalData('cssInline', cssInline)
 
     const seenSlugs = new Set()
-    for (const file of fs.readdirSync(postsDir)) {
-        if (!file.endsWith('.md')) continue
-        const slug = slugFromFilename(file)
-        if (seenSlugs.has(slug)) {
-            throw new Error(`Duplicate post slug "${slug}" from ${file}`)
+    for (const post of listPostDirs(postsDir)) {
+        if (seenSlugs.has(post.slug)) {
+            throw new Error(`Duplicate post slug "${post.slug}" from ${post.dirName}`)
         }
-        seenSlugs.add(slug)
-        const raw = fs.readFileSync(path.join(postsDir, file), 'utf8')
+        seenSlugs.add(post.slug)
+
+        const postDir = path.join(postsDir, post.dirName)
+        for (const file of fs.readdirSync(postDir)) {
+            if (file === 'post.md' || file.startsWith('.')) continue
+            eleventyConfig.addPassthroughCopy({
+                [path.join(postDir, file)]: `posts/${post.slug}/${file}`,
+            })
+        }
+
+        const raw = fs.readFileSync(post.postPath, 'utf8')
         // virtualPath is relative to dir.input (src/)
-        eleventyConfig.addTemplate(`posts/${slug}.md`, rewriteImagePaths(raw), {
+        eleventyConfig.addTemplate(`posts/${post.slug}.md`, rewriteAssetPaths(raw, post.slug), {
             layout: 'layouts/post.njk',
-            permalink: `/posts/${slug}/`,
+            permalink: `/posts/${post.slug}/`,
             writingPost: true,
         })
     }

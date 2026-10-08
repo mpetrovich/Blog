@@ -12,7 +12,7 @@ I’ve worked in, managed, and observed software engineering teams across a vari
 
 ### The 3 dominoes
 
-![Graphic listing the 3 dominoes: (1) Limit work-in-progress, (2) minimize specialization, (3) Avoid sacrificing quality](images/the-three-dominoes/02.png)
+![Graphic listing the 3 dominoes: (1) Limit work-in-progress, (2) minimize specialization, (3) Avoid sacrificing quality](02.png)
 
 ### 1\. Limit work-in-progress
 

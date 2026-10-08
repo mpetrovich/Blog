@@ -27,7 +27,7 @@ Work in the **Blog** repo root.
 
 - Prefer an explicit slug from the user (with or without `.md` / `YYYY-MM-DD-` prefix).
 - Optional override: custom body text (do **not** invent copy; only use what the user supplies).
-- Target post must exist as `posts/published/YYYY-MM-DD-<slug>.md`.
+- Target post must exist as `posts/published/YYYY-MM-DD-<slug>/post.md`.
 - **Stop** if the post is missing.
 - **Stop** if there is no `--text` override and frontmatter `subtitle` is empty — ask for text once.
 
@@ -39,7 +39,7 @@ node site/scripts/generate-tweet-mockup.mjs <slug>
 node site/scripts/generate-tweet-mockup.mjs <slug> --text "Custom tweet body"
 ```
 
-Writes `posts/published/images/<slug>/tweet.png` (creates the images directory if needed).
+Writes `posts/published/YYYY-MM-DD-<slug>/tweet.png` (next to `post.md`).
 
 Uses `site/src/profile.png`, author **Michael Petrovich**, and handle **@mikepetrovich** (see `site/src/_data/site.js`). Do not hand-edit the PNG; re-run the script.
 
@@ -59,4 +59,4 @@ User: `/blog-create-tweet-mockup optimize-for-learning-not-shipping`
 node site/scripts/generate-tweet-mockup.mjs optimize-for-learning-not-shipping
 ```
 
-→ `posts/published/images/optimize-for-learning-not-shipping/tweet.png`
+→ `posts/published/2026-09-19-optimize-for-learning-not-shipping/tweet.png`

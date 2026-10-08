@@ -7,7 +7,7 @@ topics: [decision-making]
 image_caption: The Titanic and its passengers were victims of poor decision-making (i Strings Magazine)
 ---
 
-![A painting of the Titanic sinking](images/how-to-make-decisions-that-don-t-suck/01.png)
+![A painting of the Titanic sinking](01.png)
 
 The Titanic and its passengers were victims of poor decision-making (i [Strings Magazine](https://stringsmagazine.com/the-spirit-of-the-rms-titanic-and-the-band-played-on/))
 

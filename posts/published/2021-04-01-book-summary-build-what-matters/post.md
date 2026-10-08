@@ -10,7 +10,7 @@ _I’ve started a practice of reading one book every week. To help me actually r
 
 This week, I finished reading [Build What Matters](https://www.amazon.com/Build-What-Matters-Delivering-Vision-Led-ebook/dp/B08GQMCP19) by Ben Foster.
 
-![Book cover of Build What Matters](images/book-summary-build-what-matters/01.jpeg)
+![Book cover of Build What Matters](01.jpeg)
 
 ### TL;DR
 
@@ -59,13 +59,13 @@ Starting with the key customer outcome, identify the supporting outcomes that le
 
 For example, imagine a business whose mission is to help users prepare and serve home-cooked meals. Their customer outcome pyramid could be:
 
-![Example customer outcome pyramid](images/book-summary-build-what-matters/02.png)
+![Example customer outcome pyramid](02.png)
 
 Source: [Prodify](https://www.prodify.group/blog/strategic-planning-case-study-chuckwagon)
 
 In addition, the business has a key outcome tied to the customer outcome. After all, it probably needs to make money. A separate business outcome pyramid can be created to capture important business measures:
 
-![Example business outcome pyramid](images/book-summary-build-what-matters/03.png)
+![Example business outcome pyramid](03.png)
 
 Source: [Prodify](https://www.prodify.group/blog/strategic-planning-case-study-chuckwagon)
 

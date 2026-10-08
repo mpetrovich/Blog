@@ -11,7 +11,7 @@ I’ve been watching _New Amsterdam_, a medical drama series about a fictional N
 
 Instead of working up a diagnosis and treatment based only on his patients’ symptoms, Dr. Kapoor asks them to talk about their lives. Their stories meander from mother-in-law frustrations to family holidays, annoying both the impatient head of the ER and patients alike.
 
-![Dr. Kapoor talking with a patient on the TV series New Amsterdam](images/the-1-rule-when-talking-to-customers/01.png)
+![Dr. Kapoor talking with a patient on the TV series New Amsterdam](01.png)
 
 _Dr. Kapoor talking with a patient on_ [_New Amsterdam_](https://www.nbc.com/new-amsterdam)
 

@@ -6,12 +6,12 @@
  *   node site/scripts/generate-tweet-mockup.mjs <slug> [--text "..."]
  *
  * Defaults body text to the post's subtitle. Override with --text.
- * Writes posts/published/images/<slug>/tweet.png
+ * Writes posts/published/YYYY-MM-DD-<slug>/tweet.png
  *
  * Width is fixed; height fits the header + text + padding.
  */
 
-import { readFileSync, readdirSync, existsSync, mkdirSync, writeFileSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, existsSync, writeFileSync, statSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import satori from 'satori'
@@ -35,7 +35,8 @@ const BODY_LINE_HEIGHT = 1.4
 const PARA_GAP = 36
 /** Tall canvas for measuring; cropped to content afterward. */
 const MEASURE_HEIGHT = 4000
-const DATED_POST_RE = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
+/** `YYYY-MM-DD-slug` directory name → date + slug. */
+const DATED_DIR_RE = /^(\d{4}-\d{2}-\d{2})-(.+)$/
 
 function usage(message) {
     if (message) console.error(message)
@@ -63,7 +64,9 @@ function parseArgs(argv) {
         slug = arg
     }
     if (!slug) usage()
-    return { slug: slug.replace(/\.md$/, '').replace(DATED_POST_RE, '$2'), text }
+    const stem = slug.replace(/\/?post\.md$/, '').replace(/\.md$/, '')
+    const dated = stem.match(DATED_DIR_RE)
+    return { slug: dated ? dated[2] : stem, text }
 }
 
 function parseFrontmatter(raw) {
@@ -83,17 +86,20 @@ function parseFrontmatter(raw) {
     return data
 }
 
-function slugFromFilename(file) {
-    const match = file.match(DATED_POST_RE)
-    if (match) return match[2]
-    return file.endsWith('.md') ? file.slice(0, -3) : file
-}
-
-function findPostFile(slug) {
-    const files = readdirSync(postsDir).filter((f) => f.endsWith('.md'))
-    const match = files.find((f) => slugFromFilename(f) === slug)
+function findPost(slug) {
+    const entries = readdirSync(postsDir, { withFileTypes: true })
+        .filter((e) => e.isDirectory())
+        .map((e) => {
+            const match = e.name.match(DATED_DIR_RE)
+            if (!match) return null
+            const postPath = join(postsDir, e.name, 'post.md')
+            if (!existsSync(postPath)) return null
+            return { dirName: e.name, slug: match[2], postPath, postDir: join(postsDir, e.name) }
+        })
+        .filter(Boolean)
+    const match = entries.find((p) => p.slug === slug)
     if (!match) throw new Error(`No published post for slug "${slug}" in ${postsDir}`)
-    return join(postsDir, match)
+    return match
 }
 
 /** Split on blank lines into paragraphs; keep single newlines as soft line breaks. */
@@ -269,11 +275,11 @@ async function renderMockup({ author, handle, bodyText, avatarDataUrl, fonts }) 
 
 async function main() {
     const { slug, text: textOverride } = parseArgs(process.argv)
-    const postPath = findPostFile(slug)
-    const frontmatter = parseFrontmatter(readFileSync(postPath, 'utf8'))
+    const post = findPost(slug)
+    const frontmatter = parseFrontmatter(readFileSync(post.postPath, 'utf8'))
     const bodyText = (textOverride ?? frontmatter.subtitle ?? '').trim()
     if (!bodyText) {
-        throw new Error(`No tweet text: pass --text or set subtitle on ${postPath}`)
+        throw new Error(`No tweet text: pass --text or set subtitle on ${post.postPath}`)
     }
 
     if (!existsSync(profilePath)) {
@@ -297,9 +303,7 @@ async function main() {
         fonts,
     })
 
-    const outDir = join(postsDir, 'images', slug)
-    mkdirSync(outDir, { recursive: true })
-    const outPath = join(outDir, 'tweet.png')
+    const outPath = join(post.postDir, 'tweet.png')
     writeFileSync(outPath, png)
     const meta = await sharp(png).metadata()
     const kb = Math.round(statSync(outPath).size / 1024)
