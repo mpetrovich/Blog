@@ -96,12 +96,18 @@ function findPostFile(slug) {
     return join(postsDir, match)
 }
 
+/** Split on blank lines into paragraphs; keep single newlines as soft line breaks. */
 function paragraphsFromText(text) {
     return text
         .replace(/\r\n/g, '\n')
         .split(/\n\s*\n/)
-        .map((p) => p.replace(/\s+/g, ' ').trim())
-        .filter(Boolean)
+        .map((p) =>
+            p
+                .split('\n')
+                .map((line) => line.replace(/\s+/g, ' ').trim())
+                .filter(Boolean),
+        )
+        .filter((lines) => lines.length > 0)
 }
 
 function buildLayout({ author, handle, paragraphs, avatarDataUrl }) {
@@ -197,14 +203,23 @@ function buildLayout({ author, handle, paragraphs, avatarDataUrl }) {
                             letterSpacing: '-0.01em',
                             color: '#0f1419',
                         },
-                        children: paragraphs.map((paragraph, index) => ({
+                        children: paragraphs.map((lines, index) => ({
                             type: 'div',
                             props: {
                                 style: {
                                     display: 'flex',
+                                    flexDirection: 'column',
                                     marginTop: index === 0 ? 0 : PARA_GAP,
                                 },
-                                children: paragraph,
+                                children: lines.map((line) => ({
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                        },
+                                        children: line,
+                                    },
+                                })),
                             },
                         })),
                     },
