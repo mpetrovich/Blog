@@ -5,7 +5,7 @@ date: 2026-10-15
 topics: [ai, engineering]
 ---
 
-Good software engineers are lazy. A good engineer will refuse to do the same thing a 3rd time. Instead, they'll find a way to automate it or abstract it away so the 4th time or 400th requires little effort. The friction of manual effort is what leads to simpler, better-abstracted systems.
+Good software engineers are lazy. A good engineer will refuse to do the same thing a 3rd time. Instead, they'll find a way to automate it or abstract it away so the 4th time or 400th requires little effort. The friction of manual effort is what leads to simpler, more maintainable systems.
 
 Bad engineers will continue toiling away repetitively. And they'll do it slightly differently each time, precisely because it's not systematized.
 
