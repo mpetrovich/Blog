@@ -41,15 +41,14 @@ After many of my own experiments, I've landed on a methodology that exhibits the
 
 1. **Estimate how long it would take 1 person, working on nothing else, to complete it.** You're still estimating time but the (im)precision of the estimate better reflects how inaccurate it might be.
 2. **Use a scale of minutes, hours, days, weeks, months** and map them to values that reflect those differences in magnitude. Each label represents a time range, not a specific duration. For instance:
-   - Minutes (0.1)
-   - Hours (1)
-   - Days (5)
-   - Weeks (25)
-   - Months (100)
+   - Hours (0.5)
+   - Days (2)
+   - Weeks (10)
+   - Months (40)
 
-For example, a task that takes a couple hours to do would be a 1. Another that takes a day or two would be a 5. A week: 25. A few months: 100.
+For example, a task that takes a couple hours to do would be a 0.5. Another that takes a day or two would be a 2. A week: 10. A few months: 40.
 
-The point is less about the specific values used and more about their differences in order of magnitude. In the example scale above, most values are 4-5x the previous, which maps closely to those same time ranges (~5 useful hours in a workday, 5 days in a work week, 4 weeks in a month).
+The point is less about the specific values used and more about their differences in order of magnitude. In the example scale above, most values are 4-5x the previous, which maps closely to those same time ranges (~4 useful hours in a workday, 5 days in a work week, 4 weeks in a month).
 
 The time labels make them easier to remember, and the values make them additive so they still make sense when summed. In contrast to the Fibonacci example, 5 individual days-long tasks do feel comparable to one weeks-long one.
 
