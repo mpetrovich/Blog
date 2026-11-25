@@ -6,6 +6,7 @@
  *   node site/scripts/generate-tweet-mockup.mjs <slug> [--text "..."]
  *
  * Defaults body text to the post's subtitle. Override with --text.
+ * Ensures body text ends with `.` (appends one if missing; leaves `?`/`!` alone).
  * Writes posts/published/YYYY-MM-DD-<slug>/tweet.png
  *
  * Width is fixed; height fits the header + text + padding.
@@ -100,6 +101,13 @@ function findPost(slug) {
     const match = entries.find((p) => p.slug === slug)
     if (!match) throw new Error(`No published post for slug "${slug}" in ${postsDir}`)
     return match
+}
+
+/** Append `.` when body text has no trailing sentence-ending punctuation. */
+function ensureTrailingPeriod(text) {
+    const trimmed = text.trimEnd()
+    if (!trimmed || /[.!?]$/.test(trimmed)) return trimmed
+    return `${trimmed}.`
 }
 
 /** Split on blank lines into paragraphs; keep single newlines as soft line breaks. */
@@ -277,7 +285,7 @@ async function main() {
     const { slug, text: textOverride } = parseArgs(process.argv)
     const post = findPost(slug)
     const frontmatter = parseFrontmatter(readFileSync(post.postPath, 'utf8'))
-    const bodyText = (textOverride ?? frontmatter.subtitle ?? '').trim()
+    const bodyText = ensureTrailingPeriod((textOverride ?? frontmatter.subtitle ?? '').trim())
     if (!bodyText) {
         throw new Error(`No tweet text: pass --text or set subtitle on ${post.postPath}`)
     }

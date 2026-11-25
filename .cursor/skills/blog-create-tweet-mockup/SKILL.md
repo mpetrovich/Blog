@@ -30,6 +30,7 @@ Work in the **Blog** repo root.
 - Target post must exist as `posts/published/YYYY-MM-DD-<slug>/post.md`.
 - **Stop** if the post is missing.
 - **Stop** if there is no `--text` override and frontmatter `subtitle` is empty — ask for text once.
+- **Trailing period:** Body text (subtitle or `--text`) must end with `.`. If it is missing, append one before generating (e.g. `Late is usually better than rushed` → `Late is usually better than rushed.`). Leave text that already ends in `?` or `!` alone. Prefer fixing the source `subtitle` the same way when regenerating from frontmatter so post and mockup stay in sync. The generator script enforces this too.
 
 ### 2. Generate tweet.png
 

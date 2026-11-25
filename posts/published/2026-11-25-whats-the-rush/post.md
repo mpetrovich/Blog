@@ -1,6 +1,6 @@
 ---
 title: What’s the rush?
-subtitle: Late is usually better than rushed
+subtitle: Late is usually better than rushed.
 date: 2026-11-25
 topics: [process, decision-making]
 ---
