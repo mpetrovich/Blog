@@ -11,6 +11,6 @@ Before you rush, ask two things: What would happen if you’re late? And how lik
 
 Think back to the last time you were late. What happened as a result? Was it worth the stress and mistakes from rushing? That usually answers the question for you.
 
-Bad things may happen if you’re late. Stress and/or mistakes will happen if you rush. In most cases, rushing is the worse trade.
+Bad things _may_ happen if you’re late. Stress and/or mistakes _will_ happen if you rush. In most cases, rushing is the worse trade.
 
 So if you’re late, accept it and adapt. But don’t rush, because you don’t need to. Instead, work at a pace you can maintain. And adjust how you plan so that inevitable delays are less likely to happen, and less likely to be a big deal.
